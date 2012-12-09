@@ -1,11 +1,11 @@
 <?php
 
-namespace Hal\ReleaseBundle\Package\Repository;
+namespace Hal\ReleaseBundle\Release\Package\Repository;
 
-use Hal\ReleaseBundle\Package\PackageInterface;
+use Hal\ReleaseBundle\Release\Package\PackageInterface;
 use Composer\Repository\RepositoryInterface as ComposerRepositoryInterface;
-use Hal\ReleaseBundle\Package\PackageFactory;
-use Hal\ReleaseBundle\Version\Release;
+use Hal\ReleaseBundle\Release\Package\PackageFactory;
+use Hal\ReleaseBundle\Release\Version\Release;
 
 class RepositoryComposer implements RepositoryInterface
 {

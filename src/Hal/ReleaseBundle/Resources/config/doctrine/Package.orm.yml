@@ -1,0 +1,24 @@
+Hal\ReleaseBundle\Entity\Package:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    name:
+      type: string
+    currentVersion:
+      type: version
+    releaseDate:
+      type: datetime
+    homepage:
+      type: string
+    url:
+      type: string
+  manyToOne:
+    owner:
+      targetEntity: Owner
+  oneToMany:
+    requirements:
+      targetEntity: Requirement
+      mappedBy: requirements

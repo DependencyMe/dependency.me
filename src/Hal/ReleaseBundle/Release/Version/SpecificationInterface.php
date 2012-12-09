@@ -1,8 +1,8 @@
 <?php
 
-namespace Hal\ReleaseBundle\Version;
+namespace Hal\ReleaseBundle\Release\Version;
 
-use Hal\ReleaseBundle\Version\ReleaseInterface;
+use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
 
 interface SpecificationInterface
 {

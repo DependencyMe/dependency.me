@@ -1,8 +1,8 @@
 <?php
 
-namespace Hal\ReleaseBundle\Version;
+namespace Hal\ReleaseBundle\Release\Version;
 
-use Hal\ReleaseBundle\Version\ReleaseInterface;
+use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
 
 class ConstraintAgregat implements SpecificationInterface
 {
@@ -33,6 +33,15 @@ class ConstraintAgregat implements SpecificationInterface
     public function getConstraints()
     {
         return $this->constraints;
+    }
+
+    public function getPrettyString()
+    {
+        $strings = array();
+        foreach ($this->getConstraints() as $constraint) {
+            array_push($strings, $constraint->getPrettyString());
+        }
+        return implode(',', $strings);
     }
 
 }

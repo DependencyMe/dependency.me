@@ -1,13 +1,13 @@
 <?php
 
-namespace Hal\ReleaseBundle\Package;
+namespace Hal\ReleaseBundle\Release\Package;
 
 interface PackageInterface
 {
 
     public function getConstraint();
 
-    public function setConstraint(\Hal\ReleaseBundle\Version\SpecificationInterface $constraint);
+    public function setConstraint(\Hal\ReleaseBundle\Release\Version\SpecificationInterface $constraint);
 
     public function setRequires(array $packages);
 

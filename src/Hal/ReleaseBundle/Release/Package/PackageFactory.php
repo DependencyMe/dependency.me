@@ -1,10 +1,10 @@
 <?php
 
-namespace Hal\ReleaseBundle\Package;
+namespace Hal\ReleaseBundle\Release\Package;
 
 use Composer\Package\PackageInterface as ComposerPackageInterface;
 use Composer\Package\Link as ComposerPackageLinkInterface;
-use Hal\ReleaseBundle\Package\Package;
+use Hal\ReleaseBundle\Release\Package\Package;
 
 class PackageFactory
 {
@@ -69,7 +69,7 @@ class PackageFactory
     {
         $package = new Package($link->getTarget());
 
-        $factory = new \Hal\ReleaseBundle\Version\ConstraintFactory;
+        $factory = new \Hal\ReleaseBundle\Release\Version\ConstraintFactory;
         $constraint = $factory->factory($link->getConstraint());
         $package->setConstraint($constraint);
         return $package;

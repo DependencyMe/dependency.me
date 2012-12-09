@@ -1,0 +1,14 @@
+Hal\ReleaseBundle\Entity\Requirement:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    constraint:
+      type: constraint
+    status:
+      type: requirementstatus
+  manyToOne:
+    package:
+      targetEntity: Package

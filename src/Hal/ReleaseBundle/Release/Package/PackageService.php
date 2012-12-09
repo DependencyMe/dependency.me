@@ -1,8 +1,8 @@
 <?php
 
-namespace Hal\ReleaseBundle\Package;
+namespace Hal\ReleaseBundle\Release\Package;
 
-use Hal\ReleaseBundle\Package\Repository\RepositoryInterface;
+use Hal\ReleaseBundle\Release\Package\Repository\RepositoryInterface;
 
 class PackageService
 {

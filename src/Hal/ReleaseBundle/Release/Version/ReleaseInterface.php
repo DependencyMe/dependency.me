@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\ReleaseBundle\Version;
+namespace Hal\ReleaseBundle\Release\Version;
 
 interface ReleaseInterface
 {

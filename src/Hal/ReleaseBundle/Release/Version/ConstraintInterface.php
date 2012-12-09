@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\ReleaseBundle\Version;
+namespace Hal\ReleaseBundle\Release\Version;
 
 interface ConstraintInterface
 {
@@ -8,4 +8,6 @@ interface ConstraintInterface
     public function getVersion();
 
     public function getOperator();
+
+    public function getPrettyString();
 }

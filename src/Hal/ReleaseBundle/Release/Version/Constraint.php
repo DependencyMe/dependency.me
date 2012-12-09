@@ -1,8 +1,8 @@
 <?php
 
-namespace Hal\ReleaseBundle\Version;
+namespace Hal\ReleaseBundle\Release\Version;
 
-use Hal\ReleaseBundle\Version\ReleaseInterface;
+use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
 
 class Constraint implements ConstraintInterface, SpecificationInterface
 {
@@ -59,6 +59,11 @@ class Constraint implements ConstraintInterface, SpecificationInterface
     public function getOperator()
     {
         return $this->operator;
+    }
+
+    public function getPrettyString()
+    {
+        return $this->operator . $this->version;
     }
 
 }

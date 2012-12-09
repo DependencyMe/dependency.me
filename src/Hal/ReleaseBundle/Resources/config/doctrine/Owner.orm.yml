@@ -1,0 +1,13 @@
+Hal\ReleaseBundle\Entity\Owner:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    name: string
+    email: string
+  oneToMany:
+    package:
+      targetEntity: Package
+      mappedBy: packages

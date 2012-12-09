@@ -1,7 +1,7 @@
 <?php
 
-namespace Hal\ReleaseBundle\Package;
-use Hal\ReleaseBundle\Version\SpecificationInterface;
+namespace Hal\ReleaseBundle\Release\Package;
+use Hal\ReleaseBundle\Release\Version\SpecificationInterface;
 class Package implements PackageInterface
 {
 
