@@ -14,8 +14,8 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
     public function testWheckIfConstraintIsSatisfedByVersion($operator, $expectedVersion, $givenVersion, $expectedResult)
     {
 
-        $version = new Hal\Release\Version\Release($givenVersion);
-        $constraint = new \Hal\Release\Version\Constraint($expectedVersion, $operator);
+        $version = new Hal\ReleaseBundle\Release\Version\Release($givenVersion);
+        $constraint = new \Hal\ReleaseBundle\Release\Version\Constraint($expectedVersion, $operator);
         $result = $constraint->isSatisfedBy($version);
 
         $this->assertEquals($expectedResult, $result, sprintf('We want version %1$s %2$s, we get "%3$s" with "%4$s" ', $operator, $expectedVersion, (string) $result ? 'true' : 'false', $givenVersion));
