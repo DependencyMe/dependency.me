@@ -96,7 +96,7 @@ class Owner
     /**
      * Add package
      *
-     * @param Hal\ReleaseBundle\Entity\Package $package
+     * @param \Hal\ReleaseBundle\Entity\Package $package
      * @return Owner
      */
     public function addPackage(\Hal\ReleaseBundle\Entity\Package $package)
@@ -109,7 +109,7 @@ class Owner
     /**
      * Remove package
      *
-     * @param Hal\ReleaseBundle\Entity\Package $package
+     * @param \Hal\ReleaseBundle\Entity\Package $package
      */
     public function removePackage(\Hal\ReleaseBundle\Entity\Package $package)
     {
@@ -119,7 +119,7 @@ class Owner
     /**
      * Get package
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPackage()
     {

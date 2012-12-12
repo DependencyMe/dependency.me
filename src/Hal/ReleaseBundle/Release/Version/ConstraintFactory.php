@@ -17,16 +17,15 @@ class ConstraintFactory
                 return $this->factoryFromComposerConstraintLink($constraint);
                 break;
             default:
-                throw new Exception('Constraint type is not supported');
+                throw new \Exception('Constraint type is not supported');
                 break;
         }
     }
 
     public function factoryFromString($constraintString)
     {
-        $constraintAggregat = new ConstraintAgregat;
+        $constraintAggregate = new ConstraintAggregate;
         $split = explode(',', $constraintString);
-        $versions = array();
         foreach ($split as $ver) {
             preg_match('!([=><]{0,2})(.*)!', $ver, $matches);
 
@@ -35,9 +34,9 @@ class ConstraintFactory
             }
 
             $constraint = new Constraint($matches[2], $matches[1]);
-            $constraintAggregat->addConstraint($constraint);
+            $constraintAggregate->addConstraint($constraint);
         }
-        return $constraintAggregat;
+        return $constraintAggregate;
     }
 
     public function factoryFromComposerConstraintLink(LinkConstraintInterface $composerConstraint)

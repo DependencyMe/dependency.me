@@ -4,6 +4,7 @@ namespace Hal\ReleaseBundle\Release\Package;
 
 interface PackageInterface
 {
+    public function getName();
 
     public function getConstraint();
 

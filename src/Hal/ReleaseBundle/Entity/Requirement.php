@@ -15,17 +15,17 @@ class Requirement
     private $id;
 
     /**
-     * @var constraint $constraint
+     * @var \Hal\ReleaseBundle\Release\Version\ConstraintInterface $constraint
      */
     private $constraint;
 
     /**
-     * @var requirementstatus $status
+     * @var \Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType $status
      */
     private $status;
 
     /**
-     * @var Hal\ReleaseBundle\Entity\Package
+     * @var \Hal\ReleaseBundle\Entity\Package
      */
     private $package;
 
@@ -43,7 +43,7 @@ class Requirement
     /**
      * Set constraint
      *
-     * @param constraint $constraint
+     * @param \Hal\ReleaseBundle\Dbal\Types\ConstraintType $constraint
      * @return Requirement
      */
     public function setConstraint($constraint)
@@ -56,7 +56,7 @@ class Requirement
     /**
      * Get constraint
      *
-     * @return constraint 
+     * @return \Hal\ReleaseBundle\Dbal\Types\ConstraintType
      */
     public function getConstraint()
     {
@@ -66,7 +66,7 @@ class Requirement
     /**
      * Set status
      *
-     * @param requirementstatus $status
+     * @param \Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType $status
      * @return Requirement
      */
     public function setStatus($status)
@@ -79,7 +79,7 @@ class Requirement
     /**
      * Get status
      *
-     * @return requirementstatus 
+     * @return \Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType
      */
     public function getStatus()
     {
@@ -89,7 +89,7 @@ class Requirement
     /**
      * Set package
      *
-     * @param Hal\ReleaseBundle\Entity\Package $package
+     * @param \Hal\ReleaseBundle\Entity\Package $package
      * @return Requirement
      */
     public function setPackage(\Hal\ReleaseBundle\Entity\Package $package = null)
@@ -102,7 +102,7 @@ class Requirement
     /**
      * Get package
      *
-     * @return Hal\ReleaseBundle\Entity\Package 
+     * @return \Hal\ReleaseBundle\Entity\Package
      */
     public function getPackage()
     {

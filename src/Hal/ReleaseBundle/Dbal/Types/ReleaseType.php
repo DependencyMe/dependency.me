@@ -4,7 +4,7 @@ namespace Hal\ReleaseBundle\Dbal\Types;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Hal\ReleaseBundle\Release\Version\ConstraintInterface;
+
 use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
 use Hal\ReleaseBundle\Release\Version\Release;
 

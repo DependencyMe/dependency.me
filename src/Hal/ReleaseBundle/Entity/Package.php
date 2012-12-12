@@ -45,7 +45,7 @@ class Package
     private $requirements;
 
     /**
-     * @var Hal\ReleaseBundle\Entity\Owner
+     * @var \Hal\ReleaseBundle\Entity\Owner
      */
     private $owner;
 
@@ -185,7 +185,7 @@ class Package
     /**
      * Add requirements
      *
-     * @param Hal\ReleaseBundle\Entity\Requirement $requirements
+     * @param \Hal\ReleaseBundle\Entity\Requirement $requirements
      * @return Package
      */
     public function addRequirement(\Hal\ReleaseBundle\Entity\Requirement $requirements)
@@ -198,7 +198,7 @@ class Package
     /**
      * Remove requirements
      *
-     * @param Hal\ReleaseBundle\Entity\Requirement $requirements
+     * @param \Hal\ReleaseBundle\Entity\Requirement $requirements
      */
     public function removeRequirement(\Hal\ReleaseBundle\Entity\Requirement $requirements)
     {
@@ -208,7 +208,7 @@ class Package
     /**
      * Get requirements
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRequirements()
     {
@@ -218,7 +218,7 @@ class Package
     /**
      * Set owner
      *
-     * @param Hal\ReleaseBundle\Entity\Owner $owner
+     * @param \Hal\ReleaseBundle\Entity\Owner $owner
      * @return Package
      */
     public function setOwner(\Hal\ReleaseBundle\Entity\Owner $owner = null)
@@ -231,7 +231,7 @@ class Package
     /**
      * Get owner
      *
-     * @return Hal\ReleaseBundle\Entity\Owner 
+     * @return \Hal\ReleaseBundle\Entity\Owner
      */
     public function getOwner()
     {

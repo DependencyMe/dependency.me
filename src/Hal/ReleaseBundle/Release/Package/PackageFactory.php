@@ -19,7 +19,7 @@ class PackageFactory
                 return $this->factoryFromComposerPackageLink($package);
                 break;
             default:
-                throw new Exception('Package type is not supported');
+                throw new \Exception('Package type is not supported');
                 break;
         }
     }

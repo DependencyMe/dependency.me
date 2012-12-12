@@ -4,7 +4,7 @@ namespace Hal\ReleaseBundle\Release\Version;
 
 use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
 
-class ConstraintAgregat implements SpecificationInterface
+class ConstraintAggregate implements SpecificationInterface
 {
 
     private $constraints;
@@ -14,17 +14,17 @@ class ConstraintAgregat implements SpecificationInterface
         $this->constraints = $constraints;
     }
 
-    public function isSatisfedBy(ReleaseInterface $release)
+    public function isSatisfiedBy(ReleaseInterface $release)
     {
         foreach ($this->constraints as $constraint) {
-            if (!$constraint->isSatisfedBy($release)) {
+            if (!$constraint->isSatisfiedBy($release)) {
                 return false;
             }
         }
         return true;
     }
 
-    public function addConstraint(Constraint $constraint)
+    public function addConstraint(ConstraintInterface $constraint)
     {
         array_push($this->constraints, $constraint);
         return $this;

@@ -18,7 +18,7 @@ class ConstraintType extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        $factory = new Hal\ReleaseBundle\Release\Version\FactoryConstraint();
+        $factory = new \Hal\ReleaseBundle\Release\Version\ConstraintFactory();
         return $factory->factory($value);
     }
 

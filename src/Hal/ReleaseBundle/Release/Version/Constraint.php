@@ -16,7 +16,7 @@ class Constraint implements ConstraintInterface, SpecificationInterface
         $this->operator = $operator;
     }
 
-    public function isSatisfedBy(ReleaseInterface $versionGiven)
+    public function isSatisfiedBy(ReleaseInterface $versionGiven)
     {
         $versionGiven = $versionGiven->getVersion();
         $versionRequired = $this->getVersion();

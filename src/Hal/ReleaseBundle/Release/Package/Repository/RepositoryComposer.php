@@ -4,7 +4,7 @@ namespace Hal\ReleaseBundle\Release\Package\Repository;
 
 use Hal\ReleaseBundle\Release\Package\PackageInterface;
 use Composer\Repository\RepositoryInterface as ComposerRepositoryInterface;
-use Hal\ReleaseBundle\Release\Package\PackageFactory;
+
 use Hal\ReleaseBundle\Release\Version\Release;
 
 class RepositoryComposer implements RepositoryInterface
