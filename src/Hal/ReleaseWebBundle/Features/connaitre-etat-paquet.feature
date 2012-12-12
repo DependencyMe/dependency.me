@@ -4,15 +4,15 @@ Fonctionnalité: Connaître l'état d'un paquet
   Je dois pouvoir connaître facilement l'état de mon paquet
 
   Contexte:
-    Etant donné que je suis propriétaire du paquet "monPaquet1"
+    Etant donné que je suis propriétaire du paquet "myCoolPackage"
 
   Plan de Scénario: Offrir un moyen visuel de connaître l'état d'un paquet
     Etant donné que le paquet "<paquet>" est "<etat>"
-    Alors je peux visualiser une image qui indique "<image-etat>"
+    Alors je peux visualiser une image qui indique "<image>"
 
     Exemples:
-      | paquet        | etat      | image-etat    |
-      | monPaquet1    | latest    | latest        |
-      | monPaquet1    | recent    | recent        |
-      | monPaquet1    | outofdate | outofdate     |
-      | monPaquet1    | unknown   | unknown       |
+      | paquet           | etat      | image         |
+      | myCoolPackage    | latest    | latest        |
+      | myCoolPackage    | recent    | recent        |
+      | myCoolPackage    | outofdate | outofdate     |
+      | myCoolPackage    | unknown   | unknown       |
