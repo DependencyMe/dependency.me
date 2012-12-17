@@ -5,22 +5,22 @@ namespace Hal\ReleaseBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Hal\ReleaseBundle\Entity\Requirement
+ * Requirement
  */
 class Requirement
 {
     /**
-     * @var integer $id
+     * @var integer
      */
     private $id;
 
     /**
-     * @var \Hal\ReleaseBundle\Release\Version\ConstraintInterface $constraint
+     * @var constraint
      */
     private $constraint;
 
     /**
-     * @var \Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType $status
+     * @var requirementstatus
      */
     private $status;
 
@@ -28,6 +28,11 @@ class Requirement
      * @var \Hal\ReleaseBundle\Entity\Package
      */
     private $package;
+
+    /**
+     * @var \Hal\ReleaseBundle\Entity\Package
+     */
+    private $packageExpected;
 
 
     /**
@@ -43,7 +48,7 @@ class Requirement
     /**
      * Set constraint
      *
-     * @param \Hal\ReleaseBundle\Dbal\Types\ConstraintType $constraint
+     * @param constraint $constraint
      * @return Requirement
      */
     public function setConstraint($constraint)
@@ -56,7 +61,7 @@ class Requirement
     /**
      * Get constraint
      *
-     * @return \Hal\ReleaseBundle\Dbal\Types\ConstraintType
+     * @return constraint 
      */
     public function getConstraint()
     {
@@ -66,7 +71,7 @@ class Requirement
     /**
      * Set status
      *
-     * @param \Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType $status
+     * @param requirementstatus $status
      * @return Requirement
      */
     public function setStatus($status)
@@ -79,7 +84,7 @@ class Requirement
     /**
      * Get status
      *
-     * @return \Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType
+     * @return requirementstatus 
      */
     public function getStatus()
     {
@@ -102,10 +107,33 @@ class Requirement
     /**
      * Get package
      *
-     * @return \Hal\ReleaseBundle\Entity\Package
+     * @return \Hal\ReleaseBundle\Entity\Package 
      */
     public function getPackage()
     {
         return $this->package;
+    }
+
+    /**
+     * Set packageExpected
+     *
+     * @param \Hal\ReleaseBundle\Entity\Package $packageExpected
+     * @return Requirement
+     */
+    public function setPackageExpected(\Hal\ReleaseBundle\Entity\Package $packageExpected = null)
+    {
+        $this->packageExpected = $packageExpected;
+    
+        return $this;
+    }
+
+    /**
+     * Get packageExpected
+     *
+     * @return \Hal\ReleaseBundle\Entity\Package 
+     */
+    public function getPackageExpected()
+    {
+        return $this->packageExpected;
     }
 }

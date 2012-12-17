@@ -5,27 +5,27 @@ namespace Hal\ReleaseBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Hal\ReleaseBundle\Entity\Owner
+ * Owner
  */
 class Owner
 {
     /**
-     * @var integer $id
+     * @var integer
      */
     private $id;
 
     /**
-     * @var string $name
+     * @var string
      */
     private $name;
 
     /**
-     * @var string $email
+     * @var string
      */
     private $email;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $package;
 
@@ -119,7 +119,7 @@ class Owner
     /**
      * Get package
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPackage()
     {

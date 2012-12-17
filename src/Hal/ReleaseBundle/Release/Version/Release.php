@@ -17,4 +17,5 @@ class Release implements ReleaseInterface
         return $this->version;
     }
 
+
 }

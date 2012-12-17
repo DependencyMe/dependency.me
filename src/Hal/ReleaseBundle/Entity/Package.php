@@ -5,42 +5,42 @@ namespace Hal\ReleaseBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Hal\ReleaseBundle\Entity\Package
+ * Package
  */
 class Package
 {
     /**
-     * @var integer $id
+     * @var integer
      */
     private $id;
 
     /**
-     * @var string $name
+     * @var string
      */
     private $name;
 
     /**
-     * @var string $currentVersion
+     * @var version
      */
     private $currentVersion;
 
     /**
-     * @var \DateTime $releaseDate
+     * @var \DateTime
      */
     private $releaseDate;
 
     /**
-     * @var string $homepage
+     * @var string
      */
     private $homepage;
 
     /**
-     * @var string $url
+     * @var string
      */
     private $url;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $requirements;
 
@@ -93,7 +93,7 @@ class Package
     /**
      * Set currentVersion
      *
-     * @param string $currentVersion
+     * @param version $currentVersion
      * @return Package
      */
     public function setCurrentVersion($currentVersion)
@@ -106,7 +106,7 @@ class Package
     /**
      * Get currentVersion
      *
-     * @return string 
+     * @return version 
      */
     public function getCurrentVersion()
     {
@@ -208,7 +208,7 @@ class Package
     /**
      * Get requirements
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRequirements()
     {
@@ -231,7 +231,7 @@ class Package
     /**
      * Get owner
      *
-     * @return \Hal\ReleaseBundle\Entity\Owner
+     * @return \Hal\ReleaseBundle\Entity\Owner 
      */
     public function getOwner()
     {

@@ -5,8 +5,10 @@ Hal\ReleaseBundle\Entity\Owner:
       type: integer
       generator: { strategy: auto }
   fields:
-    name: string
-    email: string
+    name:
+      type: string
+    email:
+      type: string
   oneToMany:
     package:
       targetEntity: Package

@@ -21,4 +21,4 @@ Hal\ReleaseBundle\Entity\Package:
   oneToMany:
     requirements:
       targetEntity: Requirement
-      mappedBy: requirements
+      mappedBy: package

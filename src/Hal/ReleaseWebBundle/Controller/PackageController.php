@@ -35,11 +35,12 @@ class PackageController extends Controller
     }
 
     /**
-     * @Template(vars={$package})
+     * @Template(vars={"package"})
      * @Route("/display/{id}", name="package.display")
      */
     public function displayPackageAction(\Hal\ReleaseBundle\Entity\Package $package)
     {
+
     }
 
     /**

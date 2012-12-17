@@ -12,3 +12,5 @@ Hal\ReleaseBundle\Entity\Requirement:
   manyToOne:
     package:
       targetEntity: Package
+    packageExpected:
+      targetEntity: Package

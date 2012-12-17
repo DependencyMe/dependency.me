@@ -5,30 +5,27 @@ Fonctionnalité: Connaître l'état des dépendances d'un paquet
 
   Contexte:
     Etant donné que je suis un visiteur
-    Et que le paquet "monPaquet1" a les dépendances suivantes:
-      """
-      {"require":{
-        "symfony-framework": "2.1.0",
-        "doctrine/orm": ">=2.2.3",
-        "sensio/generator-bundle": "<2"
-      }}
-      """
+    Et que le paquet "myCoolPackage" a les dépendances suivantes:
+      | dependance          | required      | latest    |
+      | kikou-lol           | >1.0          | 1.5       |
+      | my-beautiful-cat    | 3.6.7         | 3.8       |
+      | evil-framewok       | 2.*           | 3         |
 
   Scénario: Connaître les dépendances d'un paquet
-    Quand je souhaite connaître la liste des dépendances du paquet "monPaquet1"
-    Alors je peux savoir que le paquet "monPaquet1" a les dépendances suivantes :
-      | dépendance              | version   |
-      | symfony-framework       | 2.1.0     |
-      | doctrine/orm            | >=2.2.3   |
-      | sensio/generator-bundle | 2.1.*     |
+    Quand je souhaite connaître la liste des dépendances du paquet "myCoolPackage"
+    Alors je peux savoir que le paquet "myCoolPackage" a les dépendances suivantes :
+      | dependance        | version   |
+      | kikou-lol         | >1.0      |
+      | my-beautiful-cat  | 3.6.7     |
+      | evil-framewok     | 2.*       |
 
   Plan de Scénario: Connaître l'état des dépendances d'un paquet
-    Quand je souhaite connaître la liste des dépendances du paquet "monPaquet1"
+    Quand je souhaite connaître la liste des dépendances du paquet "myCoolPackage"
     Alors je peux savoir que la dépendance "<dependance>" est "<state>"
 
     Examples:
-      | dependance              | state       |
-      | symfony-framework       | recent      |
-      | doctrine/orm            | latest      |
-      | sensio/generator-bundle | outofdate   |
+      | dependance        | state       |
+      | kikou-lol         | latest      |
+      | my-beautiful-cat  | recent      |
+      | evil-framewok     | outofdate   |
 
