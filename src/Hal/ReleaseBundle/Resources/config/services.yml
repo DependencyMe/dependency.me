@@ -1,0 +1,12 @@
+parameters:
+  hr.package.service.class : Hal\ReleaseBundle\Release\Package\PackageService
+  hr.release.repo.composer.class : Hal\ReleaseBundle\Release\Package\Repository\ReleaseRepositoryComposer
+  hr.package.repo.class : Hal\ReleaseBundle\Release\Package\Repository\RepositoryPersistence
+
+services:
+  hr.package.service:
+    class: %hr.package.service.class%
+    arguments: [@hr.package.repo.persistence]
+  hr.package.repo.persistence:
+      class: %hr.package.repo.class%
+      arguments: [@doctrine.orm.entity_manager]

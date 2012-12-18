@@ -19,4 +19,7 @@ class PackageService
         return $this->repository->findReleases($package);
     }
 
+    public function getMatchingPackages($searchedTerm) {
+        return $this->repository->getMatchingPackages($searchedTerm);
+    }
 }

@@ -7,7 +7,7 @@ use Composer\Repository\RepositoryInterface as ComposerRepositoryInterface;
 
 use Hal\ReleaseBundle\Release\Version\Release;
 
-class RepositoryComposer implements RepositoryInterface
+class RepositoryComposer implements ReleaseRepositoryInterface
 {
 
     private static $cache = array();

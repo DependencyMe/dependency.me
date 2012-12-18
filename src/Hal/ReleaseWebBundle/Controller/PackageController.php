@@ -24,6 +24,18 @@ class PackageController extends Controller
     }
 
     /**
+     * @Route("/search/{searchedTerm}", name="package.search")
+     * @Template
+     */
+    public function searchAction($searchedTerm) {
+        $service = $this->get('hr.package.service');
+        return array(
+            'packages' => $service->getMatchingPackages($searchedTerm)
+            ,'searchedTerm' => $searchedTerm
+        );
+    }
+
+    /**
      * @Secure(roles="ROLE_OWNER")
      * @SecureParam(name="package", permissions="OWNER")
      * @Template

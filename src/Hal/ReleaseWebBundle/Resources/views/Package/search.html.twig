@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    <h1>Search a package</h1>
+    <p>
+        {{ packages | length }} packages found with the expression "{{ searchedTerm }}".
+    </p>
+
+    <table class="table table-stripped table-condensed">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>Github</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for package in packages %}
+            <tr>
+                <td>{{ package.name }}</td>
+                <td>{{ package.owner.name }}</td>
+                <td>{{ package.url }}</td>
+                <td><a href="{{ path('package.display', {id: package.id}) }}" class="btn btn-small"><i class="icon-zoom-in"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

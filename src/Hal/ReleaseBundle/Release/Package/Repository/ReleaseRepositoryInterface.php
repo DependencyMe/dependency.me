@@ -3,9 +3,10 @@
 namespace Hal\ReleaseBundle\Release\Package\Repository;
 use \Hal\ReleaseBundle\Release\Package\PackageInterface;
 
-interface RepositoryInterface
+interface ReleaseRepositoryInterface
 {
 
-    public function getMatchingPackages($searchedTerm);
+    public function findReleases(PackageInterface $package);
+
 
 }
