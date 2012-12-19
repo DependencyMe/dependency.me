@@ -1,5 +1,5 @@
 <?php
-namespace Hal\GithubBundle\Auth;
+namespace Hal\GithubBundle\Service;
 use Symfony\Component\HttpFoundation\Request;
 use Hal\GithubBundle\Entity\AuthentifiableInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Owner
  */
-class Owner
+class Owner implements OwnerInterface
 {
     /**
      * @var integer
