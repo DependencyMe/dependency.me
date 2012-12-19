@@ -4,5 +4,5 @@ use Hal\GithubBundle\Entity\AuthentifiableInterface;
 
 interface AuthServiceInterface
 {
-    public function authentificate(AuthentifiableInterface $user);
+    public function authentificate(AuthServiceInterface $user);
 }

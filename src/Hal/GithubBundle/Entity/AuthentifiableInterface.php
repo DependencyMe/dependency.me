@@ -1,6 +1,14 @@
 <?php
 namespace Hal\GithubBundle\Entity;
 
-class Authentifiable implements AutehtnifiableInterface {
+interface AuthentifiableInterface {
+
+    public function setPermanentAccessToken($permanentAccessToken);
+
+    public function getPermanentAccessToken();
+
+    public function setTemporaryCode($temporaryCode);
+
+    public function getTemporaryCode();
 
 }

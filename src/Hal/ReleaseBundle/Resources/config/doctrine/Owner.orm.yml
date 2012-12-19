@@ -9,6 +9,8 @@ Hal\ReleaseBundle\Entity\Owner:
       type: string
     email:
       type: string
+    token:
+      type: string
   oneToMany:
     package:
       targetEntity: Package

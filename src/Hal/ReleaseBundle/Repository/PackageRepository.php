@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Package\Repository;
+namespace Hal\ReleaseBundle\Repository;
 
 use Hal\ReleaseBundle\Release\Package\PackageInterface;
 use Composer\Repository\RepositoryInterface as ComposerRepositoryInterface;

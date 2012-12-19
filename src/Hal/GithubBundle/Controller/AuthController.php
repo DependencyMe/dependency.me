@@ -20,13 +20,8 @@ class PackageController extends Controller
      */
     public function authentificateAction()
     {
-        $service = $this->get('hal.github.auth.service');
-        $user = $this->get('session')->get('github.auth.user');
-        if (!$user) {
-            $user = new \Hal\GithubBundle\Entity\Authentifiable();
-        }
-        $service->authentificate($user);
+        $serviceOwner = $this->get('hal.release.owner.service');
+        $serviceAuth->authentificate();
         return new RedirectResponse('home');
     }
-
 }

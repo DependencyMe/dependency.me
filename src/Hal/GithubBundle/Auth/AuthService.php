@@ -43,6 +43,7 @@ class AuthService implements AuthServiceInterface
             $code = $this->request->get('code');
             if (null !== $code) {
                 $user->setTemporaryCode($code);
+                return;
             }
         }
 
@@ -57,6 +58,7 @@ class AuthService implements AuthServiceInterface
             $token = $this->request->get('access_token');
             if (null !== $token) {
                 $user->setPermanentAccessToken($token);
+                return;
             }
         }
 

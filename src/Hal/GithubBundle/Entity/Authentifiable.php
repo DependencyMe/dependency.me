@@ -1,8 +1,29 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: jflepine
- * Date: 19/12/12
- * Time: 07:51
- * To change this template use File | Settings | File Templates.
- */
+namespace Hal\GithubBundle\Entity;
+
+class Authentifiable implements AuthentifiableInterface {
+
+
+    private $permanentAccessToken;
+    private $temporaryCode;
+
+    public function setPermanentAccessToken($permanentAccessToken)
+    {
+        $this->permanentAccessToken = $permanentAccessToken;
+    }
+
+    public function getPermanentAccessToken()
+    {
+        return $this->permanentAccessToken;
+    }
+
+    public function setTemporaryCode($temporaryCode)
+    {
+        $this->temporaryCode = $temporaryCode;
+    }
+
+    public function getTemporaryCode()
+    {
+        return $this->temporaryCode;
+    }
+}
