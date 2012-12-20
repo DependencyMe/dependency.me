@@ -5,7 +5,7 @@ namespace Hal\ReleaseBundle\Dbal\Types;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Hal\ReleaseBundle\Release\Version\ConstraintInterface;
-
+use Hal\ReleaseBundle\Factory\ConstraintFactory;
 class ConstraintType extends Type
 {
 
@@ -18,7 +18,7 @@ class ConstraintType extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        $factory = new \Hal\ReleaseBundle\Release\Version\ConstraintFactory();
+        $factory = new ConstraintFactory();
         return $factory->factory($value);
     }
 

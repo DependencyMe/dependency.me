@@ -1,7 +1,7 @@
 parameters:
-  hr.package.service.class : Hal\ReleaseBundle\Release\Package\PackageService
-  hr.release.repo.composer.class : Hal\ReleaseBundle\Release\Package\Repository\ReleaseRepositoryComposer
-  hr.package.repo.class : Hal\ReleaseBundle\Repository\RepositoryPersistence
+  hr.package.service.class : Hal\ReleaseBundle\Service\PackageService
+  hr.release.repo.composer.class : Hal\ReleaseBundle\Repository\ReleaseRepositoryComposer
+  hr.package.repo.class : Hal\ReleaseBundle\Repository\PackageRepository
 
 services:
   hr.package.service:

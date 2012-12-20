@@ -1,9 +1,10 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Version;
+namespace Hal\ReleaseBundle\Factory;
 
 use Composer\Package\LinkConstraint\LinkConstraintInterface;
-
+use Hal\ReleaseBundle\Aggregate\ConstraintAggregate;
+use Hal\ReleaseBundle\Entity\Constraint;
 class ConstraintFactory
 {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Version;
+namespace Hal\ReleaseBundle\Entity;
 
 interface ConstraintInterface
 {

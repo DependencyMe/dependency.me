@@ -1,13 +1,13 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Package\Repository;
+namespace Hal\ReleaseBundle\Repository;
 
 use Hal\ReleaseBundle\Release\Package\PackageInterface;
 use Composer\Repository\RepositoryInterface as ComposerRepositoryInterface;
 
 use Hal\ReleaseBundle\Release\Version\Release;
 
-class RepositoryComposer implements ReleaseRepositoryInterface
+class ReleaseRepositoryComposer implements ReleaseRepositoryInterface
 {
 
     private static $cache = array();

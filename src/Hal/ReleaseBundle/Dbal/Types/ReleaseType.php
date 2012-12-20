@@ -5,8 +5,8 @@ namespace Hal\ReleaseBundle\Dbal\Types;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
-use Hal\ReleaseBundle\Release\Version\Release;
+use Hal\ReleaseBundle\Entity\ReleaseInterface;
+use Hal\ReleaseBundle\Entity\Release;
 
 class ReleaseType extends Type
 {

@@ -8,7 +8,7 @@ use Composer\Repository\RepositoryInterface as ComposerRepositoryInterface;
 use Hal\ReleaseBundle\Release\Version\Release;
 use Doctrine\ORM\EntityManager;
 
-class RepositoryPersistence implements RepositoryInterface
+class PackageRepository implements PackageRepositoryInterface
 {
 
     private $em;

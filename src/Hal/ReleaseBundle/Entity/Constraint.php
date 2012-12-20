@@ -1,10 +1,10 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Version;
+namespace Hal\ReleaseBundle\Entity;
 
-use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
-
-class Constraint implements ConstraintInterface, SpecificationInterface
+use Hal\ReleaseBundle\Entity\ReleaseInterface;
+use Hal\ReleaseBundle\Specification\ConstraintSpecificationInterface;
+class Constraint implements ConstraintInterface, ConstraintSpecificationInterface
 {
 
     private $version;

@@ -1,10 +1,11 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Version;
+namespace Hal\ReleaseBundle\Aggregate;
 
-use Hal\ReleaseBundle\Release\Version\ReleaseInterface;
-
-class ConstraintAggregate implements SpecificationInterface
+use Hal\ReleaseBundle\Entity\ReleaseInterface;
+use Hal\ReleaseBundle\Specification\ConstraintSpecificationInterface;
+use Hal\ReleaseBundle\Entity\ConstraintInterface;
+class ConstraintAggregate implements ConstraintSpecificationInterface
 {
 
     private $constraints;

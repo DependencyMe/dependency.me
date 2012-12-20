@@ -1,15 +1,15 @@
 <?php
 
-namespace Hal\ReleaseBundle\Release\Package;
+namespace Hal\ReleaseBundle\Service;
 
-use Hal\ReleaseBundle\Release\Package\Repository\RepositoryInterface;
+use Hal\ReleaseBundle\Repository\PackageRepositoryInterface;
 
-class PackageService
+class PackageService implements PackageServiceInterface
 {
 
     private $repository;
 
-    function __construct(RepositoryInterface $repository)
+    function __construct(PackageRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
