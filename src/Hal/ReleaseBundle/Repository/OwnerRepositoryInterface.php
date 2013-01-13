@@ -2,7 +2,7 @@
 namespace Hal\ReleaseBundle\Repository;
 use \Hal\GithubBundle\Entity\AuthentifiableInterface;
 
-interface OwnerServiceInterface
+interface OwnerRepositoryInterface
 {
     public function findOwnerByAuth(AuthentifiableInterface $auth);
 }

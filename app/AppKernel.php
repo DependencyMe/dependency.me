@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Hal\ReleaseBundle\HalReleaseBundle(),
             new Hal\ReleaseWebBundle\HalReleaseWebBundle(),
+            new Hal\GithubBundle\HalGithubBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

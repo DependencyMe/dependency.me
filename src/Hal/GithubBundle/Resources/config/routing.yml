@@ -1,0 +1,3 @@
+release.web:
+    resource: "@HalGithubBundle/Controller"
+    type:     annotation

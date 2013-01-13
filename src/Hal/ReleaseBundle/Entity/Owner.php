@@ -3,12 +3,14 @@
 namespace Hal\ReleaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use \Hal\GithubBundle\Entity\AuthentifiableInterface;
+use \Hal\GithubBundle\Entity\Authentifiable;
 /**
  * Owner
  */
-class Owner implements OwnerInterface
+class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInterface
 {
+
     /**
      * @var integer
      */
@@ -28,6 +30,16 @@ class Owner implements OwnerInterface
      * @var \Doctrine\Common\Collections\Collection
      */
     private $package;
+
+    /**
+     * @var string
+     */
+    private $temporaryCode;
+
+    /**
+     * @var string
+     */
+    private $permanentAccessToken;
 
     /**
      * Constructor
@@ -125,32 +137,24 @@ class Owner implements OwnerInterface
     {
         return $this->package;
     }
-    /**
-     * @var string
-     */
-    private $token;
 
-
-    /**
-     * Set token
-     *
-     * @param string $token
-     * @return Owner
-     */
-    public function setToken($token)
+    public function setPermanentAccessToken($permanentAccessToken)
     {
-        $this->token = $token;
-    
-        return $this;
+        $this->permanentAccessToken = $permanentAccessToken;
     }
 
-    /**
-     * Get token
-     *
-     * @return string 
-     */
-    public function getToken()
+    public function getPermanentAccessToken()
     {
-        return $this->token;
+        return $this->permanentAccessToken;
+    }
+
+    public function setTemporaryCode($temporaryCode)
+    {
+        $this->temporaryCode = $temporaryCode;
+    }
+
+    public function getTemporaryCode()
+    {
+        return $this->temporaryCode;
     }
 }

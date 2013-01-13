@@ -13,15 +13,7 @@ use Hal\GithubBundle\Service\AuthServiceInterface;
 /**
  * @Route("/github")
  */
-class PackageController extends Controller
+class AuthController extends Controller
 {
-    /**
-     * @Route("/auth", name="github.auth")
-     */
-    public function authentificateAction()
-    {
-        $serviceOwner = $this->get('hal.release.owner.service');
-        $serviceAuth->authentificate();
-        return new RedirectResponse('home');
-    }
+
 }

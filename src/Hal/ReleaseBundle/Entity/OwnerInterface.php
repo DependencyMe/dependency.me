@@ -59,18 +59,4 @@ interface OwnerInterface
      */
     public function getPackage();
 
-    /**
-     * Set token
-     *
-     * @param string $token
-     * @return Owner
-     */
-    public function setToken($token);
-
-    /**
-     * Get token
-     *
-     * @return string 
-     */
-    public function getToken();
 }

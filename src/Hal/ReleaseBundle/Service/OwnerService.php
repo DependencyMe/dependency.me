@@ -1,10 +1,11 @@
 <?php
 namespace Hal\ReleaseBundle\Service;
-use \Hal\GithubBundle\Auth\AuthServiceInterface;
+use \Hal\GithubBundle\Service\AuthServiceInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use \Hal\GithubBundle\Entity\Authentifiable;
 use \Hal\GithubBundle\Entity\AuthentifiableInterface;
 use \Hal\ReleaseBundle\Repository\OwnerRepositoryInterface;
+use \Hal\ReleaseBundle\Entity\Owner;
 
 class OwnerService implements OwnerServiceInterface
 {
@@ -22,16 +23,15 @@ class OwnerService implements OwnerServiceInterface
 
     public function authentificate()
     {
-
         $user = $this->session->get('owner.auth.user');
         if (!$user) {
-            $user = new Authentifiable();
+            $user = new Owner();
         }
 
         $this->authService->authentificate($user);
         $this->session->set('owner.auth.user', $user);
 
-        if (null != $user->getPermanentToken()) {
+        if (null != $user->getPermanentAccessToken()) {
             // find owner
             $owner = $this->findOwnerByAuth($user);
 

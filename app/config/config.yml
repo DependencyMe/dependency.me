@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: @HalReleaseBundle/Resources/config/services.yml }
+    - { resource: @HalGithubBundle/Resources/config/services.yml }
 
 framework:
     #esi:             ~
@@ -60,3 +61,4 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+

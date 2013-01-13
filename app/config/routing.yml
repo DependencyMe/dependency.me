@@ -2,6 +2,10 @@ hal_release_web:
     resource: "@HalReleaseWebBundle/Resources/config/routing.yml"
     prefix:   /
 
+hal_github:
+    resource: "@HalGithubBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

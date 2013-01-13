@@ -2,7 +2,7 @@
 namespace Hal\ReleaseBundle\Repository;
 use \Hal\GithubBundle\Entity\AuthentifiableInterface;
 use Doctrine\ORM\EntityManager;
-class OwnerService implements OwnerServiceInterface
+class OwnerRepository implements OwnerRepositoryInterface
 {
 
     private $em;
@@ -19,9 +19,9 @@ class OwnerService implements OwnerServiceInterface
             FROM
                 HalReleaseBundle:Owner o
             WHERE
-                o.token = :token
+                o.permanentAccessToken = :permanent_access_token
             ");
-        $query->setParameter('token', $auth->getPermanentAccessToken());
+        $query->setParameter('permanent_access_token', $auth->getPermanentAccessToken());
         return $query->getResult();
     }
 }

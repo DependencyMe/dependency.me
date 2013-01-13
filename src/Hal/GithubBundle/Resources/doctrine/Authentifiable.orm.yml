@@ -1,0 +1,11 @@
+Hal\GithubBundle\Entity\Authentifiable:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    permanentAccesToken:
+      type: string
+    temporaryCode:
+      type: string

@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/package")
@@ -48,7 +49,8 @@ class PackageController extends Controller
 
     /**
      * @Template(vars={"package"})
-     * @Route("/display/{id}", name="package.display")
+     * @Route("/display/{name}", name="package.display")
+     * @ParamConverter ("package", options={"mapping": {"name": "name"}})
      */
     public function displayPackageAction(\Hal\ReleaseBundle\Entity\Package $package)
     {

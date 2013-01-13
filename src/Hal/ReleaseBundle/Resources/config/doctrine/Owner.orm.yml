@@ -9,9 +9,10 @@ Hal\ReleaseBundle\Entity\Owner:
       type: string
     email:
       type: string
-    token:
-      type: string
   oneToMany:
     package:
       targetEntity: Package
       mappedBy: packages
+  inheritance:
+      type: simple
+      extends: Hal\GithubBundle\Entity\Authentifiable

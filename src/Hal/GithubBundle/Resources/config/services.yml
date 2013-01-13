@@ -1,0 +1,15 @@
+parameters:
+  hal.github.auth.service.class: Hal\GithubBundle\Service\AuthService
+
+
+
+services:
+    hal.github.auth.service:
+        class: %hal.github.auth.service.class%
+        arguments:
+          - @service_container
+          - %github_app_id%
+          - %github_app_secret%
+          - %github_redirect_url%
+
+
