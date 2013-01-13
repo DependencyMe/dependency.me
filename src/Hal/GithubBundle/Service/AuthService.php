@@ -59,12 +59,18 @@ class AuthService implements AuthServiceInterface
         $url = sprintf('https://github.com/login/oauth/access_token?client_id=%1$s&redirect_uri=%2$s&client_secret=%3$s&code=%4$s'
             , $this->clientId, $this->redirectUri, $this->clientSecret, $user->getTemporaryCode()
         );
-        parse_str(file_get_contents($url));
+        parse_str(file_get_contents($url), $response);
 
-        $token = $this->request->get('access_token');
-        if (null !== $token) {
-            $user->setPermanentAccessToken($token);
-            return;
+        if (!isset($response['access_token'])) {
+            throw new \LogicException('Access token does not exist');
         }
+
+        $token = $response['access_token'];
+
+        if (strlen($token) == 0) {
+            throw new \LogicException('Access token is empty');
+        }
+
+        $user->setPermanentAccessToken($token);
     }
 }

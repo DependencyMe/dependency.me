@@ -28,6 +28,13 @@ class OwnerController extends Controller
      * @Route("/my-repositories", name="owner.list.repositories")
      */
     public function listRepositoriesAction() {
+        var_dump($this->get('session')->get('owner.auth.user'));
+
+        exit;
+        $tk = $this->get('session')->get('owner.auth.user')->getPermanentAccessToken();
+
+        $url = 'https://api.github.com/users/repos?access_token='.$tk;
+        die(file_get_contents($url));
         die('ok');
     }
 

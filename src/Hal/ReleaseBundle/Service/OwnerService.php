@@ -23,6 +23,7 @@ class OwnerService implements OwnerServiceInterface
 
     public function authentificate()
     {
+       // $this->session->clear();exit;
         $user = $this->session->get('owner.auth.user');
         if (!$user) {
             $user = new Owner();
