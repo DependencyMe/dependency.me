@@ -8,19 +8,19 @@ interface OwnerInterface
     public function getId();
 
     /**
-     * Set name
+     * Set login
      *
      * @param string $name
      * @return Owner
      */
-    public function setName($name);
+    public function setLogin($name);
 
     /**
-     * Get name
+     * Get login
      *
-     * @return string 
+     * @return string
      */
-    public function getName();
+    public function getLogin();
 
     /**
      * Set email
@@ -58,5 +58,36 @@ interface OwnerInterface
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPackage();
+
+
+    /**
+     * Set gravatar Id
+     *
+     * @param string $name
+     * @return Owner
+     */
+    public function setGravatarId($name);
+
+    /**
+     * Get gravatar id
+     *
+     * @return string
+     */
+    public function getGravatarId();
+
+    /**
+     * Set GithubUrl
+     *
+     * @param string $name
+     * @return Owner
+     */
+    public function setGithubUrl($name);
+
+    /**
+     * Get GithubUrl
+     *
+     * @return string
+     */
+    public function getGithubUrl();
 
 }

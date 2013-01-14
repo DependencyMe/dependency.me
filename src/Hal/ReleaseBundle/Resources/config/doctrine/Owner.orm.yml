@@ -5,9 +5,19 @@ Hal\ReleaseBundle\Entity\Owner:
       type: integer
       generator: { strategy: auto }
   fields:
-    name:
+    login:
       type: string
     email:
+      type: string
+    permanentAccessToken:
+      type:string
+    temporaryCode:
+      type: string
+      nullable: true
+    gravatarId:
+      type: string
+      nullable: true
+    githubUrl:
       type: string
   oneToMany:
     package:

@@ -12,6 +12,7 @@ class AuthService implements AuthServiceInterface
     private $request;
     private $redirectUri;
     private $clientSecret;
+    private $scopes = array();
 
     function __construct(ContainerInterface $container, $appClientId, $appClientSecret, $redirectUri)
     {
@@ -48,9 +49,16 @@ class AuthService implements AuthServiceInterface
             return;
         }
 
-        $response = new RedirectResponse(sprintf('https://github.com/login/oauth/authorize?client_id=%1$s&redirect_uri=%2$s'
-            , $this->clientId, $this->redirectUri
-        ));
+
+        $url = 'https://github.com/login/oauth/authorize?'
+            . http_build_query(array(
+                'client_id' => $this->clientId,
+                'redirect_uri' => $this->redirectUri,
+            ))
+            .'&amp;'.'scope='.implode(',', $this->scopes);
+
+
+        $response = new RedirectResponse($url);
         $response->send();
     }
 
@@ -72,5 +80,11 @@ class AuthService implements AuthServiceInterface
         }
 
         $user->setPermanentAccessToken($token);
+    }
+
+    public function addScope($scope)
+    {
+        array_push($this->scopes, $scope);
+        return $this;
     }
 }

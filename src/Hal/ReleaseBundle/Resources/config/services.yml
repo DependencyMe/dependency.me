@@ -20,5 +20,6 @@ services:
       class: %hr.owner.service.class%
       arguments:
         - @hal.github.auth.service
+        - @hal.github.user.service
         - @session
         - @hr.owner.repo.persistence

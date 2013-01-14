@@ -1,5 +1,6 @@
 parameters:
   hal.github.auth.service.class: Hal\GithubBundle\Service\AuthService
+  hal.github.user.service.class: Hal\GithubBundle\Service\UserService
 
 
 
@@ -12,4 +13,7 @@ services:
           - %github_app_secret%
           - %github_redirect_url%
 
+    hal.github.user.service:
+      class: %hal.github.user.service.class%
+      arguments: []
 

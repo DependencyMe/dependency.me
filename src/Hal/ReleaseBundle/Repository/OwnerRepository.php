@@ -24,4 +24,9 @@ class OwnerRepository implements OwnerRepositoryInterface
         $query->setParameter('permanent_access_token', $auth->getPermanentAccessToken());
         return $query->getResult();
     }
+
+    public function saveOwner(\Hal\ReleaseBundle\Entity\Owner $owner) {
+        $this->em->persist($owner);
+        $this->em->flush();
+    }
 }

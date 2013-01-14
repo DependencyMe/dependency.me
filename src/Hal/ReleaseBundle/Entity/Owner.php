@@ -5,6 +5,7 @@ namespace Hal\ReleaseBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use \Hal\GithubBundle\Entity\AuthentifiableInterface;
 use \Hal\GithubBundle\Entity\Authentifiable;
+
 /**
  * Owner
  */
@@ -16,10 +17,6 @@ class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInte
      */
     private $id;
 
-    /**
-     * @var string
-     */
-    private $name;
 
     /**
      * @var string
@@ -42,45 +39,38 @@ class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInte
     private $permanentAccessToken;
 
     /**
+     * @var string
+     */
+    private $login;
+
+    /**
+     * @var string
+     */
+    private $gravatarId;
+
+    /**
+     * @var string
+     */
+    private $githubUrl;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->package = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Owner
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set email
@@ -91,14 +81,14 @@ class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInte
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -114,7 +104,7 @@ class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInte
     public function addPackage(\Hal\ReleaseBundle\Entity\Package $package)
     {
         $this->package[] = $package;
-    
+
         return $this;
     }
 
@@ -131,7 +121,7 @@ class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInte
     /**
      * Get package
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPackage()
     {
@@ -156,5 +146,75 @@ class Owner extends Authentifiable implements OwnerInterface, AuthentifiableInte
     public function getTemporaryCode()
     {
         return $this->temporaryCode;
+    }
+
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     * @return Owner
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set gravatarId
+     *
+     * @param string $gravatarId
+     * @return Owner
+     */
+    public function setGravatarId($gravatarId)
+    {
+        $this->gravatarId = $gravatarId;
+
+        return $this;
+    }
+
+    /**
+     * Get gravatarId
+     *
+     * @return string
+     */
+    public function getGravatarId()
+    {
+        return $this->gravatarId;
+    }
+
+    /**
+     * Set githubUrl
+     *
+     * @param string $githubUrl
+     * @return Owner
+     */
+    public function setGithubUrl($githubUrl)
+    {
+        $this->githubUrl = $githubUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get githubUrl
+     *
+     * @return string
+     */
+    public function getGithubUrl()
+    {
+        return $this->githubUrl;
     }
 }
