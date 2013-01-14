@@ -1,3 +1,4 @@
+# un paquet simple, pas relié à un dépôt ou quoi que ce soit. Juste le nom d'un paquet et sa version actuelle
 Hal\ReleaseBundle\Entity\Package:
   type: entity
   id:
@@ -11,14 +12,5 @@ Hal\ReleaseBundle\Entity\Package:
       type: version
     releaseDate:
       type: datetime
-    homepage:
-      type: string
     url:
       type: string
-  manyToOne:
-    owner:
-      targetEntity: Owner
-  oneToMany:
-    requirements:
-      targetEntity: Requirement
-      mappedBy: package

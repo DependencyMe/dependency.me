@@ -3,28 +3,63 @@ namespace Hal\GithubBundle\Service;
 use Symfony\Component\HttpFoundation\Request;
 use Hal\GithubBundle\Entity\AuthentifiableInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Hal\GithubBundle\Entity\Owner;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
+use Hal\GithubBundle\Repository\OwnerRepositoryInterface;
+use Hal\GithubBundle\Service\UserServiceInterface;
 class AuthService implements AuthServiceInterface
 {
     private $clientId;
     private $request;
     private $redirectUri;
+    private $ownerRepository;
+    private $userService;
     private $clientSecret;
     private $scopes = array();
 
-    function __construct(ContainerInterface $container, $appClientId, $appClientSecret, $redirectUri)
+    function __construct(ContainerInterface $container, OwnerRepositoryInterface $ownerRepository, UserServiceInterface $userService , $appClientId, $appClientSecret, $redirectUri)
     {
         $this->clientId = $appClientId;
         $this->clientSecret = $appClientSecret;
+        $this->ownerRepository = $ownerRepository;
+        $this->userService = $userService;
         $this->request = $container->get('request');
-        ;
+        $this->session = $container->get('session');
         $this->redirectUri = $redirectUri;
     }
 
 
-    public function authentificate(AuthentifiableInterface $user)
+    public function authentificate()
+    {
+        $user = $this->session->get('owner.auth.user');
+        if (!$user) {
+            $user = new Owner();
+        }
+
+        $this->doAuthentification($user);
+        $this->session->set('owner.auth.user', $user);
+
+        if (null != $user->getPermanentAccessToken()) {
+            // find owner
+            $owner = $this->ownerRepository->findOwnerByAuth($user);
+
+            if (!$owner) {
+                $owner = new Owner();
+                $owner->setPermanentAccessToken($user->getPermanentAccessToken());
+
+                $this->userService->synchronize($owner);
+
+
+                $this->ownerRepository->saveOwner($owner);
+            }
+        }
+
+        return $owner;
+
+    }
+
+
+    private function doAuthentification(AuthentifiableInterface $user)
     {
         // Pattern Template
         // 1. ask for temporary code
@@ -55,7 +90,7 @@ class AuthService implements AuthServiceInterface
                 'client_id' => $this->clientId,
                 'redirect_uri' => $this->redirectUri,
             ))
-            .'&amp;'.'scope='.implode(',', $this->scopes);
+            . '&amp;' . 'scope=' . implode(',', $this->scopes);
 
 
         $response = new RedirectResponse($url);

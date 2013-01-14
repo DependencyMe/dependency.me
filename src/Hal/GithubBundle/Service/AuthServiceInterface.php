@@ -15,5 +15,5 @@ interface AuthServiceInterface
     const SCOPE_GIST = 'gist';
 
 
-    public function authentificate(AuthentifiableInterface $user);
+    public function authentificate();
 }

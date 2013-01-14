@@ -1,0 +1,23 @@
+Hal\GithubBundle\Entity\Repository:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    name:
+      type: string
+    gitUrl:
+      type: string
+    url:
+      type: string
+    private:
+      type: integer
+  manyToOne:
+    owner:
+      targetEntity: Owner
+  oneToMany:
+    branche:
+      targetEntity: Branche
+      mappedBy: repository
+      cascade: ["persist", "merge"]

@@ -1,0 +1,13 @@
+Hal\GithubBundle\Entity\Branche:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    name:
+      type: string
+  manyToOne:
+    repository:
+      targetEntity: Repository
+      cascade: ["persist", "merge"]

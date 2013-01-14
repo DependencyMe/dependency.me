@@ -1,6 +1,7 @@
 parameters:
   hal.github.auth.service.class: Hal\GithubBundle\Service\AuthService
   hal.github.user.service.class: Hal\GithubBundle\Service\UserService
+  hal.github.owner.repository.class: Hal\GithubBundle\Repository\OwnerRepository
 
 
 
@@ -9,6 +10,8 @@ services:
         class: %hal.github.auth.service.class%
         arguments:
           - @service_container
+          - @hal.github.owner.repository
+          - @hal.github.user.service
           - %github_app_id%
           - %github_app_secret%
           - %github_redirect_url%
@@ -16,4 +19,9 @@ services:
     hal.github.user.service:
       class: %hal.github.user.service.class%
       arguments: []
+
+    hal.github.owner.repository:
+      class: %hal.github.owner.repository.class%
+      arguments:
+        - @doctrine.orm.entity_manager
 

@@ -25,14 +25,14 @@ class Requirement
     private $status;
 
     /**
-     * @var \Hal\ReleaseBundle\Entity\Package
+     * @var \Hal\GithubBundle\Entity\Branche
      */
-    private $package;
+    private $repository;
 
     /**
      * @var \Hal\ReleaseBundle\Entity\Package
      */
-    private $packageExpected;
+    private $package;
 
 
     /**
@@ -92,6 +92,29 @@ class Requirement
     }
 
     /**
+     * Set repository
+     *
+     * @param \Hal\GithubBundle\Entity\Branche $repository
+     * @return Requirement
+     */
+    public function setRepository(\Hal\GithubBundle\Entity\Branche $repository = null)
+    {
+        $this->repository = $repository;
+    
+        return $this;
+    }
+
+    /**
+     * Get repository
+     *
+     * @return \Hal\GithubBundle\Entity\Branche 
+     */
+    public function getRepository()
+    {
+        return $this->repository;
+    }
+
+    /**
      * Set package
      *
      * @param \Hal\ReleaseBundle\Entity\Package $package
@@ -112,28 +135,5 @@ class Requirement
     public function getPackage()
     {
         return $this->package;
-    }
-
-    /**
-     * Set packageExpected
-     *
-     * @param \Hal\ReleaseBundle\Entity\Package $packageExpected
-     * @return Requirement
-     */
-    public function setPackageExpected(\Hal\ReleaseBundle\Entity\Package $packageExpected = null)
-    {
-        $this->packageExpected = $packageExpected;
-    
-        return $this;
-    }
-
-    /**
-     * Get packageExpected
-     *
-     * @return \Hal\ReleaseBundle\Entity\Package 
-     */
-    public function getPackageExpected()
-    {
-        return $this->packageExpected;
     }
 }

@@ -2,7 +2,6 @@ parameters:
   hr.package.service.class : Hal\ReleaseBundle\Service\PackageService
   hr.release.repo.composer.class : Hal\ReleaseBundle\Repository\ReleaseRepositoryComposer
   hr.package.repo.class : Hal\ReleaseBundle\Repository\PackageRepository
-  hr.owner.repo.class : Hal\ReleaseBundle\Repository\OwnerRepository
   hr.owner.service.class: Hal\ReleaseBundle\Service\OwnerService
 
 services:
@@ -12,9 +11,7 @@ services:
   hr.package.repo.persistence:
       class: %hr.package.repo.class%
       arguments: [@doctrine.orm.entity_manager]
-  hr.owner.repo.persistence:
-        class: %hr.owner.repo.class%
-        arguments: [@doctrine.orm.entity_manager]
+
 
   hr.owner.service:
       class: %hr.owner.service.class%
@@ -22,4 +19,4 @@ services:
         - @hal.github.auth.service
         - @hal.github.user.service
         - @session
-        - @hr.owner.repo.persistence
+        - @hal.github.owner.repository

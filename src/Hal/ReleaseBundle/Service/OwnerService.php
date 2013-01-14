@@ -5,8 +5,8 @@ use \Hal\GithubBundle\Service\UserServiceInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use \Hal\GithubBundle\Entity\Authentifiable;
 use \Hal\GithubBundle\Entity\AuthentifiableInterface;
-use \Hal\ReleaseBundle\Repository\OwnerRepositoryInterface;
-use \Hal\ReleaseBundle\Entity\Owner;
+use \Hal\GithubBundle\Repository\OwnerRepositoryInterface;
+use \Hal\GithubBundle\Entity\Owner;
 
 class OwnerService implements OwnerServiceInterface
 {
@@ -63,6 +63,14 @@ class OwnerService implements OwnerServiceInterface
     public function findOwnerByAuth(AuthentifiableInterface $auth)
     {
         return $this->ownerRepository->findOwnerByAuth($auth);
+    }
+
+    public function synchronize(AuthentifiableInterface $auth) {
+
+        /*$service = $this->userService;
+        $repositories = $service->getPublicRepositories($auth);
+        $branches =*/
+
     }
 
 }

@@ -10,7 +10,7 @@ Hal\ReleaseBundle\Entity\Requirement:
     status:
       type: requirementstatus
   manyToOne:
+    repository:
+      targetEntity: Hal\GithubBundle\Entity\Branche
     package:
-      targetEntity: Package
-    packageExpected:
       targetEntity: Package

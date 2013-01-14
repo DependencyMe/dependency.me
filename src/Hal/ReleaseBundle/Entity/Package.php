@@ -32,31 +32,9 @@ class Package
     /**
      * @var string
      */
-    private $homepage;
-
-    /**
-     * @var string
-     */
     private $url;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $requirements;
 
-    /**
-     * @var \Hal\ReleaseBundle\Entity\Owner
-     */
-    private $owner;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->requirements = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
     /**
      * Get id
      *
@@ -137,29 +115,6 @@ class Package
     }
 
     /**
-     * Set homepage
-     *
-     * @param string $homepage
-     * @return Package
-     */
-    public function setHomepage($homepage)
-    {
-        $this->homepage = $homepage;
-    
-        return $this;
-    }
-
-    /**
-     * Get homepage
-     *
-     * @return string 
-     */
-    public function getHomepage()
-    {
-        return $this->homepage;
-    }
-
-    /**
      * Set url
      *
      * @param string $url
@@ -180,61 +135,5 @@ class Package
     public function getUrl()
     {
         return $this->url;
-    }
-
-    /**
-     * Add requirements
-     *
-     * @param \Hal\ReleaseBundle\Entity\Requirement $requirements
-     * @return Package
-     */
-    public function addRequirement(\Hal\ReleaseBundle\Entity\Requirement $requirements)
-    {
-        $this->requirements[] = $requirements;
-    
-        return $this;
-    }
-
-    /**
-     * Remove requirements
-     *
-     * @param \Hal\ReleaseBundle\Entity\Requirement $requirements
-     */
-    public function removeRequirement(\Hal\ReleaseBundle\Entity\Requirement $requirements)
-    {
-        $this->requirements->removeElement($requirements);
-    }
-
-    /**
-     * Get requirements
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRequirements()
-    {
-        return $this->requirements;
-    }
-
-    /**
-     * Set owner
-     *
-     * @param \Hal\ReleaseBundle\Entity\Owner $owner
-     * @return Package
-     */
-    public function setOwner(\Hal\ReleaseBundle\Entity\Owner $owner = null)
-    {
-        $this->owner = $owner;
-    
-        return $this;
-    }
-
-    /**
-     * Get owner
-     *
-     * @return \Hal\ReleaseBundle\Entity\Owner 
-     */
-    public function getOwner()
-    {
-        return $this->owner;
     }
 }

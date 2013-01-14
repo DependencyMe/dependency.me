@@ -7,51 +7,41 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
 /**
  * @Route("/owner")
  */
 class OwnerController extends Controller
 {
+
+
     /**
-     * @Route("/auth", name="owner.register")
+     * @Route("/synchronize", name="owner.synchronize")
      */
-    public function registerAction()
+    public function synchronizeAction()
     {
-        $service = $this->get('hr.owner.service');
-        $service->authentificate();
-
-        return $this->redirect($this->generateUrl('owner.list.repositories'));
-    }
-
-    /**
-     * @Route("/out", name="owner.logout")
-     */
-    public function logOutAction() {
-        $this->get('session')->clear();
-        return $this->redirect('/'); // @todo : use route name
-    }
-
-    /**
-     * @Route("/my-repositories", name="owner.list.repositories")
-     */
-    public function listRepositoriesAction() {
         $service = $this->get('hal.github.user.service');
         $owner = $this->get('session')->get('owner.auth.user');
+        $repository = $this->get('hal.github.owner.repository');
 
+        $service->synchronize($owner);
 
+        $repository->saveOwner($owner);
 
-        $repositories = $service->getPublicRepositories($owner);
+        return $this->redirect('owner.list.repositories');
+    }
 
-        $content =  '';
-        foreach($repositories as $repository) {
-            $content .= '<br>repo '.$repository->name.':';
-            $branches = $service->getBranchesOfRepository($owner, $repository->name);
-            foreach($branches as $branche) {
-                $content .= '<br> - '.$branche->name;
-            }
-        }
-
-        return new \Symfony\Component\HttpFoundation\Response("<html><body>$content</body></html>");
+    /**
+     * @Template
+     * @Route("/my-repositories", name="owner.list.repositories")
+     */
+    public function listRepositoriesAction()
+    {
+        $owner = $this->get('session')->get('owner.auth.user');
+        return array(
+            'repositories' => $owner->getRepositories(),
+            'owner' => $owner
+        );
     }
 
 }
