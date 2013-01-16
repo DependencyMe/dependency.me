@@ -56,11 +56,14 @@ class Owner implements AuthentifiableInterface
     {
         $this->repository = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
+
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,14 +79,14 @@ class Owner implements AuthentifiableInterface
     public function setPermanentAccessToken($permanentAccessToken)
     {
         $this->permanentAccessToken = $permanentAccessToken;
-    
+
         return $this;
     }
 
     /**
      * Get permanentAccessToken
      *
-     * @return string 
+     * @return string
      */
     public function getPermanentAccessToken()
     {
@@ -99,14 +102,14 @@ class Owner implements AuthentifiableInterface
     public function setTemporaryCode($temporaryCode)
     {
         $this->temporaryCode = $temporaryCode;
-    
+
         return $this;
     }
 
     /**
      * Get temporaryCode
      *
-     * @return string 
+     * @return string
      */
     public function getTemporaryCode()
     {
@@ -122,14 +125,14 @@ class Owner implements AuthentifiableInterface
     public function setLogin($login)
     {
         $this->login = $login;
-    
+
         return $this;
     }
 
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
     public function getLogin()
     {
@@ -145,14 +148,14 @@ class Owner implements AuthentifiableInterface
     public function setUrl($url)
     {
         $this->url = $url;
-    
+
         return $this;
     }
 
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -170,14 +173,14 @@ class Owner implements AuthentifiableInterface
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -193,7 +196,7 @@ class Owner implements AuthentifiableInterface
     public function addRepository(\Hal\GithubBundle\Entity\Repository $repository)
     {
         $this->repository[] = $repository;
-    
+
         return $this;
     }
 
@@ -210,7 +213,7 @@ class Owner implements AuthentifiableInterface
     /**
      * Get repository
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRepository()
     {
@@ -231,14 +234,14 @@ class Owner implements AuthentifiableInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -254,17 +257,90 @@ class Owner implements AuthentifiableInterface
     public function setGravatarUrl($gravatarUrl)
     {
         $this->gravatarUrl = $gravatarUrl;
-    
+
         return $this;
     }
 
     /**
      * Get gravatarUrl
      *
-     * @return string 
+     * @return string
      */
     public function getGravatarUrl()
     {
         return $this->gravatarUrl;
+    }
+
+
+
+
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * <code>
+     * public function getRoles()
+     * {
+     *     return array('ROLE_USER');
+     * }
+     * </code>
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return Role[] The user roles
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
+    public function getPassword()
+    {
+        return '';
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string The salt
+     */
+    public function getSalt()
+    {
+        return '';
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return $this->getLogin();
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     *
+     * @return void
+     */
+    public function eraseCredentials()
+    {
+        return;
     }
 }

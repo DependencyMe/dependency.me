@@ -20,6 +20,8 @@ class OwnerController extends Controller
      */
     public function synchronizeAction()
     {
+
+        // $user = $this->get('security.context')->getToken()->getUser();
         $service = $this->get('hal.github.user.service');
         $owner = $this->get('session')->get('owner.auth.user');
         $repository = $this->get('hal.github.owner.repository');
@@ -34,6 +36,7 @@ class OwnerController extends Controller
     /**
      * @Template
      * @Route("/my-repositories", name="owner.list.repositories")
+     * @Secure(roles="ROLE_USER")
      */
     public function listRepositoriesAction()
     {

@@ -22,7 +22,6 @@ class AuthController extends Controller
     {
         $service = $this->get('hr.owner.service');
         $service->authentificate();
-
         return $this->redirect($this->generateUrl('owner.list.repositories'));
     }
 

@@ -7,7 +7,10 @@ use Hal\GithubBundle\Entity\Owner;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Hal\GithubBundle\Repository\OwnerRepositoryInterface;
 use Hal\GithubBundle\Service\UserServiceInterface;
-class AuthService implements AuthServiceInterface
+
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+class AuthService implements AuthServiceInterface, UserProviderInterface
 {
     private $clientId;
     private $request;
@@ -26,6 +29,22 @@ class AuthService implements AuthServiceInterface
         $this->request = $container->get('request');
         $this->session = $container->get('session');
         $this->redirectUri = $redirectUri;
+    }
+
+    public function loadUserByUsername($username)
+    {
+        //
+    }
+
+    public function refreshUser(UserInterface $user)
+    {
+        return $this->authentificate();
+
+    }
+
+    public function supportsClass($class)
+    {
+        return true; // @todo $class == 'Hal\GithubBundle\Security\Authentication\Token\GithubUserToken';
     }
 
 
@@ -85,7 +104,8 @@ class AuthService implements AuthServiceInterface
         }
 
 
-        $url = 'https://github.com/login/oauth/authorize?'
+        //$url = 'https://github.com/login/oauth/authorize?'
+        $url = 'http://github.com/login/oauth/authorize?'
             . http_build_query(array(
                 'client_id' => $this->clientId,
                 'redirect_uri' => $this->redirectUri,
@@ -99,9 +119,11 @@ class AuthService implements AuthServiceInterface
 
     private function getPermanentAccess(AuthentifiableInterface &$user)
     {
-        $url = sprintf('https://github.com/login/oauth/access_token?client_id=%1$s&redirect_uri=%2$s&client_secret=%3$s&code=%4$s'
+        //$url = sprintf('https://github.com/login/oauth/access_token?client_id=%1$s&redirect_uri=%2$s&client_secret=%3$s&code=%4$s'
+        $url = sprintf('http://github.com/login/oauth/access_token?client_id=%1$s&redirect_uri=%2$s&client_secret=%3$s&code=%4$s'
             , $this->clientId, $this->redirectUri, $this->clientSecret, $user->getTemporaryCode()
         );
+
         parse_str(file_get_contents($url), $response);
 
         if (!isset($response['access_token'])) {

@@ -3,11 +3,11 @@
 namespace Hal\GithubBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\UserInterface; // for security authentication
 /**
  * Owner
  */
-interface AuthentifiableInterface
+interface AuthentifiableInterface extends UserInterface
 {
 
 
