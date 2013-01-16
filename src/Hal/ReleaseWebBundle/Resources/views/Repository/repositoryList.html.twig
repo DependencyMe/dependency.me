@@ -12,8 +12,6 @@
 
         </div>
 
-
-
         <div id="owner-repositories" class="span8">
 
             <p>
@@ -35,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for repository in repositories %}
+                {% for repository in repositories if repository.enabled %}
                     <tr>
                         <td><a href="{{ repository.url }}">{{ repository.name }}</a></td>
 
