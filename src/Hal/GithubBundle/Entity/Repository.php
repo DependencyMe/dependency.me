@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Repository
 {
+    
     /**
      * @var integer
      */
@@ -35,9 +36,14 @@ class Repository
     private $private;
 
     /**
+     * @var integer
+     */
+    private $enabled;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $branche;
+    private $branches;
 
     /**
      * @var \Hal\GithubBundle\Entity\Owner
@@ -49,7 +55,7 @@ class Repository
      */
     public function __construct()
     {
-        $this->branche = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->branches = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -155,36 +161,59 @@ class Repository
     }
 
     /**
-     * Add branche
+     * Set enabled
      *
-     * @param \Hal\GithubBundle\Entity\Branche $branche
+     * @param integer $enabled
      * @return Repository
      */
-    public function addBranche(\Hal\GithubBundle\Entity\Branche $branche)
+    public function setEnabled($enabled)
     {
-        $this->branche[] = $branche;
+        $this->enabled = $enabled;
     
         return $this;
     }
 
     /**
-     * Remove branche
+     * Get enabled
      *
-     * @param \Hal\GithubBundle\Entity\Branche $branche
+     * @return integer 
      */
-    public function removeBranche(\Hal\GithubBundle\Entity\Branche $branche)
+    public function getEnabled()
     {
-        $this->branche->removeElement($branche);
+        return $this->enabled;
     }
 
     /**
-     * Get branche
+     * Add branches
+     *
+     * @param \Hal\GithubBundle\Entity\Branche $branches
+     * @return Repository
+     */
+    public function addBranche(\Hal\GithubBundle\Entity\Branche $branches)
+    {
+        $this->branches[] = $branches;
+    
+        return $this;
+    }
+
+    /**
+     * Remove branches
+     *
+     * @param \Hal\GithubBundle\Entity\Branche $branches
+     */
+    public function removeBranche(\Hal\GithubBundle\Entity\Branche $branches)
+    {
+        $this->branches->removeElement($branches);
+    }
+
+    /**
+     * Get branches
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getBranche()
+    public function getBranches()
     {
-        return $this->branche;
+        return $this->branches;
     }
 
     /**

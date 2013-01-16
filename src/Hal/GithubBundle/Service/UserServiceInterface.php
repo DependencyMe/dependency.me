@@ -10,4 +10,8 @@ interface UserServiceInterface
 
     public function synchronize(AuthentifiableInterface $user);
 
+    public function getOwnerByLogin($name);
+
+    public function findOwnerByAuth(AuthentifiableInterface $auth);
+
 }

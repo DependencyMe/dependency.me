@@ -1,0 +1,63 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    <div class="row">
+        <div id="owner-profile" class="span4">
+
+            <img class="img-rounded" src="{{ owner.gravatarUrl }}"/>
+
+            Repositories of <a href="{{ owner.url }}"
+                               target="_blank">{{ owner.login }}</a>
+
+        </div>
+
+
+
+        <div id="owner-repositories" class="span8">
+
+            <p>
+                Here you can get information about dependencies used by each branche of repository of <strong><a href="{{ owner.url }}"                                                                                target="_blank">{{ owner.login }}</a></strong>.
+            </p>
+            <p>
+                <ul>
+                    <li><span class="label label-success">Latest</span> : project uses latest versions</li>
+                    <li><span class="label label-info">Recent</span> : project uses recent versions</li>
+                    <li><span class="label label-warning">OutOfDate</span> : project uses deprecated versions</li>
+                </ul>
+            </p>
+
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Repository</th>
+                    <th>Branches</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for repository in repositories %}
+                    <tr>
+                        <td><a href="{{ repository.url }}">{{ repository.name }}</a></td>
+
+                        <td>
+
+                            {% for branche in repository.branches %}
+                                <a href=""><span class="label">{{ branche.name }}</span></a>
+                            {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    </div>
+{% endblock %}

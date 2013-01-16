@@ -25,7 +25,22 @@ class OwnerRepository implements OwnerRepositoryInterface
                 o.permanentAccessToken = :permanent_access_token
             ");
         $query->setParameter('permanent_access_token', $auth->getPermanentAccessToken());
-        return $query->getResult();
+        return $query->getSingleResult();
+    }
+
+
+    public function getOwnerByLogin($login)
+    {
+        $query = $this->em->createQuery("
+            SELECT
+                o
+            FROM
+                HalGithubBundle:Owner o
+            WHERE
+                o.login = :login
+            ");
+        $query->setParameter('login', $login);
+        return $query->getSingleResult();
     }
 
     public function saveOwner(Owner $owner)

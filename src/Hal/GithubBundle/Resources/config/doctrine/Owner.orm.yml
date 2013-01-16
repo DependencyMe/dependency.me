@@ -18,7 +18,7 @@ Hal\GithubBundle\Entity\Owner:
     name:
       type: string
   oneToMany:
-    repository:
+    repositories:
       targetEntity: Repository
-      mappedBy: Owner
+      mappedBy: owner
       cascade: ["persist", "merge"]

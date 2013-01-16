@@ -13,11 +13,13 @@ Hal\GithubBundle\Entity\Repository:
       type: string
     private:
       type: integer
+    enabled:
+      type: integer
   manyToOne:
     owner:
       targetEntity: Owner
   oneToMany:
-    branche:
+    branches:
       targetEntity: Branche
       mappedBy: repository
       cascade: ["persist", "merge"]

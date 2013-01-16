@@ -2,6 +2,8 @@ parameters:
   hal.github.auth.service.class: Hal\GithubBundle\Service\AuthService
   hal.github.user.service.class: Hal\GithubBundle\Service\UserService
   hal.github.owner.repository.class: Hal\GithubBundle\Repository\OwnerRepository
+  hal.github.repository.repository.class: Hal\GithubBundle\Repository\RepositoryRepository
+  hal.github.repository.service.class: Hal\GithubBundle\Service\RepositoryService
   hal.github.security.authentication.provider.class: Hal\GithubBundle\Security\Authentication\Provider\GithubProvider
   hal.github.security.authentication.listener.class: Hal\GithubBundle\Security\Firewall\GithubListener
 
@@ -20,14 +22,23 @@ services:
 
     hal.github.user.service:
       class: %hal.github.user.service.class%
-      arguments: []
+      arguments:
+        - @hal.github.owner.repository
 
     hal.github.owner.repository:
       class: %hal.github.owner.repository.class%
       arguments:
         - @doctrine.orm.entity_manager
 
+    hal.github.repository.repository:
+          class: %hal.github.repository.repository.class%
+          arguments:
+            - @doctrine.orm.entity_manager
 
+    hal.github.repository.service:
+              class: %hal.github.repository.service.class%
+              arguments:
+                - @hal.github.repository.repository
 
     hal.github.security.authentication.provider:
       class:  %hal.github.security.authentication.provider.class%

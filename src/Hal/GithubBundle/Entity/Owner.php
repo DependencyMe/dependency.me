@@ -44,19 +44,6 @@ class Owner implements AuthentifiableInterface
      */
     private $name;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $repository;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->repository = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
 
 
 
@@ -188,38 +175,6 @@ class Owner implements AuthentifiableInterface
     }
 
     /**
-     * Add repository
-     *
-     * @param \Hal\GithubBundle\Entity\Repository $repository
-     * @return Owner
-     */
-    public function addRepository(\Hal\GithubBundle\Entity\Repository $repository)
-    {
-        $this->repository[] = $repository;
-
-        return $this;
-    }
-
-    /**
-     * Remove repository
-     *
-     * @param \Hal\GithubBundle\Entity\Repository $repository
-     */
-    public function removeRepository(\Hal\GithubBundle\Entity\Repository $repository)
-    {
-        $this->repository->removeElement($repository);
-    }
-
-    /**
-     * Get repository
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRepository()
-    {
-        return $this->repository;
-    }
-    /**
      * @var string
      */
     private $email;
@@ -342,5 +297,51 @@ class Owner implements AuthentifiableInterface
     public function eraseCredentials()
     {
         return;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $repositories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->repositories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add repositories
+     *
+     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @return Owner
+     */
+    public function addRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
+    {
+        $this->repositories[] = $repositories;
+    
+        return $this;
+    }
+
+    /**
+     * Remove repositories
+     *
+     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     */
+    public function removeRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
+    {
+        $this->repositories->removeElement($repositories);
+    }
+
+    /**
+     * Get repositories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRepositories()
+    {
+        return $this->repositories;
     }
 }

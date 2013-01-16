@@ -5,4 +5,6 @@ use Hal\GithubBundle\Entity\AuthentifiableInterface;
 interface OwnerRepositoryInterface
 {
     public function findOwnerByAuth(AuthentifiableInterface $auth);
+
+    public function getOwnerByLogin($name);
 }

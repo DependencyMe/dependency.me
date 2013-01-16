@@ -6,11 +6,19 @@ use Hal\GithubBundle\Entity\AuthentifiableInterface;
 use Hal\GithubBundle\Entity\Owner;
 use Hal\GithubBundle\Entity\Repository;
 use Hal\GithubBundle\Entity\Branche;
-
+use Hal\GithubBundle\Repository\OwnerRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UserService extends AbstractService implements UserServiceInterface
 {
+
+    private $ownerRepository;
+
+
+    function __construct(OwnerRepositoryInterface $ownerRepository)
+    {
+        $this->ownerRepository = $ownerRepository;
+    }
 
     public function synchronize(AuthentifiableInterface $user)
     {
@@ -55,6 +63,11 @@ class UserService extends AbstractService implements UserServiceInterface
     public function findOwnerByAuth(AuthentifiableInterface $auth)
     {
         return $this->ownerRepository->findOwnerByAuth($auth);
+    }
+
+    public function getOwnerByLogin($name)
+    {
+        return $this->ownerRepository->getOwnerByLogin($name);
     }
 
     private function getEmail(AuthentifiableInterface $user)
