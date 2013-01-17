@@ -5,27 +5,65 @@
     <div class="row">
         <div id="owner-profile" class="span4">
 
-            <img class="img-rounded" src="{{ owner.gravatarUrl }}"/>
 
-            Repositories of <a href="{{ owner.url }}"
-                               target="_blank">{{ owner.login }}</a>
+            <div class="media">
+                <div class="pull-left">
+                    <img class="img-polaroid" src="{{ owner.gravatarUrl }}"/>
+                </div>
+                <div class="media-body">
+                    <a href="{{ owner.url }}"
+                       target="_blank">{{ owner.login }}</a>
+                    <br/> {{ repositories | length }} repositories
+                </div>
+
+            </div>
+
+
+            <table class="table table-condensed ">
+                <thead>
+                <tr>
+                    <th>Label</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span class="label label-success">Latest</span></td>
+                    <td>project uses latest versions</td>
+                </tr>
+                <tr>
+                    <td><span class="label label-info">Recent</span></td>
+                    <td>project uses recent versions</td>
+                </tr>
+                <tr>
+                    <td><span class="label label-warning">OutOfDate</span></td>
+                    <td>project uses deprecated versions</td>
+                </tr>
+                <tr>
+                    <td><span class="label">empty</span></td>
+                    <td>no information provided</td>
+                </tr>
+                </tbody>
+            </table>
+
+
 
         </div>
 
         <div id="owner-repositories" class="span8">
 
+            <h1>Repositories of {{ owner.login }}</h1>
+
             <p>
-                Here you can get information about dependencies used by each branche of repository of <strong><a href="{{ owner.url }}"                                                                                target="_blank">{{ owner.login }}</a></strong>.
-            </p>
-            <p>
-                <ul>
-                    <li><span class="label label-success">Latest</span> : project uses latest versions</li>
-                    <li><span class="label label-info">Recent</span> : project uses recent versions</li>
-                    <li><span class="label label-warning">OutOfDate</span> : project uses deprecated versions</li>
-                </ul>
+                Here you can get information about dependencies used by each branche of repository of <strong><a
+                    href="{{ owner.url }}" target="_blank">{{ owner.login }}</a></strong>.
             </p>
 
-            <table class="table table-stripped">
+            <p>
+
+            </p>
+
+            <table class="table table-stripped table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Repository</th>

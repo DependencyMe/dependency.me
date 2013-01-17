@@ -1,0 +1,10 @@
+model: Hal\GithubBundle\Entity\Owner
+persistence: orm
+fixtures:
+  owner_jeff:
+    permanentAccessToken: azert
+    login: Halleck45
+    url: http://github.com/Halleck45
+    email: jeanfrancois@lepine.pro
+    gravatarUrl: http://www.gravatar.com/avatar/9848efe4596436395e8d0721faa24e00.png
+    name: Jean-François Lépine

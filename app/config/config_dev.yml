@@ -24,3 +24,9 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+
+khepin_yaml_fixtures:
+    resources:
+        - HalGithubBundle
+    directory: Resources/fixtures
