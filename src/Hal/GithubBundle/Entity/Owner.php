@@ -3,11 +3,13 @@
 namespace Hal\GithubBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * Owner
  */
-class Owner implements AuthentifiableInterface
+class Owner implements OwnerInterface, UserInterface
 {
     /**
      * @var integer
@@ -230,6 +232,56 @@ class Owner implements AuthentifiableInterface
 
 
 
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $repositories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->repositories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add repositories
+     *
+     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @return Owner
+     */
+    public function addRepository(\Hal\GithubBundle\Entity\Repository $repositories)
+    {
+        $this->repositories[] = $repositories;
+    
+        return $this;
+    }
+
+    /**
+     * Remove repositories
+     *
+     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     */
+    public function removeRepository(\Hal\GithubBundle\Entity\Repository $repositories)
+    {
+        $this->repositories->removeElement($repositories);
+    }
+
+    /**
+     * Get repositories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRepositories()
+    {
+        return $this->repositories;
+    }
+
+
+
+
     /**
      * Returns the roles granted to the user.
      *
@@ -299,49 +351,7 @@ class Owner implements AuthentifiableInterface
         return;
     }
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $repositories;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->repositories = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add repositories
-     *
-     * @param \Hal\GithubBundle\Entity\Repository $repositories
-     * @return Owner
-     */
-    public function addRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
-    {
-        $this->repositories[] = $repositories;
-    
-        return $this;
-    }
 
-    /**
-     * Remove repositories
-     *
-     * @param \Hal\GithubBundle\Entity\Repository $repositories
-     */
-    public function removeRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
-    {
-        $this->repositories->removeElement($repositories);
-    }
 
-    /**
-     * Get repositories
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRepositories()
-    {
-        return $this->repositories;
-    }
 }

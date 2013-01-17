@@ -1,3 +1,7 @@
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
 hal_release_web:
     resource: "@HalReleaseWebBundle/Resources/config/routing.yml"
     prefix:   /
@@ -5,6 +9,7 @@ hal_release_web:
 hal_github:
     resource: "@HalGithubBundle/Resources/config/routing.yml"
     prefix:   /
+
 
 # Internal routing configuration to handle ESI
 #_internal:

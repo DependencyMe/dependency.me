@@ -1,12 +1,11 @@
 parameters:
   hal.github.auth.service.class: Hal\GithubBundle\Service\AuthService
-  hal.github.user.service.class: Hal\GithubBundle\Service\UserService
+  hal.github.owner.service.class: Hal\GithubBundle\Service\OwnerService
   hal.github.owner.repository.class: Hal\GithubBundle\Repository\OwnerRepository
   hal.github.repository.repository.class: Hal\GithubBundle\Repository\RepositoryRepository
+  hal.github.github.repository.class: Hal\GithubBundle\Repository\GithubRepository
   hal.github.repository.service.class: Hal\GithubBundle\Service\RepositoryService
-  hal.github.security.authentication.provider.class: Hal\GithubBundle\Security\Authentication\Provider\GithubProvider
-  hal.github.security.authentication.listener.class: Hal\GithubBundle\Security\Firewall\GithubListener
-
+  hal.github.security.user.provider.class: Hal\GithubBundle\Security\User\UserProvider
 
 
 services:
@@ -15,15 +14,16 @@ services:
         arguments:
           - @service_container
           - @hal.github.owner.repository
-          - @hal.github.user.service
+          - @hal.github.owner.service
           - %github_app_id%
           - %github_app_secret%
           - %github_redirect_url%
 
-    hal.github.user.service:
-      class: %hal.github.user.service.class%
+    hal.github.owner.service:
+      class: %hal.github.owner.service.class%
       arguments:
         - @hal.github.owner.repository
+        - @hal.github.github.repository
 
     hal.github.owner.repository:
       class: %hal.github.owner.repository.class%
@@ -35,16 +35,16 @@ services:
           arguments:
             - @doctrine.orm.entity_manager
 
+    hal.github.github.repository:
+          class: %hal.github.github.repository.class%
+
     hal.github.repository.service:
               class: %hal.github.repository.service.class%
               arguments:
                 - @hal.github.repository.repository
 
-    hal.github.security.authentication.provider:
-      class:  %hal.github.security.authentication.provider.class%
-      arguments:
-        - @hal.github.auth.service
 
-    hal.github.security.authentication.listener:
-      class:  %hal.github.security.authentication.listener.class%
-      arguments: [@security.context, @security.authentication.manager]
+    hal.github.security.user.provider:
+        class: %hal.github.security.user.provider.class%
+        arguments:
+          - @hal.github.owner.service

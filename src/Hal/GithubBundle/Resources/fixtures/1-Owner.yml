@@ -2,7 +2,7 @@ model: Hal\GithubBundle\Entity\Owner
 persistence: orm
 fixtures:
   owner_jeff:
-    permanentAccessToken: azert
+    permanentAccessToken: cf5d0821d6ddea76b364138024e7ee7dee89fcbf
     login: Halleck45
     url: http://github.com/Halleck45
     email: jeanfrancois@lepine.pro

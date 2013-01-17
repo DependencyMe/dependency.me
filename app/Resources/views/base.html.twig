@@ -10,6 +10,25 @@
 <body>
 
 
+{% if app.user is not null %}
+    <ul id="userbar">
+        <li><a href="{{ path('developer_show', {'name': app.user.name }) }}"><img src="{{ app.user.avatarUrl }}" height="30" width="30" alt=""></a></li>
+        <li class="username"><a href="{{ path('developer_show', {'name': app.user.name }) }}"><span>{{ app.user.name }}</span></a></li>
+        <li class="logout"><a href="{{ path('_logout') }}"><i title="Log out" class="icon-off"></i></a></li>
+    </ul>
+{% else %}
+    <ul id="auth-menu">
+        <li class="login"><img src="{{ asset('bundles/knpbundles/images/icon_person.gif') }}" alt="Log out">Login via</li>
+        <li>
+            <ul>
+                <li><a href="{{ hwi_oauth_login_url('github') }}">GitHub</a></li>
+                <li><a href="{{ hwi_oauth_login_url('sensio') }}">SensioConnect</a></li>
+            </ul>
+        </li>
+    </ul>
+{% endif %}
+
+
 <div class="navbar navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
@@ -23,10 +42,10 @@
                         <a href="./">Home</a>
                     </li>
                     <li>
-                        <a href="#">Sign in</a>
+                        <a href="{{ path('github.auth') }}">Sign in</a>
                     </li>
                     <li>
-                        <a href="#">Sign up</a>
+                        <a href="{{ path('github.auth') }}">Sign up</a>
                     </li>
 
                 </ul>

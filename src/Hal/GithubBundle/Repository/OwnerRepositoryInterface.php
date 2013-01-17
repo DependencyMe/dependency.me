@@ -1,10 +1,16 @@
 <?php
 namespace Hal\GithubBundle\Repository;
-use Hal\GithubBundle\Entity\AuthentifiableInterface;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use Hal\GithubBundle\Entity\Owner;
 
 interface OwnerRepositoryInterface
 {
-    public function findOwnerByAuth(AuthentifiableInterface $auth);
+
+    public function getUserByOAuthUserResponse(UserResponseInterface $response);
 
     public function getOwnerByLogin($name);
+
+    public function getUserByAccessToken($name);
+
+    public function saveOwner(Owner $owner);
 }

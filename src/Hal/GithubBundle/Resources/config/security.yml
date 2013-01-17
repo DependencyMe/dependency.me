@@ -3,8 +3,6 @@ jms_security_extra:
     expressions: true
 
 security:
-
-
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
 
@@ -13,20 +11,22 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        github:
-          id: hal.github.auth.service
-          # id: hal.github.security.authentication.provider
+        hal_github_user:
+          id: hal.github.security.user.provider
 
 
     firewalls:
-        github_login:
-                pattern:    ^/github/auth
-                anonymous:  ~
-        github_secured:
-            pattern:   ^/github
-            github:      true
-        all:
-          anonymous: ~
+        secured_area:
+          pattern:   ^/
+          anonymous: true
+          logout:    true
+          oauth:
+              resource_owners:
+                  github:        /login/check-github
+              login_path:        /login
+              failure_path:      /bad
+              oauth_user_provider:
+                  service: hal.github.security.user.provider
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

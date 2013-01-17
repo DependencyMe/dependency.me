@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
+    - { resource: @HalGithubBundle/Resources/config/config.yml }
+    - { resource: @HalGithubBundle/Resources/config/security.yml }
     - { resource: @HalReleaseBundle/Resources/config/services.yml }
     - { resource: @HalGithubBundle/Resources/config/services.yml }
 

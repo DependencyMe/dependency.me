@@ -16,7 +16,7 @@ use Hal\GithubBundle\Service\AuthServiceInterface;
 class AuthController extends Controller
 {
     /**
-     * @Route("/auth", name="github.auth")
+     * @Route("/authOLD ", name="github.auth")
      */
     public function registerAction()
     {

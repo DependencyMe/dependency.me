@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Hal\ReleaseBundle\HalReleaseBundle(),
             new Hal\ReleaseWebBundle\HalReleaseWebBundle(),
             new Hal\GithubBundle\HalGithubBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

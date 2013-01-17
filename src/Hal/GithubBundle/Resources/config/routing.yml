@@ -1,3 +1,14 @@
 release.web:
     resource: "@HalGithubBundle/Controller"
     type:     annotation
+
+_login:
+    pattern:        /login
+    defaults:       { _controller: HWIOAuthBundle:Connect:connect }
+
+_logout:
+    pattern:        /logout
+    defaults:       { _controller: HalGithubBundle:Auth:out }
+
+_login_github:
+    pattern:        /login/check-github

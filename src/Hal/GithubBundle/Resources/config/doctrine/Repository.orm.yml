@@ -13,8 +13,10 @@ Hal\GithubBundle\Entity\Repository:
       type: string
     private:
       type: integer
+      length: 1
     enabled:
       type: integer
+      length: 1
   manyToOne:
     owner:
       targetEntity: Owner

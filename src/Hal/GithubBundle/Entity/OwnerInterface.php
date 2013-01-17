@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface; // for security authenti
 /**
  * Owner
  */
-interface AuthentifiableInterface extends UserInterface
+interface OwnerInterface// extends UserInterface
 {
 
 

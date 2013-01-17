@@ -18,7 +18,8 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "kriswallsmith/assetic": "1.1.*@dev",
-        "knplabs/github-api": "*"
+        "knplabs/github-api": "*",
+        "hwi/oauth-bundle": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",

@@ -33,12 +33,12 @@ class Repository
     /**
      * @var integer
      */
-    private $private;
+    private $private = 0;
 
     /**
      * @var integer
      */
-    private $enabled;
+    private $enabled = 0;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

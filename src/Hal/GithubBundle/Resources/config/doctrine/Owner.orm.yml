@@ -11,10 +11,13 @@ Hal\GithubBundle\Entity\Owner:
       type: string
     url:
       type: string
+      nullable: true
     email:
       type: string
+      nullable: true
     gravatarUrl:
       type: string
+      nullable: true
     name:
       type: string
   oneToMany:
