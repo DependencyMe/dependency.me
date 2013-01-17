@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Package
 {
+
     /**
      * @var integer
      */

@@ -24,4 +24,4 @@ Hal\GithubBundle\Entity\Owner:
     repositories:
       targetEntity: Repository
       mappedBy: owner
-      cascade: ["persist", "merge"]
+      cascade: ["persist", "merge", "remove"]

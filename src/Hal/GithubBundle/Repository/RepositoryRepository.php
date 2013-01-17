@@ -2,6 +2,7 @@
 namespace Hal\GithubBundle\Repository;
 use Hal\GithubBundle\Entity\AuthentifiableInterface;
 use Hal\GithubBundle\Entity\Owner;
+use Hal\GithubBundle\Entity\OwnerInterface;
 use Hal\GithubBundle\Entity\Repository;
 use Doctrine\ORM\EntityManager;
 
@@ -15,7 +16,7 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $this->em = $em;
     }
 
-    public function getByOwner(AuthentifiableInterface $auth)
+    public function getByOwner(OwnerInterface $auth)
     {
         $query = $this->em->createQuery("
             SELECT
@@ -28,6 +29,16 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $query->setParameter('owner', $auth);
         return $query->getResult();
     }
+
+    public function removeByOwner(OwnerInterface $owner)
+    {
+        $repositories = $this->getByOwner($owner);
+        foreach ($repositories as $repository) {
+            $this->em->remove($repository);
+        }
+        $this->em->flush();
+    }
+
 
     public function getByName($name)
     {

@@ -13,6 +13,14 @@ use Hal\GithubBundle\Repository\GithubRepositoryInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Hal\GithubBundle\Entity\OwnerInterface;
+use Hal\GithubBundle\Repository\RepositoryRepositoryInterface;
+
+
+use Symfony\Component\Security\Acl\Model\AclProviderInterface;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Security\Acl\Exception\AclNotFoundException;
 
 class OwnerService implements OwnerServiceInterface
 {
@@ -20,12 +28,20 @@ class OwnerService implements OwnerServiceInterface
 
     private $ownerRepository;
     private $githubRepository;
+    private $repositoryRepository;
+    private $aclProvider;
 
 
-    function __construct(OwnerRepositoryInterface $ownerRepository, GithubRepositoryInterface $githubRepository)
+    function __construct(OwnerRepositoryInterface $ownerRepository,
+                         RepositoryRepositoryInterface $repositoryRepository,
+                         GithubRepositoryInterface $githubRepository,
+                         AclProviderInterface $aclProvider
+    )
     {
         $this->ownerRepository = $ownerRepository;
         $this->githubRepository = $githubRepository;
+        $this->repositoryRepository = $repositoryRepository;
+        $this->aclProvider = $aclProvider;
     }
 
     /**
@@ -33,8 +49,29 @@ class OwnerService implements OwnerServiceInterface
      *
      * @param \Hal\GithubBundle\Entity\OwnerInterface $owner
      */
-    public function saveOwner(OwnerInterface $owner) {
+    public function saveOwner(OwnerInterface $owner)
+    {
         $this->ownerRepository->saveOwner($owner);
+
+        // Acl
+        $securityIdentity = UserSecurityIdentity::fromAccount($owner);
+
+
+        foreach ($owner->getRepositories() as $repository) {
+            $objectIdentity = ObjectIdentity::fromDomainObject($repository);
+
+            try {
+
+                $this->aclProvider->findAcl($objectIdentity);
+
+            } catch (AclNotFoundException $e) {
+
+                $acl = $this->aclProvider->createAcl($objectIdentity);
+                $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+                $this->aclProvider->updateAcl($acl);
+            }
+
+        }
     }
 
     /**
@@ -75,6 +112,8 @@ class OwnerService implements OwnerServiceInterface
             ->setLogin($this->githubRepository->getLogin($user))
             ->setName($this->githubRepository->getName($user))
             ->setUrl($this->githubRepository->getUrl($user));
+
+        $this->repositoryRepository->removeByOwner($user);
 
         //
         // Repositories

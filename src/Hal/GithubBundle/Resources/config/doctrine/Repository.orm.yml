@@ -24,4 +24,4 @@ Hal\GithubBundle\Entity\Repository:
     branches:
       targetEntity: Branche
       mappedBy: repository
-      cascade: ["persist", "merge"]
+      cascade: ["persist", "merge","remove"]

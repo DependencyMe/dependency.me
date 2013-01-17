@@ -10,4 +10,4 @@ Hal\GithubBundle\Entity\Branche:
   manyToOne:
     repository:
       targetEntity: Repository
-      cascade: ["persist", "merge"]
+      cascade: ["persist", "merge","remove"]

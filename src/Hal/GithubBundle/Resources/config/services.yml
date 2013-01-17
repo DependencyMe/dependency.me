@@ -23,7 +23,9 @@ services:
       class: %hal.github.owner.service.class%
       arguments:
         - @hal.github.owner.repository
+        - @hal.github.repository.repository
         - @hal.github.github.repository
+        - @security.acl.provider
 
     hal.github.owner.repository:
       class: %hal.github.owner.repository.class%

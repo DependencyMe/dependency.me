@@ -32,12 +32,12 @@ class OwnerController extends Controller
 
         $service->saveOwner($owner);
 
-        return $this->redirect($this->generateUrl('owner.list.repositories'));
+        return $this->redirect($this->generateUrl('owner.repository.list'));
     }
 
     /**
      * @Template
-     * @Route("/my-repositories", name="owner.list.repositories")
+     * @Route("/my-repositories", name="owner.repository.list")
      * @Secure(roles="ROLE_USER")
      */
     public function repositoryListAction()
@@ -60,7 +60,7 @@ class OwnerController extends Controller
         $repository->setEnabled((boolean)$this->get('request')->get('enable'));
         $service->saveRepository($repository);
 
-        return new RedirectResponse($this->generateUrl('owner.list.repositories'));
+        return new RedirectResponse($this->generateUrl('owner.repository.list'));
     }
 
 }

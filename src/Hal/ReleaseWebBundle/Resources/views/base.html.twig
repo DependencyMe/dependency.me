@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="/" />
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="stylesheet" style="text/css" href="/bundles/halreleaseweb/css/app.css"/>
@@ -22,7 +23,7 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li>
-                        <a href="./">Home</a>
+                        <a href="{{ path('home') }}">Home</a>
                     </li>
                     {% include 'HalReleaseWebBundle:Owner:block.userbar.html.twig' %}
                 </ul>

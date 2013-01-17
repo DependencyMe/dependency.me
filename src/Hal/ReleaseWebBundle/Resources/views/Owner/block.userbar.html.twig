@@ -1,5 +1,5 @@
 {% if app.user is not null %}
-    <li class="logout"><a href="{{ path('repository.list.by.owner', {login: app.user.login }) }}">Account</a></li>
+    <li class="logout"><a href="{{ path('owner.repository.list') }}">My Account</a></li>
     <li class="logout"><a href="{{ path('_logout') }}"><i class="icon icon-off"></i> Logout ({{ app.user.login }})</a></li>
 {% else %}
     <li><a href="{{ hwi_oauth_login_url('github') }}"><i class="icon icon-user"></i> Login with GitHub</a></li>

@@ -3,52 +3,76 @@
 {% block body %}
 
 
+    <div class="row">
+        <div id="owner-profile" class="span4">
+            <img class="img-polaroid" src="{{ owner.gravatarUrl }}"/>
 
+            <ul class="unstyled">
+                <li>
+                    Github Account: <a href="{{ owner.url }}"
+                                       target="_blank">{{ owner.login }}</a>
+                </li>
+                <li>
+                    Repositories : {{ repositories | length }}
+                    (<a class="" href="{{ path('owner.synchronize') }}">synchronize now </a>)
+                </li>
 
-    <div>
-        <p>Hello {{ owner.name }}.</p>
+            </ul>
 
-        <p>
-            We found <strong>{{ repositories | length }}</strong> public repositories on the <a href="{{ owner.url }}"
-                                                                                                target="_blank">{{ owner.login }}</a>
-            Github account.
-        </p>
-
-        {% if repositories is empty %}
             <p>
-                Do you want to <a href="{{ path('owner.synchronize') }}">synchronize your account now ?</a>
+                You can view your <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">public
+                profile here</a>.
             </p>
-        {% else %}
+
+
+        </div>
+
+        <div class="span8">
+            <p>Hello {{ owner.name }}.</p>
 
             <p>
-                <a class="btn btn-small" href="{{ path('owner.synchronize') }}">Synchronize now </a>
+                We found <strong>{{ repositories | length }}</strong> public repositories on the <a
+                    href="{{ owner.url }}"
+                    target="_blank">{{ owner.login }}</a>
+                Github account.
             </p>
 
-            <table class="table table-stripped">
-                <thead>
-                <tr>
-                    <th>Repository</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for repository in repositories %}
+            {% if repositories is empty %}
+                <p>
+                    Do you want to <a href="{{ path('owner.synchronize') }}">synchronize your account now ?</a>
+                </p>
+            {% else %}
+
+                <p>
+                    <a class="btn btn-small" href="{{ path('owner.synchronize') }}">Synchronize now </a>
+                </p>
+
+                <table class="table table-stripped">
+                    <thead>
                     <tr>
-                        <td><a href="{{ repository.url }}">{{ repository.name }}</a></td>
-                        <td>
-                            {% if repository.enabled %}
-                                <a class="btn btn-small btn-success"
-                                   href="{{ path('owner.repository.disable', {name: repository.name}) }}">enabled</a>
-                            {% else %}
-                                <a class="btn btn-small"
-                                   href="{{ path('owner.repository.enable', {name: repository.name}) }}">disabled</a>
-                            {% endif %}
-                        </td>
+                        <th>Repository</th>
+                        <th></th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+                    </thead>
+                    <tbody>
+                    {% for repository in repositories %}
+                        <tr>
+                            <td><a href="{{ repository.url }}">{{ repository.name }}</a></td>
+                            <td>
+                                {% if repository.enabled %}
+                                    <a class="btn btn-small btn-success"
+                                       href="{{ path('owner.repository.disable', {name: repository.name}) }}">enabled</a>
+                                {% else %}
+                                    <a class="btn btn-small"
+                                       href="{{ path('owner.repository.enable', {name: repository.name}) }}">disabled</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
 
+        </div>
     </div>
 {% endblock %}
