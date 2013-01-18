@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Requirement
  */
-class Requirement
+class Requirement implements RequirementInterface
 {
     
     /**
@@ -18,23 +18,27 @@ class Requirement
     /**
      * @var constraint
      */
-    private $constraint;
+    private $requiredVersion;
 
     /**
      * @var requirementstatus
      */
-    private $status;
-
-    /**
-     * @var \Hal\GithubBundle\Entity\Branche
-     */
-    private $repository;
+    private $status = RequirementInterface::STATUS_UNKNOWN;
 
     /**
      * @var \Hal\ReleaseBundle\Entity\Package
      */
     private $package;
 
+    /**
+     * @var \Hal\ReleaseBundle\Entity\Declaration
+     */
+    private $declaration;
+
+
+    public function __construct() {
+        $this->requiredVersion = new \Hal\ReleaseBundle\Value\Constraint('*','=');
+    }
 
     /**
      * Get id
@@ -46,29 +50,7 @@ class Requirement
         return $this->id;
     }
 
-    /**
-     * Set constraint
-     *
-     * @param constraint $constraint
-     * @return Requirement
-     */
-    public function setConstraint($constraint)
-    {
-        $this->constraint = $constraint;
     
-        return $this;
-    }
-
-    /**
-     * Get constraint
-     *
-     * @return constraint 
-     */
-    public function getConstraint()
-    {
-        return $this->constraint;
-    }
-
     /**
      * Set status
      *
@@ -93,29 +75,6 @@ class Requirement
     }
 
     /**
-     * Set repository
-     *
-     * @param \Hal\GithubBundle\Entity\Branche $repository
-     * @return Requirement
-     */
-    public function setRepository(\Hal\GithubBundle\Entity\Branche $repository = null)
-    {
-        $this->repository = $repository;
-    
-        return $this;
-    }
-
-    /**
-     * Get repository
-     *
-     * @return \Hal\GithubBundle\Entity\Branche 
-     */
-    public function getRepository()
-    {
-        return $this->repository;
-    }
-
-    /**
      * Set package
      *
      * @param \Hal\ReleaseBundle\Entity\Package $package
@@ -136,5 +95,52 @@ class Requirement
     public function getPackage()
     {
         return $this->package;
+    }
+
+    /**
+     * Set declaration
+     *
+     * @param \Hal\ReleaseBundle\Entity\Declaration $declaration
+     * @return Requirement
+     */
+    public function setDeclaration(\Hal\ReleaseBundle\Entity\Declaration $declaration = null)
+    {
+        $this->declaration = $declaration;
+    
+        return $this;
+    }
+
+    /**
+     * Get declaration
+     *
+     * @return \Hal\ReleaseBundle\Entity\Declaration 
+     */
+    public function getDeclaration()
+    {
+        return $this->declaration;
+    }
+
+
+    /**
+     * Set requiredVersion
+     *
+     * @param constraint $requiredVersion
+     * @return Requirement
+     */
+    public function setRequiredVersion($requiredVersion)
+    {
+        $this->requiredVersion = $requiredVersion;
+    
+        return $this;
+    }
+
+    /**
+     * Get requiredVersion
+     *
+     * @return constraint 
+     */
+    public function getRequiredVersion()
+    {
+        return $this->requiredVersion;
     }
 }

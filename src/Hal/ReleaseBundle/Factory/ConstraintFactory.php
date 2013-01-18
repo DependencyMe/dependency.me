@@ -3,8 +3,8 @@
 namespace Hal\ReleaseBundle\Factory;
 
 use Composer\Package\LinkConstraint\LinkConstraintInterface;
-use Hal\ReleaseBundle\Aggregate\ConstraintAggregate;
-use Hal\ReleaseBundle\Entity\Constraint;
+use Hal\ReleaseBundle\Value\ConstraintAggregate;
+use Hal\ReleaseBundle\Value\Constraint;
 class ConstraintFactory
 {
 

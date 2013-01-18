@@ -10,7 +10,14 @@ Hal\ReleaseBundle\Entity\Package:
       type: string
     currentVersion:
       type: version
+      nullable: true
     releaseDate:
       type: datetime
+      nullable: true
     url:
       type: string
+      nullable: true
+  oneToMany:
+      requiredBy:
+        targetEntity: Requirement
+        mappedBy: Package

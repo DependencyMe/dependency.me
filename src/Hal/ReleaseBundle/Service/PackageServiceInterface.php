@@ -2,11 +2,10 @@
 
 namespace Hal\ReleaseBundle\Service;
 
-use Hal\ReleaseBundle\Repository\PackageRepositoryInterface;
+use Hal\ReleaseBundle\Entity\Package;
 
 interface PackageServiceInterface
 {
-    public function getAvailableReleases(Package $package);
+    public function getOrCreateByName($name);
 
-    public function getMatchingPackages($searchedTerm) ;
 }

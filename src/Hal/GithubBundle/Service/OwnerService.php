@@ -123,7 +123,7 @@ class OwnerService implements OwnerServiceInterface
             $repository = new Repository;
             $repository
                 ->setName($gitRepo->name)
-                ->setUrl($gitRepo->url)
+                ->setUrl($gitRepo->html_url)
                 ->setGitUrl($gitRepo->git_url)
                 ->setPrivate(false)
                 ->setOwner($user);

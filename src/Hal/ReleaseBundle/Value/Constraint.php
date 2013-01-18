@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\ReleaseBundle\Entity;
+namespace Hal\ReleaseBundle\Value;
 
 use Hal\ReleaseBundle\Entity\ReleaseInterface;
 use Hal\ReleaseBundle\Specification\ConstraintSpecificationInterface;

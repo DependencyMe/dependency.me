@@ -5,12 +5,14 @@ Hal\ReleaseBundle\Entity\Requirement:
       type: integer
       generator: { strategy: auto }
   fields:
-    constraint:
+    requiredVersion:
       type: constraint
     status:
       type: requirementstatus
   manyToOne:
-    repository:
-      targetEntity: Hal\GithubBundle\Entity\Branche
     package:
       targetEntity: Package
+      cascade: ["persist", "merge","remove"]
+    declaration:
+      targetEntity: Declaration
+      cascade: ["persist", "merge","remove"]

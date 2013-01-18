@@ -137,4 +137,50 @@ class Package
     {
         return $this->url;
     }
+   
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $requiredBy;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->requiredBy = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add requiredBy
+     *
+     * @param \Hal\ReleaseBundle\Entity\Requirement $requiredBy
+     * @return Package
+     */
+    public function addRequiredBy(\Hal\ReleaseBundle\Entity\Requirement $requiredBy)
+    {
+        $this->requiredBy[] = $requiredBy;
+    
+        return $this;
+    }
+
+    /**
+     * Remove requiredBy
+     *
+     * @param \Hal\ReleaseBundle\Entity\Requirement $requiredBy
+     */
+    public function removeRequiredBy(\Hal\ReleaseBundle\Entity\Requirement $requiredBy)
+    {
+        $this->requiredBy->removeElement($requiredBy);
+    }
+
+    /**
+     * Get requiredBy
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRequiredBy()
+    {
+        return $this->requiredBy;
+    }
 }

@@ -3,6 +3,7 @@
 namespace Hal\ReleaseBundle\Service;
 
 use Hal\ReleaseBundle\Repository\PackageRepositoryInterface;
+use Hal\ReleaseBundle\Entity\Package;
 
 class PackageService implements PackageServiceInterface
 {
@@ -14,12 +15,19 @@ class PackageService implements PackageServiceInterface
         $this->repository = $repository;
     }
 
-    public function getAvailableReleases(Package $package)
-    {
-        return $this->repository->findReleases($package);
-    }
 
-    public function getMatchingPackages($searchedTerm) {
-        return $this->repository->getMatchingPackages($searchedTerm);
+    public function getOrCreateByName($name)
+    {
+        $package = $this->repository->getByName($name);
+        if (!$package) {
+
+            $package = new Package();
+            $package->setName($name);
+
+            // @todo ordonnanceur
+
+        }
+
+        return $package;
     }
 }

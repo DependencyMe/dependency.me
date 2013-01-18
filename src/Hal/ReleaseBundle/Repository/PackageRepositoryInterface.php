@@ -6,6 +6,6 @@ use \Hal\ReleaseBundle\Release\Package\PackageInterface;
 interface PackageRepositoryInterface
 {
 
-    public function getMatchingPackages($searchedTerm);
+    public function getByName($name);
 
 }

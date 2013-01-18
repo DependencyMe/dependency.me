@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Hal\GithubBundle\Entity\Repository;
 use \Hal\GithubBundle\Entity\Owner;
+
 /**
  * @Route("/repository")
  */
 class RepositoryController extends Controller
 {
-
 
 
     /**
@@ -27,7 +27,8 @@ class RepositoryController extends Controller
     {
         return array(
             'repositories' => $owner->getRepositories(),
-            'owner' => $owner
+            'owner' => $owner,
+            'requirementStatus' => $this->get('hal.release.requirement.service')
         );
     }
 

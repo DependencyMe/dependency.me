@@ -1,22 +1,50 @@
 parameters:
-  hal.package.service.class : Hal\ReleaseBundle\Service\PackageService
-  hal.release.repo.composer.class : Hal\ReleaseBundle\Repository\ReleaseRepositoryComposer
-  hal.package.repo.class : Hal\ReleaseBundle\Repository\PackageRepository
+  hal.release.package.service.class : Hal\ReleaseBundle\Service\PackageService
+  hal.release.repository.composer.class : Hal\ReleaseBundle\Repository\ReleaseRepositoryComposer
+  hal.release.package.repository.class : Hal\ReleaseBundle\Repository\PackageRepository
   hal.owner.service.class: Hal\ReleaseBundle\Service\OwnerService
 
+  hal.release.declaration.repository.class: Hal\ReleaseBundle\Repository\DeclarationRepository
+  hal.release.declaration.service.class: Hal\ReleaseBundle\Service\DeclarationService
+  hal.release.constraint.factory.class: Hal\ReleaseBundle\Factory\ConstraintFactory
+
+  hal.release.requirement.service.class: Hal\ReleaseBundle\Service\RequirementService
+
 services:
-  hal.package.service:
-    class: %hal.package.service.class%
-    arguments: [@hal.package.repo.persistence]
-  hal.package.repo.persistence:
-      class: %hal.package.repo.class%
-      arguments: [@doctrine.orm.entity_manager]
 
+  # Package -> service
+  hal.release.package.service:
+    class: %hal.release.package.service.class%
+    arguments:
+      - @hal.release.package.repository
 
-  hal.owner.service:
-      class: %hal.owner.service.class%
+  # Package -> repository
+  hal.release.package.repository:
+      class: %hal.release.package.repository.class%
       arguments:
-        - @hal.github.auth.service
-        - @hal.github.owner.service
-        - @session
-        - @hal.github.owner.repository
+        - @doctrine.orm.entity_manager
+
+  # Constraint -> factory
+  hal.release.constraint.factory:
+    class: %hal.release.constraint.factory.class%
+    arguments: []
+
+  # Declaration -> repository
+  hal.release.declaration.repository:
+     class: %hal.release.declaration.repository.class%
+     arguments:
+     - @doctrine.orm.entity_manager
+
+  # Declaration -> service
+  hal.release.declaration.service:
+    class: %hal.release.declaration.service.class%
+    arguments:
+    - @hal.release.declaration.repository
+    - @hal.release.constraint.factory
+    - @hal.release.package.service
+
+  # Requirement -> service
+  hal.release.requirement.service:
+    class: %hal.release.requirement.service.class%
+    arguments:
+    - @hal.release.declaration.repository

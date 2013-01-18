@@ -42,16 +42,26 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
     public function getByName($name)
     {
+        if (!preg_match('!(.*)/(.*)!', $name, $matches)) {
+            throw new \UnexpectedValueException("$name must contains the name of the owner (owner/name)");
+        }
+
+        list(,$username, $reponame) = $matches;
+
         $query = $this->em->createQuery("
             SELECT
                 r
             FROM
                 HalGithubBundle:Repository r
+            JOIN
+                HalGithubBundle:Owner o
             WHERE
                 r.name = :name
+                and o.login = :login
             ");
-        $query->setParameter('name', $name);
-        return $query->getResult();
+        $query->setParameter('name', $reponame);
+        $query->setParameter('login', $username);
+        return $query->getOneOrNullResult();
     }
 
     public function saveRepository(Repository $repository)

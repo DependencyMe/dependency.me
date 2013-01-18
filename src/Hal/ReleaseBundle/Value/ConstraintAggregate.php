@@ -1,11 +1,11 @@
 <?php
 
-namespace Hal\ReleaseBundle\Aggregate;
+namespace Hal\ReleaseBundle\Value;
 
 use Hal\ReleaseBundle\Entity\ReleaseInterface;
 use Hal\ReleaseBundle\Specification\ConstraintSpecificationInterface;
-use Hal\ReleaseBundle\Entity\ConstraintInterface;
-class ConstraintAggregate implements ConstraintSpecificationInterface
+use Hal\ReleaseBundle\Value\ConstraintInterface;
+class ConstraintAggregate implements ConstraintSpecificationInterface, ConstraintInterface
 {
 
     private $constraints;
@@ -44,5 +44,14 @@ class ConstraintAggregate implements ConstraintSpecificationInterface
         }
         return implode(',', $strings);
     }
+
+    public function getVersion()
+    {
+    }
+
+    public function getOperator()
+    {
+    }
+
 
 }

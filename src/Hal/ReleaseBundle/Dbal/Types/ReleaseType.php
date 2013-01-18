@@ -25,6 +25,9 @@ class ReleaseType extends Type
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if(is_null($value)) {
+            return '';
+        }
         if (!$value instanceof ReleaseInterface) {
             throw new \InvalidArgumentException("Invalid release given, we cannot convert it to database");
         }

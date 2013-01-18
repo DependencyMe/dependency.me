@@ -4,7 +4,7 @@ namespace Hal\ReleaseBundle\Dbal\Types;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Hal\ReleaseBundle\Release\Version\ConstraintInterface;
+use Hal\ReleaseBundle\Value\ConstraintInterface;
 use Hal\ReleaseBundle\Factory\ConstraintFactory;
 class ConstraintType extends Type
 {
@@ -24,6 +24,7 @@ class ConstraintType extends Type
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+
         if (!$value instanceof ConstraintInterface) {
             throw new \InvalidArgumentException("Invalid constraint given, we cannot convert it to database");
         }

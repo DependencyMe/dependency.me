@@ -4,6 +4,7 @@ namespace Hal\ReleaseBundle\Dbal\Types;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+
 /**
  * @link http://docs.doctrine-project.org/en/latest/cookbook/mysql-enums.html
  */
@@ -15,10 +16,9 @@ abstract class EnumType extends Type
 
     public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        $values = array_map(function($val) {
-                return "'" . $val . "'";
-            }, $this->values);
-
+        $values = array_map(function ($val) {
+            return "'" . $val . "'";
+        }, $this->values);
         return "ENUM(" . implode(", ", $values) . ") COMMENT '(DC2Type:" . $this->name . ")'";
     }
 
@@ -32,6 +32,7 @@ abstract class EnumType extends Type
         if (!in_array($value, $this->values)) {
             throw new \InvalidArgumentException("Invalid '" . $this->name . "' value.");
         }
+        //return "'$value'";
         return $value;
     }
 

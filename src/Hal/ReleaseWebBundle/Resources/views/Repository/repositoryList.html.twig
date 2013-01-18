@@ -78,7 +78,7 @@
                         <td>
 
                             {% for branche in repository.branches %}
-                                <a href=""><span class="label">{{ branche.name }}</span></a>
+                                <a href=""><span class="label label-state-{{ requirement_state(branche) }}">{{ branche.name }}</span></a>
                             {% endfor %}
                             </ul>
                         </td>

@@ -18,20 +18,17 @@ class PackageRepository implements PackageRepositoryInterface
         $this->em = $em;
     }
 
-    public function getMatchingPackages($searchedTerm)
+    public function getByName($name)
     {
         $query = $this->em->createQuery("
             SELECT
                 p
             FROM
                 HalReleaseBundle:Package p
-            JOIN
-                HalReleaseBundle:Owner o
             WHERE
-                p.name LIKE :word
-                OR o.name LIKE :word
+                p.name LIKE :name
             ");
-        $query->setParameter('word', '%'.$searchedTerm.'%');
-        return $query->getResult();
+        $query->setParameter('name', $name);
+        return $query->getOneOrNullResult();
     }
 }
