@@ -1,0 +1,4 @@
+parameters:
+  doctrine.orm.metadata.yml.class: Hal\Bundle\EntityOverridingBundle\Doctrine\ORM\Mapping\Driver\YamlExtendedDriver
+
+services:

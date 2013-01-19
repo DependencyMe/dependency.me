@@ -1,0 +1,4 @@
+Hal\GithubBundle\Entity\Owner:
+  fields:
+    titi:
+      type: string
