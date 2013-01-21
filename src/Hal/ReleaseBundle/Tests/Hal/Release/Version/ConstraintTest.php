@@ -26,13 +26,14 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideLimitsAccordingConstraint
+     * @group tmp
      */
     public function testICanGetTheMinimalAndMaximalVersionAvailable($operator, $expectedVersion, $min, $max)
     {
         $constraint = new Constraint($expectedVersion, $operator);
         $limit = $constraint->getMinAndMax();
         $this->assertEquals($min, $limit->min);
-        $this->assertGreaterThanOrEqual($max, $limit->max);
+        $this->assertEquals($max, $limit->max);
     }
 
     public function provideLimitsAccordingConstraint()
@@ -41,18 +42,20 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
             array('>', '1.1', '1.2.0.0', '99999')
         , array('>', '2', '3.0.0.0', '99999')
         , array('>', '2.*', '3.0.0.0', '99999')
-        , array('=', '2', '2.0.0.0', '2.0.0.0')
-        , array('=', '2.5', '2.5.0.0', '2.5.0.0')
+        , array('=', '2', '2.0.0.0', '2.9.9.9')
+        , array('=', '2.5', '2.5.0.0', '2.5.9.9')
         , array('=', '2.*', '2.0.0.0', '2.9.9.9')
-        , array('<', '2.3', '2.0.0.0', '2.2.2.9')
+        , array('=', '2.0.*', '2.0.0.0', '2.0.9.9')
+        , array('<', '2.3', '2.0.0.0', '2.2.9.9')
         , array('<', '2.*', '1.0.0.0', '1.9.9.9')
         , array('<', '2.5.*', '2.0.0.0', '2.4.9.9')
+        , array('<', '2.2.0-dev', '2.0.0.0', '2.1.9.9')
         , array('<=', '2.5.*', '2.0.0.0', '2.5.9.9')
         , array('<=', '2.1.*', '2.0.0.0', '2.1.9.9')
         , array('<=', '1.*', '0.0.0.1', '1.9.9.9')
-        , array('<=', '2.5', '2.0.0.0', '2.5.0.0')
-        , array('>=', '2.5', '2.5.0.0', '2.9.9.9')
-        , array('>=', '2.*', '2.0.0.0', '2.5.9.9')
+        , array('<=', '2.5', '2.0.0.0', '2.5.9.9')
+        , array('>=', '2.5', '2.5.0.0', '99999')
+        , array('>=', '2.*', '2.0.0.0', '99999')
         );
 
     }

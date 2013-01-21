@@ -13,8 +13,9 @@ class EnumRequirementStatusType extends EnumType
     const STATUS_RECENT = RequirementInterface::STATUS_RECENT;
     const STATUS_LATEST = RequirementInterface::STATUS_LATEST;
     const STATUS_UNKNOWN = RequirementInterface::STATUS_UNKNOWN;
+    const STATUS_DEV = RequirementInterface::STATUS_DEV;
 
     protected $name = self::NAME;
-    protected $values = array(self::STATUS_UNKNOWN, self::STATUS_LATEST, self::STATUS_RECENT, self::STATUS_OUT_OF_DATE);
+    protected $values = array(self::STATUS_DEV, self::STATUS_UNKNOWN, self::STATUS_LATEST, self::STATUS_RECENT, self::STATUS_OUT_OF_DATE);
 
 }

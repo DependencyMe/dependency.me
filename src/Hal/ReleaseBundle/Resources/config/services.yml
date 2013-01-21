@@ -1,5 +1,6 @@
 parameters:
   hal.release.package.service.class : Hal\ReleaseBundle\Service\PackageService
+  hal.release.release.service.class : Hal\ReleaseBundle\Service\ReleaseService
   hal.release.repository.composer.class : Hal\ReleaseBundle\Repository\ReleaseRepositoryComposer
   hal.release.package.repository.class : Hal\ReleaseBundle\Repository\PackageRepository
   hal.owner.service.class: Hal\ReleaseBundle\Service\OwnerService
@@ -27,6 +28,12 @@ services:
       class: %hal.release.package.repository.class%
       arguments:
         - @doctrine.orm.entity_manager
+        - @hal.release.constraint.factory
+
+  # Release -> service
+  hal.release.release.service:
+    class: %hal.release.release.service.class%
+    arguments: []
 
   # Constraint -> factory
   hal.release.constraint.factory:
@@ -46,6 +53,7 @@ services:
     - @hal.release.declaration.repository
     - @hal.release.constraint.factory
     - @hal.release.package.service
+    - @hal.release.release.service
 
   # Requirement -> service
   hal.release.requirement.service:

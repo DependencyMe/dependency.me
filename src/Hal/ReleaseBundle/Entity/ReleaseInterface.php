@@ -7,4 +7,5 @@ interface ReleaseInterface
 
     public function getVersion();
 
+    public function getPrettyString();
 }

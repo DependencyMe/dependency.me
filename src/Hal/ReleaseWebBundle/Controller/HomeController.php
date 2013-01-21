@@ -59,7 +59,7 @@ class HomeController extends Controller
 
 
         $serviceRepo = $this->get('hal.github.repository.repository');
-        $repository = $serviceRepo->getByName('Halleck45/Behat');
+        $repository = $serviceRepo->getByName('Halleck45/doctrine2');
         foreach ($repository->getBranches() as $branche) {
 
             //
@@ -81,21 +81,20 @@ class HomeController extends Controller
     {
 
 
-        $serviceRepo = $this->get('hal.github.repository.repository');
-        $repository = $serviceRepo->getByName('Halleck45/Behat');
-        foreach ($repository->getBranches() as $branche) {
+        $service = $this->get('hal.release.package.service');
 
-            $serviceDecl = $this->get('hal.release.declaration.service');
-            $declaration = $serviceDecl->getByBranche($branche);
+        $package = $service->getOrCreateByName('doctrine/dbal');
+        $service->refreshPackage($package);
+        $service->savePackage($package);
 
-            foreach($declaration->getRequirements() as $requirement) {
-                var_dump($requirement->getPackage()->getName());
-                var_dump($requirement->getRequiredVersion()->getPrettyString());
-            }
-        }
-
+        var_dump($package->getCurrentVersion());
+        var_dump($package->getReleaseDate());
+        var_dump($package->getAuthor());
+        var_dump($package->getUrl());
 
         return new \Symfony\Component\HttpFoundation\Response('<html><body>essai</body>');
+
+
 
     }
 

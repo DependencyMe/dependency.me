@@ -13,5 +13,4 @@ interface DeclarationServiceInterface
 
     public function saveDeclaration(Declaration $declaration);
 
-    public function getByBranche(Branche $branche);
 }

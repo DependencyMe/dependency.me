@@ -28,6 +28,7 @@ class RepositoryController extends Controller
      */
     public function repositoryListAction(Owner $owner)
     {
+
         return array(
             'repositories' => $owner->getRepositories(),
             'owner' => $owner,
@@ -37,7 +38,12 @@ class RepositoryController extends Controller
 
     /**
      * @Template
-     * @Route("/branche/{owner}/{repository}/{branche}", name="branche.display")
+     * @Route("/branche/{owner}/{repository}/{branche}", name="branche.display"
+     *       , requirements={
+     *              "repository" = "[\w\d\-]+",
+     *              "branche" = "[\w\d\-\./]+"
+     *      }
+     * )
      * @BrancheParamConverter("branche", class="HalGithubBundle:Branche")
      */
     public function brancheDisplayAction(Branche $branche)

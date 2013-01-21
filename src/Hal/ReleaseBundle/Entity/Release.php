@@ -17,5 +17,10 @@ class Release implements ReleaseInterface
         return $this->version;
     }
 
+    public function getPrettyString()
+    {
+        return (string)$this->getVersion();
+    }
+
 
 }

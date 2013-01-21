@@ -12,7 +12,7 @@ Hal\ReleaseBundle\Entity\Requirement:
   manyToOne:
     package:
       targetEntity: Package
-      cascade: ["persist", "merge","remove"]
+      cascade: ["persist", "merge"]
     declaration:
       targetEntity: Declaration
-      cascade: ["persist", "merge","remove"]
+      cascade: ["persist", "merge"]

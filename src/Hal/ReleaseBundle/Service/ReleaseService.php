@@ -7,11 +7,24 @@ use Hal\ReleaseBundle\Entity\RequirementInterface;
 class ReleaseService implements ReleaseServiceInterface
 {
 
-    public function getStateOf(ReleaseInterface $releaseToTest, ReleaseInterface $releaseCurrent)
+    public function getStateOf(ReleaseInterface $releaseToTest, ReleaseInterface $releaseCurrent = null)
     {
+
+        if (is_null($releaseCurrent)) {
+            return RequirementInterface::STATUS_UNKNOWN;
+        }
 
         $versionToTest = $releaseToTest->getVersion();
         $versionCurrent = $releaseCurrent->getVersion();
+
+
+        if (\strlen($versionCurrent) == 0) {
+            return RequirementInterface::STATUS_UNKNOWN;
+        }
+
+        if(preg_match('!-(dev|RC|beta|alpha)$!', $versionToTest) ){
+            return RequirementInterface::STATUS_DEV;
+        }
 
 
         while (substr_count($versionToTest, '.') < 3) {

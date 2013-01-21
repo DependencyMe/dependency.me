@@ -17,7 +17,15 @@ Hal\ReleaseBundle\Entity\Package:
     url:
       type: string
       nullable: true
+    author:
+      type: string
+      nullable: true
+    lastUpdate:
+      type: datetime
   oneToMany:
       requiredBy:
         targetEntity: Requirement
         mappedBy: Package
+        cascade: ["persist", "merge","remove"]
+  lifecycleCallbacks:
+      prePersist: [ updateDate ]

@@ -14,37 +14,37 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $permanentAccessToken;
+    protected $permanentAccessToken;
 
     /**
      * @var string
      */
-    private $temporaryCode;
+    protected $temporaryCode;
 
     /**
      * @var string
      */
-    private $login;
+    protected $login;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var string
      */
-    private $gravatarUrl;
+    protected $gravatarUrl;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
 
 
@@ -179,7 +179,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
 
     /**
@@ -236,7 +236,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $repositories;
+    protected $repositories;
 
     /**
      * Constructor
@@ -349,38 +349,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function eraseCredentials()
     {
         return;
-    }
-
-
-
-
-    /**
-     * @var string
-     */
-    private $titi;
-
-
-    /**
-     * Set titi
-     *
-     * @param string $titi
-     * @return Owner
-     */
-    public function setTiti($titi)
-    {
-        $this->titi = $titi;
-    
-        return $this;
-    }
-
-    /**
-     * Get titi
-     *
-     * @return string 
-     */
-    public function getTiti()
-    {
-        return $this->titi;
     }
 
     /**

@@ -5115,3 +5115,16 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+.label-state-latest {
+  background-color: #468847;
+}
+.label-state-recent {
+  background-color: #f89406;
+}
+.label-state-outofdate {
+  background-color: #b94a48;
+}
+.img-owner {
+  width: 90px;
+  height: 90px;
+}

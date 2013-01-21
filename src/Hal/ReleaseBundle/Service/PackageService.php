@@ -4,6 +4,8 @@ namespace Hal\ReleaseBundle\Service;
 
 use Hal\ReleaseBundle\Repository\PackageRepositoryInterface;
 use Hal\ReleaseBundle\Entity\Package;
+use Hal\ReleaseBundle\Repository\Package\NotFoundException;
+use Hal\ReleaseBundle\Repository\Package\InfoMissingException;
 
 class PackageService implements PackageServiceInterface
 {
@@ -24,10 +26,31 @@ class PackageService implements PackageServiceInterface
             $package = new Package();
             $package->setName($name);
 
-            // @todo ordonnanceur
+            try {
+                $this->refreshPackage($package);
+            } catch (NotFoundException $e) {
+            } catch (InfoMissingException $e) {
+            }
 
         }
 
         return $package;
+    }
+
+
+    public function refreshPackage(Package $package)
+    {
+        $infos = $this->repository->getInfosOfPackage($package);
+
+        $package
+            ->setCurrentVersion($infos->version)
+            ->setReleaseDate($infos->releaseDate)
+            ->setUrl($infos->url)
+            ->setAuthor($infos->author);
+    }
+
+    public function savePackage(Package $package)
+    {
+        return $this->repository->savePackage($package);
     }
 }

@@ -4,6 +4,7 @@ namespace Hal\ReleaseBundle\Value;
 
 use Hal\ReleaseBundle\Entity\ReleaseInterface;
 use Hal\ReleaseBundle\Specification\ConstraintSpecificationInterface;
+use Composer\Package\BasePackage as ComposerPackage;
 
 class Constraint implements ConstraintInterface, ConstraintSpecificationInterface
 {
@@ -58,7 +59,13 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
 
         $version = $this->getVersion();
         $version = preg_replace('!(\\.0)$!', '', $version);
+        $version = preg_replace('!(\\-dev)$!', '', $version);
         $operator = $this->getOperator();
+
+
+        if (in_array($version, array_merge(ComposerPackage::$stabilities, array('master', 'dev-master')))) {
+            $version = '*';
+        }
 
         if (false !== strpos($version, '*')) {
             switch ($operator) {
@@ -69,7 +76,7 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
                     break;
                 case '=':
                     $version = preg_replace('!\\*!', '0', $version);
-                    $operator = '>=';
+                    $operator = '=';
                     break;
                 case '<':
                 case '<=':
@@ -128,6 +135,7 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
         }
 
 
+        // Padding
         while (substr_count($min, '.') < 3) {
             $min .= '.0';
         }
@@ -137,7 +145,7 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
             }
         }
 
-        if($min == '0.0.0.0') {
+        if ($min == '0.0.0.0') {
             $min = '0.0.0.1';
         }
 

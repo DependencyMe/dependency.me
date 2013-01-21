@@ -19,16 +19,15 @@ class DeclarationRepository implements DeclarationRepositoryInterface
 
     public function getArrayOfRequirementsFromBranche(Branche $branche)
     {
-        $url = $branche->getRepository()->getUrl();
         $url = sprintf('https://raw.github.com/%1$s/%2$s/%3$s/composer.json',
             $branche->getRepository()->getOwner()->getLogin(),
             $branche->getRepository()->getName(),
-            strtolower($branche->getName())
+            $branche->getName()
         );
 
-        $json = \file_get_contents($url);
+        $json = @\file_get_contents($url);
         if (false === $json) {
-            throw new RepositoryException('cannot find the composer.json');
+            throw new RepositoryException('cannot find the composer.json for '.$branche->getName());
         }
 
         $json = json_decode($json);

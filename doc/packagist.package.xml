@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+    <channel>
+        <title>behat/behat releases</title>
+        <description>Latest releases on Packagist of behat/behat.</description>
+        <pubDate>Tue, 04 Sep 2012 07:59:18 +0000</pubDate>
+        <generator>Packagist</generator>
+        <link>https://packagist.org/packages/behat/behat</link>
+        <item>
+            <title>behat/behat (v2.4.4)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Tue, 04 Sep 2012 07:59:18 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.3)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Sat, 28 Jul 2012 09:53:48 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.2)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Tue, 26 Jun 2012 04:09:21 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.1)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Tue, 26 Jun 2012 01:16:16 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.0)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Tue, 15 May 2012 01:23:46 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.0beta5)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Sat, 12 May 2012 06:04:30 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.0beta4)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Thu, 10 May 2012 15:50:59 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.0beta3)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Mon, 07 May 2012 09:49:32 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.0beta2)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Sun, 06 May 2012 13:39:37 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.4.0beta1)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Thu, 03 May 2012 01:50:21 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.3.5)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Fri, 30 Mar 2012 04:35:29 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.3.4)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Wed, 28 Mar 2012 08:49:28 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.3.3)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Fri, 09 Mar 2012 03:55:44 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.3.2)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Sun, 29 Jan 2012 11:04:19 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.3.1)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Thu, 26 Jan 2012 08:12:53 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.3.0)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Thu, 19 Jan 2012 02:39:48 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.8)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Sat, 14 Jan 2012 15:08:55 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.7)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Fri, 13 Jan 2012 02:48:07 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.6)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Mon, 09 Jan 2012 12:46:03 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.5)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Sat, 07 Jan 2012 11:45:39 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.4)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Tue, 03 Jan 2012 22:41:24 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.3)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Tue, 03 Jan 2012 20:47:30 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.2)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Wed, 21 Dec 2011 14:30:39 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.1)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Wed, 21 Dec 2011 09:31:01 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>behat/behat (v2.2.0)</title>
+            <description><![CDATA[Scenario-oriented BDD framework for PHP 5.3]]></description>
+            <pubDate>Wed, 14 Dec 2011 01:52:05 +0000</pubDate>
+            <link>https://packagist.org/packages/behat/behat</link>
+            <guid>https://packagist.org/packages/behat/behat</guid>
+            <author>Konstantin Kudryashov</author>
+            <dc:creator>Konstantin Kudryashov</dc:creator>
+            <slash:comments>0</slash:comments>
+        </item>
+    </channel>
+</rss>
