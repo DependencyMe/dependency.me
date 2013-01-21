@@ -10,4 +10,6 @@ interface ConstraintInterface
     public function getOperator();
 
     public function getPrettyString();
+
+    public function getMinAndMax();
 }

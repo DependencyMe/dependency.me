@@ -11,9 +11,14 @@ Hal\ReleaseBundle\Entity\Declaration:
   oneToOne:
     branche:
       targetEntity: Hal\GithubBundle\Entity\Branche
+      mappedBy: declaration
+      joinColumn:
+        name: branche_id
+        referencedColumnName: id
   oneToMany:
     requirements:
       targetEntity: Requirement
+      orphanRemoval: true
       mappedBy: declaration
       cascade: ["persist", "merge","remove"]
   lifecycleCallbacks:

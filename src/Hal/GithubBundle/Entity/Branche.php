@@ -81,4 +81,32 @@ class Branche
     {
         return $this->repository;
     }
+    /**
+     * @var \Hal\ReleaseBundle\Entity\Declaration
+     */
+    private $declaration;
+
+
+    /**
+     * Set declaration
+     *
+     * @param \Hal\ReleaseBundle\Entity\Declaration $declaration
+     * @return Branche
+     */
+    public function setDeclaration(\Hal\ReleaseBundle\Entity\Declaration $declaration = null)
+    {
+        $this->declaration = $declaration;
+    
+        return $this;
+    }
+
+    /**
+     * Get declaration
+     *
+     * @return \Hal\ReleaseBundle\Entity\Declaration 
+     */
+    public function getDeclaration()
+    {
+        return $this->declaration;
+    }
 }

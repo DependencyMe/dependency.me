@@ -11,7 +11,5 @@ interface DeclarationRepositoryInterface
 
     public function getArrayOfRequirementsFromBranche(Branche $branche);
 
-    public function getByBranche(Branche $branche);
-
     public function saveDeclaration(Declaration $declaration);
 }

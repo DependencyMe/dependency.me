@@ -5,6 +5,7 @@ namespace Hal\ReleaseBundle\Value;
 use Hal\ReleaseBundle\Entity\ReleaseInterface;
 use Hal\ReleaseBundle\Specification\ConstraintSpecificationInterface;
 use Hal\ReleaseBundle\Value\ConstraintInterface;
+
 class ConstraintAggregate implements ConstraintSpecificationInterface, ConstraintInterface
 {
 
@@ -51,6 +52,27 @@ class ConstraintAggregate implements ConstraintSpecificationInterface, Constrain
 
     public function getOperator()
     {
+    }
+
+    public function __toString()
+    {
+        return $this->getPrettyString();
+    }
+
+    public function getMinAndMax()
+    {
+        $min = 999999999;
+        $max = 0;
+        foreach ($this->constraints as $constraint) {
+            $limit = $constraint->getMinAndMax();
+            if ($limit->min < $min) {
+                $min = $limit->min;
+            }
+            if ($limit->max > $max) {
+                $max = $limit->max;
+            }
+        }
+        return (object)array('min' => $min, 'max' => $max);
     }
 
 

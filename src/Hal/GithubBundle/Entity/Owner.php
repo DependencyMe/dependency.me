@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Owner
  */
-class Owner implements OwnerInterface, UserInterface
+ class Owner implements OwnerInterface, UserInterface
 {
     /**
      * @var integer
@@ -354,4 +354,55 @@ class Owner implements OwnerInterface, UserInterface
 
 
 
+    /**
+     * @var string
+     */
+    private $titi;
+
+
+    /**
+     * Set titi
+     *
+     * @param string $titi
+     * @return Owner
+     */
+    public function setTiti($titi)
+    {
+        $this->titi = $titi;
+    
+        return $this;
+    }
+
+    /**
+     * Get titi
+     *
+     * @return string 
+     */
+    public function getTiti()
+    {
+        return $this->titi;
+    }
+
+    /**
+     * Add repositories
+     *
+     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @return Owner
+     */
+    public function addRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
+    {
+        $this->repositories[] = $repositories;
+    
+        return $this;
+    }
+
+    /**
+     * Remove repositories
+     *
+     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     */
+    public function removeRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
+    {
+        $this->repositories->removeElement($repositories);
+    }
 }

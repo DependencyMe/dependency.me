@@ -9,7 +9,10 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Hal\GithubBundle\Entity\Repository;
+use Hal\GithubBundle\Entity\Branche;
 use \Hal\GithubBundle\Entity\Owner;
+
+use Hal\GithubBundle\Request\ParamConverter\BrancheParamConverter;
 
 /**
  * @Route("/repository")
@@ -28,8 +31,21 @@ class RepositoryController extends Controller
         return array(
             'repositories' => $owner->getRepositories(),
             'owner' => $owner,
-            'requirementStatus' => $this->get('hal.release.requirement.service')
         );
     }
 
+
+    /**
+     * @Template
+     * @Route("/branche/{owner}/{repository}/{branche}", name="branche.display")
+     * @BrancheParamConverter("branche", class="HalGithubBundle:Branche")
+     */
+    public function brancheDisplayAction(Branche $branche)
+    {
+
+        return array(
+            'branche' => $branche,
+            'owner' => $branche->getRepository()->getOwner(),
+        );
+    }
 }

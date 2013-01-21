@@ -40,22 +40,6 @@ class DeclarationRepository implements DeclarationRepositoryInterface
         return $json->require;
     }
 
-    public function getByBranche(Branche $branche)
-    {
-        $query = $this->em->createQuery("
-            SELECT
-                d
-            FROM
-                HalReleaseBundle:Declaration d
-            JOIN
-                HalGithubBundle:Branche b
-            WHERE
-                b.id = :id
-            ");
-        $query->setParameter('id', $branche->getId());
-        return $query->getOneOrNullResult();
-    }
-
     public function saveDeclaration(Declaration $declaration)
     {
         $this->em->persist($declaration);

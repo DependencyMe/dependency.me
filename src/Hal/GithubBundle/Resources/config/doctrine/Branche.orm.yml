@@ -11,3 +11,4 @@ Hal\GithubBundle\Entity\Branche:
     repository:
       targetEntity: Repository
       cascade: ["persist", "merge","remove"]
+

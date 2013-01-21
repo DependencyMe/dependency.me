@@ -37,6 +37,9 @@ class YamlExtendedDriver extends SimplifiedYamlDriver
                 // Override
                 foreach ($infos as $name => $value) {
                     if (is_array($value)) {
+                        if(!isset($element[$name])) {
+                            $element[$name] = array();
+                        }
                         $element[$name] = array_merge($element[$name], $value);
                     } else {
                         $element[$name] = $value;

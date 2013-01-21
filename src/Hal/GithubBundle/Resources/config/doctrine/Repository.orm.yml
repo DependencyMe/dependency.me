@@ -23,5 +23,6 @@ Hal\GithubBundle\Entity\Repository:
   oneToMany:
     branches:
       targetEntity: Branche
+      orphanRemoval: true
       mappedBy: repository
       cascade: ["persist", "merge","remove"]

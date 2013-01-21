@@ -6,7 +6,10 @@ use Hal\GithubBundle\Entity\Branche;
 use Hal\ReleaseBundle\Entity\Requirement;
 use Hal\ReleaseBundle\Repository\DeclarationRepositoryInterface;
 
+use \Hal\ReleaseBundle\Entity\Declaration;
 use Hal\ReleaseBundle\Entity\RequirementInterface;
+use Hal\ReleaseBundle\Factory\ConstraintFactory;
+
 
 class RequirementService implements RequirementServiceInterface
 {
@@ -17,6 +20,7 @@ class RequirementService implements RequirementServiceInterface
     {
         $this->declarationRepository = $declarationRepository;
     }
+
 
     public function getStateOf($elem)
     {
@@ -36,7 +40,10 @@ class RequirementService implements RequirementServiceInterface
 
     public function getStateOfBranche(Branche $branche)
     {
-        $declaration = $this->declarationRepository->getByBranche($branche);
+        $declaration = $branche->getDeclaration();
+        if (!$declaration) {
+            return RequirementInterface::STATUS_UNKNOWN;
+        }
         $requirements = $declaration->getRequirements();
 
         // not found: status is unknown
@@ -75,5 +82,26 @@ class RequirementService implements RequirementServiceInterface
     public function getStateOfRequirement(Requirement $requirement)
     {
         return $requirement->getStatus();
+    }
+
+
+    public function refreshStateOfRequirement(Requirement $requirement)
+    {
+
+        $constraintFactory = new ConstraintFactory();
+
+        $constraint = $constraintFactory->factory($requirement->getRequiredVersion());
+        $package = $requirement->getPackage();
+
+        if (!$constraint->isSatisfiedBy($package->getVersion())) {
+            $status = RequirementInterface::STATUS_OUT_OF_DATE;
+        } else {
+
+            $version = $package->getCurrentVersion();
+
+        }
+
+        $requirement->setStatus($status);
+
     }
 }

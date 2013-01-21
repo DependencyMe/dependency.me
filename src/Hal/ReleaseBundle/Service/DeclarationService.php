@@ -25,14 +25,40 @@ class DeclarationService implements DeclarationServiceInterface
         $this->declarationRepository = $declarationRepository;
     }
 
+    public function refreshDeclarationStatus(Declaration $declaration)
+    {
+        $requirements = $declaration->getRequirements();
+
+        $constraintFactory = new ConstraintFactory();
+
+
+        foreach($requirements as $requirement) {
+
+            $constraint = $constraintFactory->factory($requirement->getRequiredVersion());
+            $package = $requirement->getPackage();
+
+            if(!$constraint->isSatisfiedBy($package->getVersion())) {
+            }
+
+
+        }
+
+        $this->saveDeclaration($declaration);
+    }
+
+
     public function refreshDeclarationFromBranche(Branche $branche)
     {
 
         $requires = $this->declarationRepository->getArrayOfRequirementsFromBranche($branche);
-
-        $declaration = $this->declarationRepository->getByBranche($branche);
+        $declaration = $branche->getDeclaration();
         if (!$declaration) {
             $declaration = new Declaration;
+        }
+
+        // remove old informations
+        foreach($declaration->getRequirements() as $req){
+            $declaration->removeRequirement($req);
         }
 
         foreach ($requires as $req => $version) {
@@ -54,6 +80,7 @@ class DeclarationService implements DeclarationServiceInterface
         }
 
         $declaration->setBranche($branche);
+        $branche->setDeclaration($declaration);
         $this->saveDeclaration($declaration);
     }
 
