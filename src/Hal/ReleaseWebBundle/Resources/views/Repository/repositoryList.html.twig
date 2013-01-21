@@ -56,7 +56,6 @@
                                 <a href="{{ path('branche.display', {owner: owner.login, repository: repository.name, branche: branche.name}) }}"
                                         ><span class="label label-state-{{ requirement_state(branche) }}">{{ branche.name }}</span></a>
                             {% endfor %}
-                            </ul>
                         </td>
                     </tr>
                 {% endfor %}

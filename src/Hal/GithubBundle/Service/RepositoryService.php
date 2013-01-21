@@ -17,4 +17,9 @@ class RepositoryService
         $this->repository->saveRepository($repo);
     }
 
+    public function search($expression)
+    {
+        return $this->repository->search($expression);
+    }
+
 }

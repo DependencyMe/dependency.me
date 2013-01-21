@@ -20,9 +20,17 @@ class RepositoryRepository implements RepositoryRepositoryInterface
     {
         $query = $this->em->createQuery("
             SELECT
-                r
+                r, o, b, d, req
             FROM
                 HalGithubBundle:Repository r
+            JOIN
+                r.owner o
+            JOIN
+                r.branches b
+            LEFT JOIN
+                b.declaration d
+            LEFT JOIN
+                d.requirements req
             WHERE
                 r.owner = :owner
             ");
@@ -46,15 +54,21 @@ class RepositoryRepository implements RepositoryRepositoryInterface
             throw new \UnexpectedValueException("$name must contains the name of the owner (owner/name)");
         }
 
-        list(,$username, $reponame) = $matches;
+        list(, $username, $reponame) = $matches;
 
         $query = $this->em->createQuery("
             SELECT
-                r
+                r, o, b, d, req
             FROM
                 HalGithubBundle:Repository r
             JOIN
-                HalGithubBundle:Owner o
+                r.owner o
+            JOIN
+                r.branches b
+            LEFT JOIN
+                b.declaration d
+            LEFT JOIN
+                d.requirements req
             WHERE
                 r.name = :name
                 and o.login = :login
@@ -68,5 +82,62 @@ class RepositoryRepository implements RepositoryRepositoryInterface
     {
         $this->em->persist($repository);
         $this->em->flush();
+    }
+
+    public function search($expression)
+    {
+        if (preg_match('!(.*)/(.*)!', $expression, $matches)) {
+
+
+            list(, $username, $reponame) = $matches;
+            $query = $this->em->createQuery("
+            SELECT
+                r, o, b, d, req
+            FROM
+                HalGithubBundle:Repository r
+            JOIN
+                r.owner o
+            JOIN
+                r.branches b
+            LEFT JOIN
+                b.declaration d
+            LEFT JOIN
+                d.requirements req
+            WHERE
+                r.name = :name
+                and o.login = :login
+                And r.enabled = 1
+            ");
+            $query->setParameter('name', $reponame);
+            $query->setParameter('login', $username);
+
+
+        } else {
+
+
+            $query = $this->em->createQuery("
+            SELECT
+                r, o, b, d, req
+            FROM
+                HalGithubBundle:Repository r
+            JOIN
+                r.owner o
+            JOIN
+                r.branches b
+            LEFT JOIN
+                b.declaration d
+            LEFT JOIN
+                d.requirements req
+            WHERE
+                (r.name = :name
+                or o.login = :name)
+                And r.enabled = 1
+            ");
+            $query->setParameter('name', $expression);
+
+
+        }
+        return $query->getResult();
+
     }
 }

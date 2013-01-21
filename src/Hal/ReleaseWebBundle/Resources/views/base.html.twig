@@ -16,8 +16,8 @@
         <div class="container">
             <a href="/" class="brand">aVersion</a>
 
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search">
+            <form class="navbar-search pull-left" method="get" action="{{ path('repository.search') }}">
+                <input type="text" class="search-query" placeholder="Search" name="expression">
             </form>
 
             <div class="nav-collapse collapse">

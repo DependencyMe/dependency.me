@@ -13,6 +13,7 @@ use Hal\GithubBundle\Entity\Branche;
 use \Hal\GithubBundle\Entity\Owner;
 
 use Hal\GithubBundle\Request\ParamConverter\BrancheParamConverter;
+use Symfony\Component\HttpFoundation\Request ;
 
 /**
  * @Route("/repository")
@@ -20,6 +21,24 @@ use Hal\GithubBundle\Request\ParamConverter\BrancheParamConverter;
 class RepositoryController extends Controller
 {
 
+
+    /**
+     * @Template
+     * @Route("/search/{expression}", name="repository.search"
+     * , requirements={
+     *        "expression" = "[\w\d\-\./]+"
+     *      }
+     *  ,defaults={"expression"=""}
+     * )
+     */
+    public function repositorySearchAction(Request $request)
+    {
+
+        $service = $this->get('hal.github.repository.service');
+        return array(
+            'repositories' => $service->search($request->get('expression')),
+        );
+    }
 
     /**
      * @Template

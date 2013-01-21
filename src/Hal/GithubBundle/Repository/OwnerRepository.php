@@ -64,9 +64,18 @@ class OwnerRepository implements OwnerRepositoryInterface
     {
         $query = $this->em->createQuery("
             SELECT
-                o
+                r, o, b, d, req
             FROM
                 HalGithubBundle:Owner o
+
+            JOIN
+                o.repositories r
+            JOIN
+                r.branches b
+            LEFT JOIN
+                b.declaration d
+            LEFT JOIN
+                d.requirements req
             WHERE
                 o.login = :login
             ");

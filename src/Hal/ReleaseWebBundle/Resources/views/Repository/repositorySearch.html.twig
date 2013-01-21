@@ -1,0 +1,47 @@
+{% extends "HalReleaseWebBundle::base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="row">
+
+        <h1>{{ repositories | length }} Results</h1>
+
+
+        {% if repositories %}
+            <table class="table table-stripped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Owner</th>
+                    <th>Repository</th>
+                    <th>Branches</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for repository in repositories if repository.enabled %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('repository.list.by.owner', {login: repository.owner.login}) }}#repo-{{ repository.id }}">{{ repository.owner.login }}</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('repository.list.by.owner', {login: repository.owner.login}) }}#repo-{{ repository.id }}">{{ repository.name }}</a>
+                        </td>
+
+                        <td>
+                            {% for branche in repository.branches %}
+                                <a href="{{ path('branche.display', {owner: repository.owner.login, repository: repository.name, branche: branche.name}) }}"
+                                        ><span class="label label-state-{{ requirement_state(branche) }}">{{ branche.name }}</span></a>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No result found.</p>
+
+
+        {% endif %}
+
+    </div>
+{% endblock %}

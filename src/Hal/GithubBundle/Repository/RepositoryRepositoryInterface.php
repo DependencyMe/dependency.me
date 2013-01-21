@@ -15,4 +15,6 @@ interface RepositoryRepositoryInterface
     public function saveRepository(Repository $repository);
 
     public function removeByOwner(OwnerInterface $owner);
+
+    public function search($expression);
 }

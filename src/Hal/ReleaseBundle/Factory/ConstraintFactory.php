@@ -17,8 +17,10 @@ class ConstraintFactory
             case ($constraint instanceof LinkConstraintInterface):
                 return $this->factoryFromComposerConstraintLink($constraint);
                 break;
+            case is_null($constraint):
+                return $this->factoryFromString('*');
             default:
-                throw new \Exception('Constraint type is not supported');
+                throw new \Exception(sprintf('Constraint type is not supported (%s)', $constraint));
                 break;
         }
     }
