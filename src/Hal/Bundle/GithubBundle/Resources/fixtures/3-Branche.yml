@@ -1,0 +1,43 @@
+model: Hal\Bundle\GithubBundle\Entity\Branche
+persistence: orm
+fixtures:
+
+  branche_mink1:
+    name: Master
+    repository: repo_mink
+
+  branche_mink2:
+    name: Refractoring
+    repository: repo_mink
+
+  branche_mink3:
+      name: AnotherBranche
+      repository: repo_mink
+
+  branche_behat1:
+      name: Master
+      repository: repo_behat
+
+  branche_behat2:
+      name: branche1
+      repository: repo_behat
+
+  branche_behat3:
+      name: branche2
+      repository: repo_behat
+
+  branche_behat4:
+      name: branche3
+      repository: repo_behat
+
+  branche_behat5:
+      name: branche4
+      repository: repo_behat
+
+  branche_behat6:
+      name: branche5
+      repository: repo_behat
+
+  branche_doctrine1:
+      name: Master
+      repository: repo_doctrine

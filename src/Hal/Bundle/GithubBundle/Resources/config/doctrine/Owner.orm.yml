@@ -1,0 +1,28 @@
+Hal\Bundle\GithubBundle\Entity\Owner:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    permanentAccessToken:
+      type: string
+    login:
+      type: string
+    url:
+      type: string
+      nullable: true
+    email:
+      type: string
+      nullable: true
+    gravatarUrl:
+      type: string
+      nullable: true
+    name:
+      type: string
+  oneToMany:
+    repositories:
+      targetEntity: Repository
+      orphanRemoval: true
+      mappedBy: owner
+      cascade: ["persist", "merge", "remove"]

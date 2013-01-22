@@ -20,9 +20,9 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Hal\ReleaseBundle\HalReleaseBundle(),
-            new Hal\ReleaseWebBundle\HalReleaseWebBundle(),
-            new Hal\GithubBundle\HalGithubBundle(),
+            new Hal\Bundle\ReleaseBundle\HalReleaseBundle(),
+            new Hal\Bundle\ReleaseWebBundle\HalReleaseWebBundle(),
+            new Hal\Bundle\GithubBundle\HalGithubBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Hal\Bundle\EntityOverridingBundle\HalEntityOverridingBundle(),
         );

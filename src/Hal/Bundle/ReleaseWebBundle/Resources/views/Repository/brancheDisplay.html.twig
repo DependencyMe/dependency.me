@@ -1,0 +1,77 @@
+{% extends "HalReleaseWebBundle::base.html.twig" %}
+
+{% block body %}
+
+    <div class="row">
+        <div id="owner-profile" class="span4">
+
+
+            <div class="media">
+                <div class="pull-left">
+                    <img class="img-polaroid img-owner" src="{{ owner.gravatarUrl }}"/>
+                </div>
+                <div class="media-body">
+                    <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}"
+                       target="_blank">{{ owner.login }}</a>
+                    <br/> {{ owner.repositories | length }} repositories
+                </div>
+
+            </div>
+
+
+            {% include 'HalReleaseWebBundle:Repository:block.versionlegend.html.twig' %}
+
+
+        </div>
+
+        <div id="owner-repositories-branches" class="span8">
+
+
+
+
+
+            <h1>Dependencies of {{ branche.name }}</h1>
+
+
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a> <span class="divider">/</span></li>
+                <li><a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">{{ owner.login }}</a> <span class="divider">/</span></li>
+                <li><a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">{{ branche.repository.name }}</a> <span class="divider">/</span></li>
+                <li class="active">{{ branche.name }}</li>
+            </ul>
+
+            {% if branche.declaration %}
+
+                <table class="table table-stripped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Required Version</th>
+                        <th>Current Version</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for requirement in branche.declaration.requirements if branche.repository.enabled %}
+                        <tr>
+                            <td>{{ requirement.package.name }}</a></td>
+                            <td>{{ requirement.requiredVersion }}</a></td>
+                            <td>{{ requirement.package.currentVersion.version }}</a></td>
+                            <td>
+                            <span class="label label-state-{{ requirement_state(requirement) }}">
+                            {{ requirement_state(requirement) }}</span>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% else %}
+                <p>Nothing yet here. Please try later</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+parameters:
+  hal.github.auth.service.class: Hal\Bundle\GithubBundle\Service\AuthService
+  hal.github.owner.service.class: Hal\Bundle\GithubBundle\Service\OwnerService
+  hal.github.owner.repository.class: Hal\Bundle\GithubBundle\Repository\OwnerRepository
+  hal.github.repository.repository.class: Hal\Bundle\GithubBundle\Repository\RepositoryRepository
+  hal.github.branche.repository.class: Hal\Bundle\GithubBundle\Repository\BrancheRepository
+  hal.github.github.repository.class: Hal\Bundle\GithubBundle\Repository\GithubRepository
+  hal.github.repository.service.class: Hal\Bundle\GithubBundle\Service\RepositoryService
+  hal.github.security.user.provider.class: Hal\Bundle\GithubBundle\Security\User\UserProvider
+
+  # converters
+  hal.github.extra.converter.branche.class: Hal\Bundle\GithubBundle\Request\ParamConverter\BrancheParamConverter
+  hal.github.extra.converter.owner.class: Hal\Bundle\GithubBundle\Request\ParamConverter\OwnerParamConverter
+
+services:
+
+    # ----- converters -----
+    hal.github.branche.converter:
+      class: %hal.github.extra.converter.branche.class%
+      arguments:
+        - @hal.github.branche.repository
+      tags:
+        - { name: request.param_converter, priority: 1 }
+
+    hal.github.owner.converter:
+          class: %hal.github.extra.converter.owner.class%
+          arguments:
+            - @hal.github.owner.repository
+          tags:
+            - { name: request.param_converter, priority: 1 }
+
+
+    # authentification: ENCORE UTILIS2????
+    # ------
+    hal.github.auth.service:
+        class: %hal.github.auth.service.class%
+        arguments:
+          - @service_container
+          - @hal.github.owner.repository
+          - @hal.github.owner.service
+          - %github_app_id%
+          - %github_app_secret%
+          - %github_redirect_url%
+
+    # Owner -> Service
+    hal.github.owner.service:
+      class: %hal.github.owner.service.class%
+      arguments:
+        - @hal.github.owner.repository
+        - @hal.github.repository.repository
+        - @hal.github.github.repository
+        - @security.acl.provider
+
+    # Owner -> Repository
+    hal.github.owner.repository:
+      class: %hal.github.owner.repository.class%
+      arguments:
+        - @doctrine.orm.entity_manager
+        - @event_dispatcher
+
+    # Repository -> Repository
+    hal.github.repository.repository:
+        class: %hal.github.repository.repository.class%
+        arguments:
+          - @doctrine.orm.entity_manager
+          - @event_dispatcher
+
+
+    # Github -> Repository
+    hal.github.github.repository:
+          class: %hal.github.github.repository.class%
+
+    # Github -> Service
+    hal.github.repository.service:
+              class: %hal.github.repository.service.class%
+              arguments:
+                - @hal.github.repository.repository
+
+
+    # Auth : User provider
+    hal.github.security.user.provider:
+        class: %hal.github.security.user.provider.class%
+        arguments:
+          - @hal.github.owner.service
+
+
+    # Branche -> Repository
+    hal.github.branche.repository:
+      class: %hal.github.branche.repository.class%
+      arguments:
+        - @doctrine.orm.entity_manager
+        - @event_dispatcher

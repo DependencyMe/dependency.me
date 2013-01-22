@@ -1,0 +1,25 @@
+# représente un composer.json
+Hal\Bundle\ReleaseBundle\Entity\Declaration:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    lastUpdate:
+      type: datetime
+  oneToOne:
+    branche:
+      targetEntity: Hal\Bundle\GithubBundle\Entity\Branche
+      mappedBy: declaration
+      joinColumn:
+        name: branche_id
+        referencedColumnName: id
+  oneToMany:
+    requirements:
+      targetEntity: Requirement
+      orphanRemoval: true
+      mappedBy: declaration
+      cascade: ["persist", "merge","remove"]
+  lifecycleCallbacks:
+    prePersist: [ updateDate ]
