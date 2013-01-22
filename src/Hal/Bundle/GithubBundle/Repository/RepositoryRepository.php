@@ -96,22 +96,25 @@ class RepositoryRepository implements RepositoryRepositoryInterface
             ->leftJoin('r.branches', 'b')
             ->where('r.enabled = 1');
 
+
+        if (preg_match('!(.*)/(.*)!', $expression, $matches)) {
+            list(, $user, $repo) = $matches;
+            $queryBuilder->andWhere('o.login = :user OR r.name = :repo');
+            $query = $queryBuilder->getQuery();
+            $query->setParameter('user', $user);
+            $query->setParameter('repo', $repo);
+
+        } else {
+            $queryBuilder->andWhere('r.name = :name OR o.login = :name');
+        }
+
         // call listeners
         $event = new QueryEvent($queryBuilder);
         $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
 
-
-        if (preg_match('!(.*)/(.*)!', $expression, $matches)) {
-            list(, $user, $repo) = $matches;
-            $queryBuilder
-                ->andWhere('o.login = :name')
-                ->orWhere('r.name = :name');
-        } else {
-            $queryBuilder->orWhere('r.name = :name');
-        }
         $query = $queryBuilder->getQuery();
-
         $query->setParameter('name', $expression);
+
         return $query->getResult();
 
     }
