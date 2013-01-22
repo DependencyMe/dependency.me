@@ -10,16 +10,24 @@ parameters:
 
   # converters
   hal.github.extra.converter.branche.class: Hal\GithubBundle\Request\ParamConverter\BrancheParamConverter
+  hal.github.extra.converter.owner.class: Hal\GithubBundle\Request\ParamConverter\OwnerParamConverter
 
 services:
 
-    # converters
+    # ----- converters -----
     hal.github.branche.converter:
       class: %hal.github.extra.converter.branche.class%
       arguments:
         - @hal.github.branche.repository
       tags:
         - { name: request.param_converter, priority: 1 }
+
+    hal.github.owner.converter:
+          class: %hal.github.extra.converter.owner.class%
+          arguments:
+            - @hal.github.owner.repository
+          tags:
+            - { name: request.param_converter, priority: 1 }
 
 
     # authentification: ENCORE UTILIS2????
@@ -48,12 +56,14 @@ services:
       class: %hal.github.owner.repository.class%
       arguments:
         - @doctrine.orm.entity_manager
+        - @event_dispatcher
 
     # Repository -> Repository
     hal.github.repository.repository:
-          class: %hal.github.repository.repository.class%
-          arguments:
-            - @doctrine.orm.entity_manager
+        class: %hal.github.repository.repository.class%
+        arguments:
+          - @doctrine.orm.entity_manager
+          - @event_dispatcher
 
 
     # Github -> Repository
@@ -79,3 +89,4 @@ services:
       class: %hal.github.branche.repository.class%
       arguments:
         - @doctrine.orm.entity_manager
+        - @event_dispatcher

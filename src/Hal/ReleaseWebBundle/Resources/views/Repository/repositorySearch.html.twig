@@ -5,7 +5,13 @@
 
     <div class="row">
 
-        <h1>{{ repositories | length }} Results</h1>
+        <h1>Found: {{ repositories | length }} Results</h1>
+
+
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a> <span class="divider">/</span></li>
+            <li class="active">Search</li>
+        </ul>
 
 
         {% if repositories %}

@@ -16,7 +16,11 @@ class HalReleaseBundle extends Bundle
         \Doctrine\DBAL\Types\Type::addType('requirementstatus', '\Hal\ReleaseBundle\Dbal\Types\EnumRequirementStatusType');
         \Doctrine\DBAL\Types\Type::addType('constraint', '\Hal\ReleaseBundle\Dbal\Types\ConstraintType');
         \Doctrine\DBAL\Types\Type::addType('version', '\Hal\ReleaseBundle\Dbal\Types\ReleaseType');
-    }
 
+
+        $eventDispatcher = $this->container->get('event_dispatcher');
+
+        $eventDispatcher->addSubscriber(new \Hal\ReleaseBundle\Event\Suscriber\Github\QuerySuscriber());
+    }
 
 }

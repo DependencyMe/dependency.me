@@ -29,6 +29,12 @@
 
             <h1>Repositories of {{ owner.login }}</h1>
 
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a> <span class="divider">/</span></li>
+                <li class="active">{{ owner.login }}</li>
+            </ul>
+
+
             <p>
                 Here you can get information about dependencies used by each branche of repository of <strong><a
                     href="{{ owner.url }}" target="_blank">{{ owner.login }}</a></strong>.

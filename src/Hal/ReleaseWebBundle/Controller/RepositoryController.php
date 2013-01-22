@@ -13,6 +13,7 @@ use Hal\GithubBundle\Entity\Branche;
 use \Hal\GithubBundle\Entity\Owner;
 
 use Hal\GithubBundle\Request\ParamConverter\BrancheParamConverter;
+use Hal\GithubBundle\Request\ParamConverter\OwnerParamConverter;
 use Symfony\Component\HttpFoundation\Request ;
 
 /**
@@ -43,11 +44,10 @@ class RepositoryController extends Controller
     /**
      * @Template
      * @Route("/owner/{login}", name="repository.list.by.owner")
-     * @ParamConverter("owner", options={"mapping": {"login": "login"}})
+     * @OwnerParamConverter("owner", class="HalGithubBundle:Owner")
      */
     public function repositoryListAction(Owner $owner)
     {
-
         return array(
             'repositories' => $owner->getRepositories(),
             'owner' => $owner,

@@ -6,36 +6,41 @@ use Hal\GithubBundle\Entity\OwnerInterface;
 use Hal\GithubBundle\Entity\Repository;
 use Doctrine\ORM\EntityManager;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+
+use Hal\GithubBundle\Event\GithubEvent;
+use Hal\GithubBundle\Event\QueryEvent;
+
 class RepositoryRepository implements RepositoryRepositoryInterface
 {
 
     private $em;
+    private $eventDispatcher;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, EventDispatcherInterface $eventDispatcher)
     {
         $this->em = $em;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function getByOwner(OwnerInterface $auth)
     {
-        $query = $this->em->createQuery("
-            SELECT
-                r, o, b, d, req
-            FROM
-                HalGithubBundle:Repository r
-            JOIN
-                r.owner o
-            JOIN
-                r.branches b
-            LEFT JOIN
-                b.declaration d
-            LEFT JOIN
-                d.requirements req
-            WHERE
-                r.owner = :owner
-            ");
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o, r, b')
+            ->from('HalGithubBundle:Repository', 'r')
+            ->join('r.owner', 'o')
+            ->join('r.branches', 'b')
+            ->where('r.owner = :owner');
+
+        // call listeners
+        $event = new QueryEvent($queryBuilder);
+        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
+
+        $query = $queryBuilder->getQuery();
         $query->setParameter('owner', $auth);
         return $query->getResult();
+
     }
 
     public function removeByOwner(OwnerInterface $owner)
@@ -56,23 +61,20 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
         list(, $username, $reponame) = $matches;
 
-        $query = $this->em->createQuery("
-            SELECT
-                r, o, b, d, req
-            FROM
-                HalGithubBundle:Repository r
-            JOIN
-                r.owner o
-            JOIN
-                r.branches b
-            LEFT JOIN
-                b.declaration d
-            LEFT JOIN
-                d.requirements req
-            WHERE
-                r.name = :name
-                and o.login = :login
-            ");
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o, r, b')
+            ->from('HalGithubBundle:Repository', 'r')
+            ->join('r.owner', 'o')
+            ->join('r.branches', 'b')
+            ->where('r.name = :name')
+            ->andWhere('o.login = :login');
+
+        // call listeners
+        $event = new QueryEvent($queryBuilder);
+        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
+
+        $query = $queryBuilder->getQuery();
         $query->setParameter('name', $reponame);
         $query->setParameter('login', $username);
         return $query->getOneOrNullResult();
@@ -86,57 +88,32 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
     public function search($expression)
     {
+
+
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o, r, b')
+            ->from('HalGithubBundle:Repository', 'r')
+            ->join('r.owner', 'o')
+            ->leftJoin('r.branches', 'b')
+            ->where('r.enabled = 1');
+
+        // call listeners
+        $event = new QueryEvent($queryBuilder);
+        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
+
+
         if (preg_match('!(.*)/(.*)!', $expression, $matches)) {
-
-
-            list(, $username, $reponame) = $matches;
-            $query = $this->em->createQuery("
-            SELECT
-                r, o, b, d, req
-            FROM
-                HalGithubBundle:Repository r
-            JOIN
-                r.owner o
-            JOIN
-                r.branches b
-            LEFT JOIN
-                b.declaration d
-            LEFT JOIN
-                d.requirements req
-            WHERE
-                r.name = :name
-                and o.login = :login
-                And r.enabled = 1
-            ");
-            $query->setParameter('name', $reponame);
-            $query->setParameter('login', $username);
-
-
+            list(, $user, $repo) = $matches;
+            $queryBuilder
+                ->andWhere('o.login = :name')
+                ->orWhere('r.name = :name');
         } else {
-
-
-            $query = $this->em->createQuery("
-            SELECT
-                r, o, b, d, req
-            FROM
-                HalGithubBundle:Repository r
-            JOIN
-                r.owner o
-            JOIN
-                r.branches b
-            LEFT JOIN
-                b.declaration d
-            LEFT JOIN
-                d.requirements req
-            WHERE
-                (r.name = :name
-                or o.login = :name)
-                And r.enabled = 1
-            ");
-            $query->setParameter('name', $expression);
-
-
+            $queryBuilder->orWhere('r.name = :name');
         }
+        $query = $queryBuilder->getQuery();
+
+        $query->setParameter('name', $expression);
         return $query->getResult();
 
     }

@@ -4,15 +4,20 @@ use Hal\GithubBundle\Entity\AuthentifiableInterface;
 use Hal\GithubBundle\Entity\Owner;
 use Doctrine\ORM\EntityManager;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use Hal\GithubBundle\Event\QueryEvent;
+use Hal\GithubBundle\Event\GithubEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class OwnerRepository implements OwnerRepositoryInterface
 {
 
     private $em;
+    private $eventDispatcher;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, EventDispatcherInterface $eventDispatcher)
     {
         $this->em = $em;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
 
@@ -47,14 +52,20 @@ class OwnerRepository implements OwnerRepositoryInterface
 
     public function getUserByAccessToken($accessToken)
     {
-        $query = $this->em->createQuery("
-            SELECT
-                o
-            FROM
-                HalGithubBundle:Owner o
-            WHERE
-                o.permanentAccessToken = :permanent_access_token
-            ");
+
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o, r, b')
+            ->from('HalGithubBundle:Owner', 'o')
+            ->leftJoin('o.repositories', 'r')
+            ->leftJoin('r.branches', 'b')
+            ->where('o.permanentAccessToken = :permanent_access_token');
+
+        // call listeners
+        $event = new QueryEvent($queryBuilder);
+        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_OWNER, $event);
+
+        $query = $queryBuilder->getQuery();
         $query->setParameter('permanent_access_token', $accessToken);
         return $query->getOneOrNullResult();
     }
@@ -62,24 +73,21 @@ class OwnerRepository implements OwnerRepositoryInterface
 
     public function getOwnerByLogin($login)
     {
-        $query = $this->em->createQuery("
-            SELECT
-                r, o, b, d, req
-            FROM
-                HalGithubBundle:Owner o
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o, r, b')
+            ->from('HalGithubBundle:Owner', 'o')
+            ->leftJoin('o.repositories', 'r')
+            ->leftJoin('r.branches', 'b')
+            ->where('o.login = :login');
 
-            JOIN
-                o.repositories r
-            JOIN
-                r.branches b
-            LEFT JOIN
-                b.declaration d
-            LEFT JOIN
-                d.requirements req
-            WHERE
-                o.login = :login
-            ");
+        // call listeners
+        $event = new QueryEvent($queryBuilder);
+        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_OWNER, $event);
+
+        $query = $queryBuilder->getQuery();
         $query->setParameter('login', $login);
+
         return $query->getOneOrNullResult();
     }
 

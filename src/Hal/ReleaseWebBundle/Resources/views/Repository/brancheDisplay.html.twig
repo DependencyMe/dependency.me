@@ -27,8 +27,18 @@
         <div id="owner-repositories-branches" class="span8">
 
 
-            <h1>Dependencies of {{ owner.login }}/{{ branche.repository.name }}/{{ branche.name }}</h1>
 
+
+
+            <h1>Dependencies of {{ branche.name }}</h1>
+
+
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a> <span class="divider">/</span></li>
+                <li><a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">{{ owner.login }}</a> <span class="divider">/</span></li>
+                <li><a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">{{ branche.repository.name }}</a> <span class="divider">/</span></li>
+                <li class="active">{{ branche.name }}</li>
+            </ul>
 
             {% if branche.declaration %}
 
@@ -48,9 +58,8 @@
                             <td>{{ requirement.requiredVersion }}</a></td>
                             <td>{{ requirement.package.currentVersion.version }}</a></td>
                             <td>
-                            <span class="label label-state-{{ requirement_state(branche) }}">
+                            <span class="label label-state-{{ requirement_state(requirement) }}">
                             {{ requirement_state(requirement) }}</span>
-
                             </td>
 
                         </tr>
