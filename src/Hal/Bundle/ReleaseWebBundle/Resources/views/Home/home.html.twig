@@ -2,7 +2,41 @@
 
 {% block body %}
 
-    welcome
+    <div class="row">
+        <div class="span8">Explications</div>
+
+        <div class="span4">
+
+
+            Github: lien
+
+            <div class="container-repository-recents">
+                Recents repository:
+                <ul class="list-repository-recent">
+                    {% for repository in repositories %}
+                        <li>
+                            <a href="{{ path('repository.list.by.owner', {login: repository.owner.login}) }}"
+                                    >{{ repository.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="container-infos">
+                <ul>
+                    <li>Developers: 500</li>
+                    <li>Active repositories: 500</li>
+                    <li>Active branches: 500</li>
+
+                    <li>Repositories flagged as "latest" : 500</li>
+                    <li>Repositories flagged as "recent" : 500</li>
+                    <li>Repositories flagged as "outofdate" : 500</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
 
 
 

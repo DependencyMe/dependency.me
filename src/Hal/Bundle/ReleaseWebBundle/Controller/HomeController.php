@@ -20,7 +20,10 @@ class HomeController extends Controller
      */
     public function homeAction()
     {
-        return array();
+        $service = $this->get('hal.github.repository.service');
+        return array(
+            'repositories' => $service->listRecentlyUpdated()
+        );
     }
 
     /**

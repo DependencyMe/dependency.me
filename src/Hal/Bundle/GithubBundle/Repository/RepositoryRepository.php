@@ -23,12 +23,8 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
     public function getByOwner(OwnerInterface $auth)
     {
-        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder = $this->getQueryBuilder();
         $queryBuilder
-            ->select('o, r, b')
-            ->from('HalGithubBundle:Repository', 'r')
-            ->join('r.owner', 'o')
-            ->join('r.branches', 'b')
             ->where('r.owner = :owner');
 
         // call listeners
@@ -59,12 +55,8 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
         list(, $username, $reponame) = $matches;
 
-        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder = $this->getQueryBuilder();
         $queryBuilder
-            ->select('o, r, b')
-            ->from('HalGithubBundle:Repository', 'r')
-            ->join('r.owner', 'o')
-            ->join('r.branches', 'b')
             ->where('r.name = :name')
             ->andWhere('o.login = :login');
 
@@ -86,16 +78,8 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
     public function search($expression)
     {
-
-
-        $queryBuilder = $this->em->createQueryBuilder();
-        $queryBuilder
-            ->select('o, r, b')
-            ->from('HalGithubBundle:Repository', 'r')
-            ->join('r.owner', 'o')
-            ->leftJoin('r.branches', 'b')
-            ->where('r.enabled = 1');
-
+        $queryBuilder = $this->getQueryBuilder();
+        $queryBuilder->where('r.enabled = 1');
 
         if (preg_match('!(.*)/(.*)!', $expression, $matches)) {
             list(, $user, $repo) = $matches;
@@ -124,7 +108,8 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder
             ->where('r.enabled = 1')
-            ->orderBy('r.lastUpdate', 'DESC')
+            //->orderBy('r.lastUpdate', 'DESC')
+            ->orderBy('r.id', 'DESC') // @todo tmp, waiting for fixtures
             ->setMaxResults($limit);
 
         return $queryBuilder->getQuery()->getResult();

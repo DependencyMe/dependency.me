@@ -22,4 +22,4 @@ parameters:
     github_options:
       display:
         recents:
-          repository: :10
+          repository: 10
