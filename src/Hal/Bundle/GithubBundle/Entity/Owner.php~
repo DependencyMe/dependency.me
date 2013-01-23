@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\GithubBundle\Entity;
+namespace Hal\Bundle\GithubBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,37 +14,37 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $permanentAccessToken;
+    protected $permanentAccessToken;
 
     /**
      * @var string
      */
-    private $temporaryCode;
+    protected $temporaryCode;
 
     /**
      * @var string
      */
-    private $login;
+    protected $login;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var string
      */
-    private $gravatarUrl;
+    protected $gravatarUrl;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
 
 
@@ -179,7 +179,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
 
     /**
@@ -236,7 +236,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $repositories;
+    protected $repositories;
 
     /**
      * Constructor
@@ -249,10 +249,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * Add repositories
      *
-     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @param \Hal\Bundle\GithubBundle\Entity\Repository $repositories
      * @return Owner
      */
-    public function addRepository(\Hal\GithubBundle\Entity\Repository $repositories)
+    public function addRepository(\Hal\Bundle\GithubBundle\Entity\Repository $repositories)
     {
         $this->repositories[] = $repositories;
     
@@ -262,9 +262,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * Remove repositories
      *
-     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @param \Hal\Bundle\GithubBundle\Entity\Repository $repositories
      */
-    public function removeRepository(\Hal\GithubBundle\Entity\Repository $repositories)
+    public function removeRepository(\Hal\Bundle\GithubBundle\Entity\Repository $repositories)
     {
         $this->repositories->removeElement($repositories);
     }
@@ -351,45 +351,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return;
     }
 
-
-
-
-    /**
-     * @var string
-     */
-    private $titi;
-
-
-    /**
-     * Set titi
-     *
-     * @param string $titi
-     * @return Owner
-     */
-    public function setTiti($titi)
-    {
-        $this->titi = $titi;
-    
-        return $this;
-    }
-
-    /**
-     * Get titi
-     *
-     * @return string 
-     */
-    public function getTiti()
-    {
-        return $this->titi;
-    }
-
     /**
      * Add repositories
      *
-     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @param \Hal\Bundle\GithubBundle\Entity\Repository $repositories
      * @return Owner
      */
-    public function addRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
+    public function addRepositorie(\Hal\Bundle\GithubBundle\Entity\Repository $repositories)
     {
         $this->repositories[] = $repositories;
     
@@ -399,9 +367,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * Remove repositories
      *
-     * @param \Hal\GithubBundle\Entity\Repository $repositories
+     * @param \Hal\Bundle\GithubBundle\Entity\Repository $repositories
      */
-    public function removeRepositorie(\Hal\GithubBundle\Entity\Repository $repositories)
+    public function removeRepositorie(\Hal\Bundle\GithubBundle\Entity\Repository $repositories)
     {
         $this->repositories->removeElement($repositories);
     }

@@ -27,6 +27,8 @@ assetic:
 
 
 khepin_yaml_fixtures:
+    acl_manager: ~
     resources:
         - HalGithubBundle
+        - HalReleaseBundle
     directory: Resources/fixtures

@@ -6,10 +6,12 @@ use Hal\Bundle\GithubBundle\Entity\Repository;
 class RepositoryService
 {
     private $repository;
+    private $options;
 
-    function __construct(RepositoryRepositoryInterface $repository)
+    function __construct(RepositoryRepositoryInterface $repository, array $options)
     {
         $this->repository = $repository;
+        $this->options = $options;
     }
 
     public function saveRepository(Repository $repo)
@@ -22,4 +24,8 @@ class RepositoryService
         return $this->repository->search($expression);
     }
 
+    public function listRecentlyUpdated()
+    {
+        return $this->repository->listRecentlyUpdated($this->options['display']['recents']['repository']);
+    }
 }

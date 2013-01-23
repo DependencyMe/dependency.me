@@ -118,4 +118,31 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         return $query->getResult();
 
     }
+
+    public function listRecentlyUpdated($limit)
+    {
+        $queryBuilder = $this->getQueryBuilder();
+        $queryBuilder
+            ->where('r.enabled = 1')
+            ->orderBy('r.lastUpdate', 'DESC')
+            ->setMaxResults($limit);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    private function getQueryBuilder()
+    {
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o, r, b')
+            ->from('HalGithubBundle:Repository', 'r')
+            ->join('r.owner', 'o')
+            ->join('r.branches', 'b')
+            ->where('r.owner = :owner');
+
+        // call listeners
+        $event = new QueryEvent($queryBuilder);
+        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
+        return $queryBuilder;
+    }
 }

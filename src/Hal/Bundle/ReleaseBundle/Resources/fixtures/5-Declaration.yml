@@ -1,0 +1,16 @@
+model: Hal\Bundle\ReleaseBundle\Entity\Declaration
+tags: [dev, test]
+persistence: orm
+fixtures:
+  declaration1:
+    lastUpdate: "2013-01-22"
+    branche: branche_mink1
+  declaration2:
+    lastUpdate: "2013-01-22"
+    branche: branche_mink2
+  declaration3:
+    lastUpdate: "2013-01-21"
+    branche: branche_zf12
+  declaration4:
+      lastUpdate: "2013-01-02"
+      branche: branche_zf13

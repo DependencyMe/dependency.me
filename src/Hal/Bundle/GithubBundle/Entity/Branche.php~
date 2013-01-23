@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\GithubBundle\Entity;
+namespace Hal\Bundle\GithubBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,7 +21,7 @@ class Branche
     private $name;
 
     /**
-     * @var \Hal\GithubBundle\Entity\Repository
+     * @var \Hal\Bundle\GithubBundle\Entity\Repository
      */
     private $repository;
 
@@ -62,10 +62,10 @@ class Branche
     /**
      * Set repository
      *
-     * @param \Hal\GithubBundle\Entity\Repository $repository
+     * @param \Hal\Bundle\GithubBundle\Entity\Repository $repository
      * @return Branche
      */
-    public function setRepository(\Hal\GithubBundle\Entity\Repository $repository = null)
+    public function setRepository(\Hal\Bundle\GithubBundle\Entity\Repository $repository = null)
     {
         $this->repository = $repository;
     
@@ -75,14 +75,14 @@ class Branche
     /**
      * Get repository
      *
-     * @return \Hal\GithubBundle\Entity\Repository 
+     * @return \Hal\Bundle\GithubBundle\Entity\Repository
      */
     public function getRepository()
     {
         return $this->repository;
     }
     /**
-     * @var \Hal\ReleaseBundle\Entity\Declaration
+     * @var \Hal\Bundle\ReleaseBundle\Entity\Declaration
      */
     private $declaration;
 
@@ -90,10 +90,10 @@ class Branche
     /**
      * Set declaration
      *
-     * @param \Hal\ReleaseBundle\Entity\Declaration $declaration
+     * @param \Hal\Bundle\ReleaseBundle\Entity\Declaration $declaration
      * @return Branche
      */
-    public function setDeclaration(\Hal\ReleaseBundle\Entity\Declaration $declaration = null)
+    public function setDeclaration(\Hal\Bundle\ReleaseBundle\Entity\Declaration $declaration = null)
     {
         $this->declaration = $declaration;
     
@@ -103,7 +103,7 @@ class Branche
     /**
      * Get declaration
      *
-     * @return \Hal\ReleaseBundle\Entity\Declaration 
+     * @return \Hal\Bundle\ReleaseBundle\Entity\Declaration
      */
     public function getDeclaration()
     {

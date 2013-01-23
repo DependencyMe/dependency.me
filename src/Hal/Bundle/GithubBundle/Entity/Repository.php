@@ -57,7 +57,13 @@ class Repository
     {
         $this->branches = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
+    public function updateDate()
+    {
+        $this->lastUpdate = new \DateTime();
+    }
+
+
     /**
      * Get id
      *
@@ -237,5 +243,33 @@ class Repository
     public function getOwner()
     {
         return $this->owner;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $lastUpdate;
+
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Repository
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
     }
 }

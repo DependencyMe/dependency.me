@@ -54,6 +54,18 @@ class RepositoryController extends Controller
         );
     }
 
+    /**
+     * @Template
+     * @Route("/recents", name="repository.list.recents")
+     */
+    public function repositoryListRecentsAction()
+    {
+        $service = $this->get('hal.github.repository.service');
+        return array(
+            'repositories' => $service->listRecentlyUpdated()
+        );
+    }
+
 
     /**
      * @Template

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\GithubBundle\Entity;
+namespace Hal\Bundle\GithubBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,7 +46,7 @@ class Repository
     private $branches;
 
     /**
-     * @var \Hal\GithubBundle\Entity\Owner
+     * @var \Hal\Bundle\GithubBundle\Entity\Owner
      */
     private $owner;
 
@@ -57,7 +57,13 @@ class Repository
     {
         $this->branches = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
+    public function updateDate()
+    {
+        $this->lastUpdate = new \DateTime();
+    }
+
+
     /**
      * Get id
      *
@@ -186,10 +192,10 @@ class Repository
     /**
      * Add branches
      *
-     * @param \Hal\GithubBundle\Entity\Branche $branches
+     * @param \Hal\Bundle\GithubBundle\Entity\Branche $branches
      * @return Repository
      */
-    public function addBranche(\Hal\GithubBundle\Entity\Branche $branches)
+    public function addBranche(\Hal\Bundle\GithubBundle\Entity\Branche $branches)
     {
         $this->branches[] = $branches;
     
@@ -199,9 +205,9 @@ class Repository
     /**
      * Remove branches
      *
-     * @param \Hal\GithubBundle\Entity\Branche $branches
+     * @param \Hal\Bundle\GithubBundle\Entity\Branche $branches
      */
-    public function removeBranche(\Hal\GithubBundle\Entity\Branche $branches)
+    public function removeBranche(\Hal\Bundle\GithubBundle\Entity\Branche $branches)
     {
         $this->branches->removeElement($branches);
     }
@@ -219,10 +225,10 @@ class Repository
     /**
      * Set owner
      *
-     * @param \Hal\GithubBundle\Entity\Owner $owner
+     * @param \Hal\Bundle\GithubBundle\Entity\Owner $owner
      * @return Repository
      */
-    public function setOwner(\Hal\GithubBundle\Entity\Owner $owner = null)
+    public function setOwner(\Hal\Bundle\GithubBundle\Entity\Owner $owner = null)
     {
         $this->owner = $owner;
     
@@ -232,7 +238,7 @@ class Repository
     /**
      * Get owner
      *
-     * @return \Hal\GithubBundle\Entity\Owner 
+     * @return \Hal\Bundle\GithubBundle\Entity\Owner
      */
     public function getOwner()
     {

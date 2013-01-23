@@ -28,8 +28,9 @@ class ReleaseType extends Type
         if(is_null($value)) {
             return '';
         }
+
         if (!$value instanceof ReleaseInterface) {
-            throw new \InvalidArgumentException("Invalid release given, we cannot convert it to database");
+            throw new \InvalidArgumentException(\sprintf("Invalid release given (%s), we cannot convert it to database", $value));
         }
         return $value->getPrettyString();
     }

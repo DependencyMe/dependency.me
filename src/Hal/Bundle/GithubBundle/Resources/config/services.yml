@@ -65,16 +65,18 @@ services:
           - @doctrine.orm.entity_manager
           - @event_dispatcher
 
+    # Repository -> Service
+    hal.github.repository.service:
+              class: %hal.github.repository.service.class%
+              arguments:
+                - @hal.github.repository.repository
+                - %github_options%
 
     # Github -> Repository
     hal.github.github.repository:
           class: %hal.github.github.repository.class%
 
-    # Github -> Service
-    hal.github.repository.service:
-              class: %hal.github.repository.service.class%
-              arguments:
-                - @hal.github.repository.repository
+
 
 
     # Auth : User provider

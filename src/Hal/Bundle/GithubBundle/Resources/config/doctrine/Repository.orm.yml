@@ -17,6 +17,8 @@ Hal\Bundle\GithubBundle\Entity\Repository:
     enabled:
       type: integer
       length: 1
+    lastUpdate:
+      type: datetime
   manyToOne:
     owner:
       targetEntity: Owner
@@ -26,3 +28,5 @@ Hal\Bundle\GithubBundle\Entity\Repository:
       orphanRemoval: true
       mappedBy: repository
       cascade: ["persist", "merge","remove"]
+  lifecycleCallbacks:
+      prePersist: [ updateDate ]
