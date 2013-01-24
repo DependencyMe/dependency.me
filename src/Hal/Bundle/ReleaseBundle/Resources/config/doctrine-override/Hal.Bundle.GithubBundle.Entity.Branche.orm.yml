@@ -1,0 +1,7 @@
+Hal\Bundle\GithubBundle\Entity\Branche:
+  oneToOne:
+    declaration:
+      targetEntity: Hal\Bundle\ReleaseBundle\Entity\Declaration
+      inversedBy: branche
+      orphanRemoval: true
+      cascade: ["persist", "merge","remove"]

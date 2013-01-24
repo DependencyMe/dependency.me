@@ -1,5 +1,5 @@
 {
-    "hash": "184559acd4e8a8c7a3dce04dab0f4761",
+    "hash": "56179f149f4f6e663026a80dbcb1bb87",
     "packages": [
         {
             "name": "composer/composer",
@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer",
-                "reference": "e33aebc75dc64efa5c3a93503df4c93b8b4fe465"
+                "reference": "f3dec1cba2bf6ed96b003f6ff543c4e36cc3e565"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/composer/composer/archive/e33aebc75dc64efa5c3a93503df4c93b8b4fe465.zip",
-                "reference": "e33aebc75dc64efa5c3a93503df4c93b8b4fe465",
+                "url": "https://github.com/composer/composer/archive/f3dec1cba2bf6ed96b003f6ff543c4e36cc3e565.zip",
+                "reference": "f3dec1cba2bf6ed96b003f6ff543c4e36cc3e565",
                 "shasum": ""
             },
             "require": {
@@ -30,7 +30,7 @@
                 "ext-zip": "Enabling the zip extension allows you to unzip archives, and allows gzip compression of all internet traffic",
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages"
             },
-            "time": "2013-01-17 16:15:22",
+            "time": "2013-01-23 15:02:19",
             "bin": [
                 "bin/composer"
             ],
@@ -1239,12 +1239,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "fada75c42051fde399a4aee30fb0eef757b8992a"
+                "reference": "bdc7e91865b4633b01e79ff91aadb58efccfa981"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/archive/fada75c42051fde399a4aee30fb0eef757b8992a.zip",
-                "reference": "fada75c42051fde399a4aee30fb0eef757b8992a",
+                "url": "https://github.com/symfony/symfony/archive/bdc7e91865b4633b01e79ff91aadb58efccfa981.zip",
+                "reference": "bdc7e91865b4633b01e79ff91aadb58efccfa981",
                 "shasum": ""
             },
             "require": {
@@ -1293,7 +1293,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": ">=1.0,<1.3-dev"
             },
-            "time": "2013-01-20 08:33:14",
+            "time": "2013-01-22 07:14:57",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1429,6 +1429,7 @@
     "stability-flags": {
         "twig/extensions": 20,
         "kriswallsmith/assetic": 20,
-        "composer/composer": 20
+        "composer/composer": 20,
+        "doctrine/doctrine-fixtures-bundle": 20
     }
 }
