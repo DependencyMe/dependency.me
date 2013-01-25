@@ -7,12 +7,28 @@
 
         <div class="span4">
 
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Informations</li>
+                    <li><i class="icon icon-user"></i>Developers: 500</li>
+                    <li><i class="icon icon-book"></i>Repositories: 500</li>
+                    <li><i class="icon icon-leaf"></i>Branches: 500</li>
 
-            Github: lien
+                    <li class="nav-header">Statistics</li>
+                    <li><i class="icon icon-ok-sign"></i>Using of latest packages : 500</li>
+                    <li><i class="icon icon-warning-sign"></i>Using of recent packages : 500</li>
+                    <li><i class="icon icon-exclamation-sign"></i>Using of outdated packages : 500</li>
+                </ul>
+            </div>
 
-            <div class="container-repository-recents">
-                Recents repository:
-                <ul class="list-repository-recent">
+            <div class="well">
+                <button class="btn btn-info"><i class="icon icon-user icon-white"></i> Login with Github</button>
+            </div>
+
+
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Recent repositories</li>
                     {% for repository in repositories %}
                         <li>
                             <a href="{{ path('repository.list.by.owner', {login: repository.owner.login}) }}"
@@ -20,19 +36,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-            </div>
-
-            <div class="container-infos">
-                <ul>
-                    <li>Developers: 500</li>
-                    <li>Active repositories: 500</li>
-                    <li>Active branches: 500</li>
-
-                    <li>Repositories flagged as "latest" : 500</li>
-                    <li>Repositories flagged as "recent" : 500</li>
-                    <li>Repositories flagged as "outofdate" : 500</li>
-                </ul>
-
             </div>
 
         </div>

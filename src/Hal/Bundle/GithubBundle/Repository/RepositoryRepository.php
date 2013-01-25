@@ -108,8 +108,7 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder
             ->where('r.enabled = 1')
-            //->orderBy('r.lastUpdate', 'DESC')
-            ->orderBy('r.id', 'DESC') // @todo tmp, waiting for fixtures
+            ->orderBy('r.lastUpdate', 'DESC')
             ->setMaxResults($limit);
 
         return $queryBuilder->getQuery()->getResult();
