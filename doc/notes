@@ -7,3 +7,6 @@
 -> commande pour mettre à jour les statuts
 
 -> connaître l'état d'un package (procédure stockée)
+
+
+setHydrationMode(Doctrine_Core::HYDRATE_SCALAR

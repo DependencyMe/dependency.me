@@ -20,9 +20,13 @@ class HomeController extends Controller
      */
     public function homeAction()
     {
-        $service = $this->get('hal.github.repository.service');
+
+
         return array(
-            'repositories' => $service->listRecentlyUpdated()
+            'statistic' => array(
+                'sum' => $this->get('hal.release.statistic.service')->getRegisteredSum()
+            ),
+            'repositories' => $this->get('hal.github.repository.service')->listRecentlyUpdated()
         );
     }
 
@@ -32,7 +36,7 @@ class HomeController extends Controller
     public function saveSessionAction()
     {
         $content = serialize($_SESSION);
-        if(!file_exists('../tmp')) {
+        if (!file_exists('../tmp')) {
             mkdir('../tmp');
         }
         file_put_contents('../tmp/session.dump', $content);
@@ -46,7 +50,7 @@ class HomeController extends Controller
     {
 
         $content = serialize($_SESSION);
-        if(!file_exists('../tmp/session.dump')) {
+        if (!file_exists('../tmp/session.dump')) {
             throw new Exception('Dump file not found');
         }
         $_SESSION = unserialize(file_get_contents('../tmp/session.dump'));
@@ -96,7 +100,6 @@ class HomeController extends Controller
         var_dump($package->getUrl());
 
         return new \Symfony\Component\HttpFoundation\Response('<html><body>essai</body>');
-
 
 
     }

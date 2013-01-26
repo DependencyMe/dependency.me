@@ -11,12 +11,10 @@ parameters:
 
   hal.release.requirement.service.class: Hal\Bundle\ReleaseBundle\Service\RequirementService
 
-
+  hal.release.statistic.service.class: Hal\Bundle\ReleaseBundle\Service\StatisticService
+  hal.release.statistic.repository.class: Hal\Bundle\ReleaseBundle\Repository\StatisticRepository
 
 services:
-
-
-
   # Package -> service
   hal.release.package.service:
     class: %hal.release.package.service.class%
@@ -60,3 +58,15 @@ services:
     class: %hal.release.requirement.service.class%
     arguments:
     - @hal.release.declaration.repository
+
+  # Statistic -> Service
+  hal.release.statistic.service:
+    class: %hal.release.statistic.service.class%
+    arguments:
+      - @hal.release.statistic.repository
+
+  # Statistic -> Repository
+  hal.release.statistic.repository:
+    class: %hal.release.statistic.repository.class%
+    arguments:
+      - @doctrine.orm.entity_manager

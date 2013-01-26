@@ -10,14 +10,14 @@
             <div class="well">
                 <ul class="nav nav-list">
                     <li class="nav-header">Informations</li>
-                    <li><i class="icon icon-user"></i>Developers: 500</li>
-                    <li><i class="icon icon-book"></i>Repositories: 500</li>
-                    <li><i class="icon icon-leaf"></i>Branches: 500</li>
+                    <li><i class="icon icon-user"></i>Developers: {{ statistic.sum.nbOwners }}</li>
+                    <li><i class="icon icon-book"></i>Repositories: {{ statistic.sum.nbRepositories }}</li>
+                    <li><i class="icon icon-leaf"></i>Branches: {{ statistic.sum.nbBranches }}</li>
 
                     <li class="nav-header">Statistics</li>
-                    <li><i class="icon icon-ok-sign"></i>Using of latest packages : 500</li>
-                    <li><i class="icon icon-warning-sign"></i>Using of recent packages : 500</li>
-                    <li><i class="icon icon-exclamation-sign"></i>Using of outdated packages : 500</li>
+                    <li><i class="icon icon-ok-sign"></i>Using of latest packages : {{ statistic.sum.nbRequirementsStatusLatest }}</li>
+                    <li><i class="icon icon-warning-sign"></i>Using of recent packages : {{ statistic.sum.nbRequirementsStatusRecent }}</li>
+                    <li><i class="icon icon-exclamation-sign"></i>Using of outdated packages : {{ statistic.sum.nbRequirementsStatusOutOfDate }}</li>
                 </ul>
             </div>
 
