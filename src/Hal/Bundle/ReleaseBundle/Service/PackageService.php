@@ -49,6 +49,10 @@ class PackageService implements PackageServiceInterface
             ->setAuthor($infos->author);
     }
 
+    public function getOldestPackages($limit, $maxDay){
+        return $this->repository->getOldestPackages($limit, $maxDay);
+    }
+
     public function savePackage(Package $package)
     {
         return $this->repository->savePackage($package);

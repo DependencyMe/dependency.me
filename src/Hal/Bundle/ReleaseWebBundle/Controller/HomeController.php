@@ -89,6 +89,10 @@ class HomeController extends Controller
 
 
         $service = $this->get('hal.release.package.service');
+        $r = $service->getOldestPackages(5, new \DateTime('yesterday'));
+        var_dump(sizeof($r));
+        return new \Symfony\Component\HttpFoundation\Response('<html><body>essai</body>');
+
 
         $package = $service->getOrCreateByName('doctrine/dbal');
         $service->refreshPackage($package);

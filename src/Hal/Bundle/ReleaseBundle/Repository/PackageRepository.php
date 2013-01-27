@@ -41,6 +41,23 @@ class PackageRepository implements PackageRepositoryInterface
         $this->em->flush();
     }
 
+    public function getOldestPackages($limit, \DateTime $minDate)
+    {
+        $query = $this->em->createQuery("
+            SELECT
+                p
+            FROM
+                HalReleaseBundle:Package p
+            WHERE
+                p.lastUpdate < :minDate
+            ORDER BY
+                p.lastUpdate ASC
+            ");
+        $query->setParameter('minDate', $minDate);
+        $query->setMaxResults($limit);
+        return $query->getResult();
+    }
+
     public function getInfosOfPackage(Package $package)
     {
 

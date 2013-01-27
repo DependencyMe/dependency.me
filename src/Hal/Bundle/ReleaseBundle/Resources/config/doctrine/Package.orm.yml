@@ -28,4 +28,4 @@ Hal\Bundle\ReleaseBundle\Entity\Package:
         mappedBy: Package
         cascade: ["persist", "merge","remove"]
   lifecycleCallbacks:
-      prePersist: [ updateDate ]
+      preUpdate: [ updateDate ]
