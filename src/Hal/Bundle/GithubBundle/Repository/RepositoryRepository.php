@@ -55,10 +55,6 @@ class RepositoryRepository implements RepositoryRepositoryInterface
             ->where('r.name = :name')
             ->andWhere('o.login = :login');
 
-        // call listeners
-        $event = new QueryEvent($queryBuilder);
-        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
-
         $query = $queryBuilder->getQuery();
         $query->setParameter('name', $reponame);
         $query->setParameter('login', $username);
@@ -86,11 +82,7 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         } else {
             $queryBuilder->andWhere('r.name = :name OR o.login = :name');
         }
-
-        // call listeners
-        $event = new QueryEvent($queryBuilder);
-        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
-
+        
         $query = $queryBuilder->getQuery();
         $query->setParameter('name', $expression);
 

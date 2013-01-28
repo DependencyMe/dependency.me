@@ -3,8 +3,8 @@ parameters:
     database_host:     127.0.0.1
     database_port:     ~
     database_name:     composout
-    database_user:     root
-    database_password: ~
+    database_user:     "%database.user%"
+    database_password: "%database.password%"
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
