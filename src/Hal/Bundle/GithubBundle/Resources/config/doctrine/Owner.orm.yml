@@ -20,9 +20,14 @@ Hal\Bundle\GithubBundle\Entity\Owner:
       nullable: true
     name:
       type: string
+    lastUpdate:
+      type: datetime
   oneToMany:
     repositories:
       targetEntity: Repository
       orphanRemoval: true
       mappedBy: owner
       cascade: ["persist", "merge", "remove"]
+  lifecycleCallbacks:
+    prePersist: [ updateDate ]
+    preUpdate:  [ updateDate ]

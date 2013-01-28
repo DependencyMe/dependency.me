@@ -84,8 +84,13 @@ class DeclarationService implements DeclarationServiceInterface
 
         $declaration->setBranche($branche);
         $branche->setDeclaration($declaration);
-        $this->saveDeclaration($declaration);
     }
+
+
+    public function getOldestDeclarations($limit, \DateTime $minDate){
+        return $this->declarationRepository->getOldestDeclarations($limit, $minDate);
+    }
+
 
     public function saveDeclaration(Declaration $declaration)
     {

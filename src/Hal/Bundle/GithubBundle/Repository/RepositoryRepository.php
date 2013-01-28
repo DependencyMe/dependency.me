@@ -24,12 +24,7 @@ class RepositoryRepository implements RepositoryRepositoryInterface
     public function getByOwner(OwnerInterface $auth)
     {
         $queryBuilder = $this->getQueryBuilder();
-        $queryBuilder
-            ->where('r.owner = :owner');
-
-        // call listeners
-        $event = new QueryEvent($queryBuilder);
-        $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
+        $queryBuilder->where('r.owner = :owner');
 
         $query = $queryBuilder->getQuery();
         $query->setParameter('owner', $auth);

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Branche
 {
-    
+
     /**
      * @var integer
      */
@@ -25,11 +25,15 @@ class Branche
      */
     private $repository;
 
+    public function updateDate()
+    {
+        $this->lastUpdate = new \DateTime();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -45,14 +49,14 @@ class Branche
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -68,7 +72,7 @@ class Branche
     public function setRepository(\Hal\Bundle\GithubBundle\Entity\Repository $repository = null)
     {
         $this->repository = $repository;
-    
+
         return $this;
     }
 
@@ -81,6 +85,7 @@ class Branche
     {
         return $this->repository;
     }
+
     /**
      * @var \Hal\Bundle\ReleaseBundle\Entity\Declaration
      */
@@ -96,7 +101,7 @@ class Branche
     public function setDeclaration(\Hal\Bundle\ReleaseBundle\Entity\Declaration $declaration = null)
     {
         $this->declaration = $declaration;
-    
+
         return $this;
     }
 
@@ -108,5 +113,34 @@ class Branche
     public function getDeclaration()
     {
         return $this->declaration;
+    }
+
+    /**
+     * @var \DateTime
+     */
+    private $lastUpdate;
+
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Repository
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
     }
 }

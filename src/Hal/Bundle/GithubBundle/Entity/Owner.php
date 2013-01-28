@@ -47,7 +47,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
     protected $name;
 
 
-
+     public function updateDate()
+     {
+         $this->lastUpdate = new \DateTime();
+     }
 
     /**
      * Get id
@@ -373,4 +376,32 @@ use Symfony\Component\Security\Core\User\UserInterface;
     {
         $this->repositories->removeElement($repositories);
     }
+     /**
+      * @var \DateTime
+      */
+     private $lastUpdate;
+
+
+     /**
+      * Set lastUpdate
+      *
+      * @param \DateTime $lastUpdate
+      * @return Repository
+      */
+     public function setLastUpdate($lastUpdate)
+     {
+         $this->lastUpdate = $lastUpdate;
+
+         return $this;
+     }
+
+     /**
+      * Get lastUpdate
+      *
+      * @return \DateTime
+      */
+     public function getLastUpdate()
+     {
+         return $this->lastUpdate;
+     }
 }

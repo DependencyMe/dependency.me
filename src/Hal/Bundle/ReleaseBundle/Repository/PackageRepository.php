@@ -49,9 +49,10 @@ class PackageRepository implements PackageRepositoryInterface
             FROM
                 HalReleaseBundle:Package p
             WHERE
-                p.lastUpdate < :minDate
+                p.lastUpdate <= :minDate
             ORDER BY
                 p.lastUpdate ASC
+
             ");
         $query->setParameter('minDate', $minDate);
         $query->setMaxResults($limit);
@@ -80,9 +81,18 @@ class PackageRepository implements PackageRepositoryInterface
                 throw new NotFoundException("Package {$package->getName()} not found on packagist (version html)");
             }
 
+            $version = '';
             if (preg_match(sprintf('!https://github.com/%s/tree/([\\w\\d\\.\\-]*)"!i', $package->getName()), $content, $matches)) {
+                $version = $matches[1];
+            } else if (preg_match(sprintf('!value="&quot;%s&quot;: &quot;(.*)&quot;"!', $package->getName()), $content, $matches)) {
+                $version = $matches[1];
+            }
+            $version = preg_replace('!(@.*)$!', '', $version);
+            $version = preg_replace('!\\.\\*$!', '', $version);
 
-                $release = new \Hal\Bundle\ReleaseBundle\Entity\Release($matches[1]);
+
+            if (strlen($version) > 0) {
+                $release = new \Hal\Bundle\ReleaseBundle\Entity\Release($version);
                 return (object)array(
                     'url' => null,
                     'releaseDate' => null,

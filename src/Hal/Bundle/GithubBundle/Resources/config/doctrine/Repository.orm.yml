@@ -29,4 +29,5 @@ Hal\Bundle\GithubBundle\Entity\Repository:
       mappedBy: repository
       cascade: ["persist", "merge","remove"]
   lifecycleCallbacks:
-      preUpdate: [ updateDate ]
+    prePersist: [ updateDate ]
+    preUpdate:  [ updateDate ]

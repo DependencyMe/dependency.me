@@ -51,7 +51,6 @@ class RequirementService implements RequirementServiceInterface
             return RequirementInterface::STATUS_UNKNOWN;
         }
 
-
         $status = RequirementInterface::STATUS_LATEST;
         foreach ($requirements as $requirement) {
 
@@ -64,14 +63,13 @@ class RequirementService implements RequirementServiceInterface
                     $status = $requirement->getStatus();
                     break;
 
-                case $status == RequirementInterface::STATUS_RECENT
-                    && $requirement->getStatus() == RequirementInterface::STATUS_OUT_OF_DATE:
+                case $requirement->getStatus() == RequirementInterface::STATUS_OUT_OF_DATE:
                     $status = RequirementInterface::STATUS_OUT_OF_DATE;
-                    break;
+                    break 2;
 
                 case $requirement->getStatus() === RequirementInterface::STATUS_UNKNOWN:
                     $status = RequirementInterface::STATUS_UNKNOWN;
-                    break 2;
+                    break;
             }
 
         }

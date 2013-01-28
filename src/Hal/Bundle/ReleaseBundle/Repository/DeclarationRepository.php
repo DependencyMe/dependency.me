@@ -39,6 +39,30 @@ class DeclarationRepository implements DeclarationRepositoryInterface
         return $json->require;
     }
 
+
+    public function getOldestDeclarations($limit, \DateTime $minDate){
+        $query = $this->em->createQuery("
+            SELECT
+                b
+            FROM
+                HalGithubBundle:Branche b
+            JOIN
+                b.repository r
+            LEFT JOIN
+                b.declaration d
+            WHERE
+                (d.lastUpdate <= :minDate
+                OR d.id IS NULL)
+                AND r.enabled = 1
+            ORDER BY
+                d.lastUpdate ASC
+
+            ");
+        $query->setParameter('minDate', $minDate);
+        $query->setMaxResults($limit);
+        return $query->getResult();
+    }
+
     public function saveDeclaration(Declaration $declaration)
     {
         $this->em->persist($declaration);

@@ -58,55 +58,46 @@ class HomeController extends Controller
         //die('ok, restauré');
     }
 
+
     /**
-     * @Route("test1", name="test1")
+     * @Route("/test1", name="test1")
      */
-    public function test1Action()
-    {
+    public function test1Action() {
+        $limit = 2;
+        $maxDay = new \DateTime('yesterday');
+        $service = $this->get('hal.release.declaration.service');
+        $branches = $service->getOldestDeclarations($limit, $maxDay);
 
+        foreach ($branches as $branche) {
 
-        $serviceRepo = $this->get('hal.github.repository.repository');
-        $repository = $serviceRepo->getByName('Halleck45/doctrine2');
-        foreach ($repository->getBranches() as $branche) {
 
             //
             // Get the declaration (infos about requirements)
-            $service = $this->get('hal.release.declaration.service');
             $service->refreshDeclarationFromBranche($branche);
+            $service->saveDeclaration($branche->getDeclaration());
+
         }
 
-
-        return new \Symfony\Component\HttpFoundation\Response('<html><body>essai</body>');
-
-    }
-
-
-    /**
-     * @Route("test2", name="test2")
-     */
-    public function test2Action()
-    {
-
-
-        $service = $this->get('hal.release.package.service');
-        $r = $service->getOldestPackages(5, new \DateTime('yesterday'));
-        var_dump(sizeof($r));
-        return new \Symfony\Component\HttpFoundation\Response('<html><body>essai</body>');
-
-
-        $package = $service->getOrCreateByName('doctrine/dbal');
-        $service->refreshPackage($package);
-        $service->savePackage($package);
-
-        var_dump($package->getCurrentVersion());
-        var_dump($package->getReleaseDate());
-        var_dump($package->getAuthor());
-        var_dump($package->getUrl());
-
-        return new \Symfony\Component\HttpFoundation\Response('<html><body>essai</body>');
-
+        return new \Symfony\Component\HttpFoundation\Response('<html><body></body>');
 
     }
-
-
 }
+
+/*
+SELECT
+    b0_.id AS id0,
+    b0_.name AS name1,
+    b0_.lastUpdate AS lastUpdate2,
+    d1_.id AS id3,
+    d1_.lastUpdate AS lastUpdate4,
+    b0_.declaration_id AS declaration_id5,
+    b0_.repository_id AS repository_id6
+FROM
+    Branche b0_
+LEFT JOIN
+    Declaration d1_
+    ON (d1_.lastUpdate < NOW() OR d1_.id IS NULL)
+ORDER BY
+    d1_.lastUpdate ASC
+    LIMIT 2;
+*/

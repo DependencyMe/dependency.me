@@ -7,8 +7,13 @@ Hal\Bundle\GithubBundle\Entity\Branche:
   fields:
     name:
       type: string
+    lastUpdate:
+          type: datetime
   manyToOne:
     repository:
       targetEntity: Repository
       cascade: ["persist", "merge","remove"]
+  lifecycleCallbacks:
+    prePersist: [ updateDate ]
+    preUpdate:  [ updateDate ]
 
