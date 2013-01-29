@@ -1,26 +1,9 @@
-<table class="table table-condensed ">
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><span class="label label-state-latest">Up-to-date</span></td>
-        <td>project uses latest versions</td>
-    </tr>
-    <tr>
-        <td><span class="label label-state-recent">Updates availables</span></td>
-        <td>project uses recent versions</td>
-    </tr>
-    <tr>
-        <td><span class="label label-state-outofdate">Updates required</span></td>
-        <td>project uses deprecated versions</td>
-    </tr>
-    <tr>
-        <td><span class="label">empty</span></td>
-        <td>no information provided</td>
-    </tr>
-    </tbody>
-</table>
+<div>
+    Available statuses :
+    <ul class="unstyled">
+        <li><span class="label label-state-latest">{{ "latest" | trans }}</span></li>
+        <li><span class="label label-state-recent">{{ "recent" | trans }}</li>
+        <li><span class="label label-state-outofdate">{{ "outofdate" | trans }}</span></li>
+        <li><span class="label">{{ "unknown" | trans }}</li>
+    </ul>
+</div>

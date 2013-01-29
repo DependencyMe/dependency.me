@@ -32,9 +32,6 @@
         <div id="owner-repositories-branches" class="span8">
 
 
-
-
-
             <h1>Dependencies of {{ branche.name }}</h1>
 
 
@@ -64,7 +61,7 @@
                             <td>{{ requirement.package.currentVersion.version }}</a></td>
                             <td>
                             <span class="label label-state-{{ requirement_state(requirement) }}">
-                            {{ requirement_state(requirement) }}</span>
+                            {{ requirement_state(requirement) | trans }}</span>
                             </td>
 
                         </tr>

@@ -18,3 +18,7 @@ site:
   search:
     title: Search: nbResults results found
     description: nbResults results found
+
+latest: Up-to-date
+recent: Updates available
+outofdate: Updates required
