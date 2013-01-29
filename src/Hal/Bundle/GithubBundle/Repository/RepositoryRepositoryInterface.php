@@ -1,5 +1,7 @@
 <?php
+
 namespace Hal\Bundle\GithubBundle\Repository;
+
 use Hal\Bundle\GithubBundle\Entity\OwnerInterface;
 use Hal\Bundle\GithubBundle\Entity\Repository;
 use Doctrine\ORM\EntityManager;
@@ -7,10 +9,11 @@ use Doctrine\ORM\EntityManager;
 interface RepositoryRepositoryInterface
 {
 
-
     public function getByOwner(OwnerInterface $auth);
 
     public function getByName($name);
+
+    public function removeRepository(Repository $repository);
 
     public function saveRepository(Repository $repository);
 

@@ -1,11 +1,11 @@
 <?php
+
 namespace Hal\Bundle\GithubBundle\Repository;
+
 use Hal\Bundle\GithubBundle\Entity\OwnerInterface;
 use Hal\Bundle\GithubBundle\Entity\Repository;
 use Doctrine\ORM\EntityManager;
-
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-
 use Hal\Bundle\GithubBundle\Event\GithubEvent;
 use Hal\Bundle\GithubBundle\Event\QueryEvent;
 
@@ -29,7 +29,6 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $query = $queryBuilder->getQuery();
         $query->setParameter('owner', $auth);
         return $query->getResult();
-
     }
 
     public function removeByOwner(OwnerInterface $owner)
@@ -41,6 +40,11 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $this->em->flush();
     }
 
+    public function removeRepository(Repository $repository)
+    {
+        $this->em->remove($repository);
+        $this->em->flush();
+    }
 
     public function getByName($name)
     {
@@ -78,16 +82,14 @@ class RepositoryRepository implements RepositoryRepositoryInterface
             $query = $queryBuilder->getQuery();
             $query->setParameter('user', $user);
             $query->setParameter('repo', $repo);
-
         } else {
             $queryBuilder->andWhere('r.name = :name OR o.login = :name');
         }
-        
+
         $query = $queryBuilder->getQuery();
         $query->setParameter('name', $expression);
 
         return $query->getResult();
-
     }
 
     public function listRecentlyUpdated($limit)
@@ -116,4 +118,5 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $this->eventDispatcher->dispatch(GithubEvent::PREPARE_QUERY_REPOSITORY, $event);
         return $queryBuilder;
     }
+
 }

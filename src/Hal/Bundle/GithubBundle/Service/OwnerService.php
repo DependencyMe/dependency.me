@@ -113,14 +113,31 @@ class OwnerService implements OwnerServiceInterface
             ->setName($this->githubRepository->getName($user))
             ->setUrl($this->githubRepository->getUrl($user));
 
-        $this->repositoryRepository->removeByOwner($user);
+
+        //
+        // Stock old repositories
+        $repoToRemove = array();
+        $repos = $this->repositoryRepository->getByOwner($user);
+        foreach($repos as $repo){
+            $repoToRemove[$repo->getName()] = $repo;
+        }
+
+        // $this->repositoryRepository->removeByOwner($user);
 
         //
         // Repositories
         $gitRepositories = $this->githubRepository->getPublicRepositories($user);
         foreach ($gitRepositories as $gitRepo) {
 
-            $repository = new Repository;
+            //
+            // Reuse existant (of found)
+            if(isset($repoToRemove[$gitRepo->name])) {
+                $repository = $repoToRemove[$gitRepo->name];
+                unset($repoToRemove[$gitRepo->name]);
+            } else {
+                $repository = new Repository;
+            }
+            
             $repository
                 ->setName($gitRepo->name)
                 ->setUrl($gitRepo->html_url)
@@ -140,7 +157,12 @@ class OwnerService implements OwnerServiceInterface
             }
 
             $user->addRepository($repository);
+        }
 
+        //
+        // Unused repositories
+        foreach($repoToRemove as $repo) {
+            $this->repositoryRepository->removeRepository($repo);
         }
     }
 
