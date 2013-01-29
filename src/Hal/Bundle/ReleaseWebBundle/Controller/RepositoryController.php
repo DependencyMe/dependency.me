@@ -60,7 +60,7 @@ class RepositoryController extends Controller
      * @Template
      * @Route("/branche/{owner}/{repository}/{branche}", name="branche.display"
      *       , requirements={
-     *              "repository" = "[\w\d\-\./]+",
+     *              "repository" = "[\w\d\-\.]+",
      *              "branche" = "[\w\d\-\./]+"
      *      }
      * )
@@ -78,9 +78,9 @@ class RepositoryController extends Controller
 
     /**
      * @Template
-     * @Route("/branche/image/{owner}/{repository}/{branche}", name="branche.image"
+     * @Route("/image/{owner}/{repository}/{branche}", name="branche.image"
      *       , requirements={
-     *              "repository" = "[\w\d\-\./]+",
+     *              "repository" = "[\w\d\-\.]+",
      *              "branche" = "[\w\d\-\./]+"
      *      }
      * )

@@ -78,7 +78,7 @@
                             </td>
                             <td>
                                 {% if repository.enabled %}
-                                    <input type="text" class="input-large" value="[![Dependencies]({{ url('branche.image', {owner: owner.name, repository: repository.name, branche: 'BRANCHE_NAME'})}})]({{ url('branche.display', {owner: owner.name, repository: repository.name, branche: 'BRANCHE_NAME'})}})" />
+                                    <input type="text" class="input-large" value="[![Dependencies]({{ url('branche.image', {owner: owner.login, repository: repository.name, branche: 'BRANCHE_NAME'})}})]({{ url('branche.display', {owner: owner.login, repository: repository.name, branche: 'BRANCHE_NAME'})}})" />
                                 {% endif %}
                             </td>
                         </tr>
