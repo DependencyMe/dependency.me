@@ -60,6 +60,7 @@
                     <tr>
                         <th>Repository</th>
                         <th></th>
+                        <th>Markdown tag</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,6 +74,11 @@
                                 {% else %}
                                     <a class="btn btn-small"
                                        href="{{ path('owner.repository.enable', {name: repository.name}) }}">disabled</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if repository.enabled %}
+                                    <input type="text" class="input-large" value="[![Dependencies]({{ url('branche.image', {owner: owner.name, repository: repository.name, branche: 'BRANCHE_NAME'})}})]({{ url('branche.display', {owner: owner.name, repository: repository.name, branche: 'BRANCHE_NAME'})}})" />
                                 {% endif %}
                             </td>
                         </tr>

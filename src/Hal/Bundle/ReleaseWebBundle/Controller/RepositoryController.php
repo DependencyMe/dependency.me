@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Hal\Bundle\GithubBundle\Entity\Repository;
@@ -59,7 +60,7 @@ class RepositoryController extends Controller
      * @Template
      * @Route("/branche/{owner}/{repository}/{branche}", name="branche.display"
      *       , requirements={
-     *              "repository" = "[\w\d\-]+",
+     *              "repository" = "[\w\d\-\./]+",
      *              "branche" = "[\w\d\-\./]+"
      *      }
      * )
@@ -72,5 +73,24 @@ class RepositoryController extends Controller
             'branche' => $branche,
             'owner' => $branche->getRepository()->getOwner(),
         );
+    }
+
+
+    /**
+     * @Template
+     * @Route("/branche/image/{owner}/{repository}/{branche}", name="branche.image"
+     *       , requirements={
+     *              "repository" = "[\w\d\-\./]+",
+     *              "branche" = "[\w\d\-\./]+"
+     *      }
+     * )
+     * @BrancheParamConverter("branche", class="HalGithubBundle:Branche")
+     * @Cache(expires="+2 days")
+     */
+    public function brancheImageAction(Branche $branche)
+    {
+        $status = $this->get('hal.release.requirement.service')->getStateOf($branche);
+        $filename = sprintf(__DIR__.'/../Resources/statuses/build-status-%s.png', $status);
+        return new \Symfony\Component\HttpFoundation\Response(file_get_contents($filename), 200, array('Content-Type' => 'image/png'));
     }
 }
