@@ -56,6 +56,9 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
         , array('<=', '2.5', '2.0.0.0', '2.5.9.9')
         , array('>=', '2.5', '2.5.0.0', '99999')
         , array('>=', '2.*', '2.0.0.0', '99999')
+        , array('=', 'dev-master', '0.0.0.1', '99999')
+        , array('=', 'master', '0.0.0.1', '99999')
+        , array('=', 'master-dev', '0.0.0.1', '99999')
         );
 
     }

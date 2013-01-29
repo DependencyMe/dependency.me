@@ -63,9 +63,21 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
         $operator = $this->getOperator();
 
 
-        if (in_array($version, array_merge(ComposerPackage::$stabilities, array('master', 'dev-master')))) {
+        $latests = array_merge(ComposerPackage::$stabilities, array('master', 'dev-master', 'master-dev'));
+        if (in_array($version, $latests)) {
             $version = '*';
         }
+        array_walk($latests, function(&$v,$k) {
+            $v = '='.$v;
+        });
+        if (in_array($version, $latests)) {
+            $version = '*';
+        }
+
+        if($version === '*') {
+            return (object)array('min' => '0.0.0.1', 'max' => '99999');
+        }
+        
 
         if (false !== strpos($version, '*')) {
             switch ($operator) {
@@ -88,6 +100,7 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
         }
 
         $version = preg_replace('!(\\.0)$!', '', $version);
+        $version = preg_replace('!@(.*)$!', '', $version);
 
         if (!preg_match('!(\d)$!', $version, $matches)) {
             throw new \Exception(sprintf('unsupported value "%s"', $version));

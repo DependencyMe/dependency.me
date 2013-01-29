@@ -37,8 +37,8 @@ class UpdateDeclarationsCommand extends ContainerAwareCommand
                 $service->refreshDeclarationFromBranche($branche);
                 $service->saveDeclaration($branche->getDeclaration());
             } catch (\Exception $e) {
-                $logger->err('Exception: '. $e->getMessage());
-                $output->writeln('<error>Exception: '. $e->getMessage().'</error>');
+                $logger->err('Exception: '. $e->getMessage(). ' in '.$e->getFile());
+                $output->writeln('<error>Exception: '. $e->getMessage(). ' in '.$e->getFile().'</error>');
                 continue;
             }
 
