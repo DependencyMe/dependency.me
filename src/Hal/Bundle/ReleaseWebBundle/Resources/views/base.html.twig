@@ -1,47 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <base href="/" />
-    <meta charset="UTF-8"/>
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" style="text/css" href="/bundles/halreleaseweb/css/app.css"/>
-    {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-</head>
-<body>
+    <head>
+        <base href="/" />
+        <meta charset="UTF-8"/>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" style="text/css" href="/bundles/halreleaseweb/css/app.css"/>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    </head>
+    <body>
 
 
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container">
-            <a href="/" class="brand">aVersion</a>
+        <div class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="page">
+                        <a href="{{ path('home') }}" class="brand"><img
+                                src="{{ asset('bundles/halreleaseweb/img/layout/logo-dependency.png') }}"
+                                alt="logo dependency.me"/></a>
 
-            <form class="navbar-search pull-left" method="get" action="{{ path('repository.search') }}">
-                <input type="text" class="search-query" placeholder="Search" name="expression">
-            </form>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li>
-                        <a href="{{ path('home') }}">Home</a>
-                    </li>
-                    {% include 'HalReleaseWebBundle:Owner:block.userbar.html.twig' %}
-                </ul>
+
+                        <div class="menu">
+                            <ul >
+                                {% include 'HalReleaseWebBundle:Owner:block.userbar.html.twig' %}
+                            </ul>
+                        </div>
+
+
+                        <form class="navbar-search" method="get" action="{{ path('repository.search') }}">
+                            <input type="text" class="search-query" placeholder="Search" name="expression">
+                        </form>
+
+                    </div>
+                </div>
             </div>
-
         </div>
-    </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="page">
-
-            {% block body %}{% endblock %}
+        <div class="container">
+            <div class="row">
+                <div class="page">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-{% block javascripts %}{% endblock %}
-</body>
+        <div class=" footer">
+            <div class="container ">
+                <div class="row">
+                    <div class="page">
+                        <div class="span4">
+                            <ul class="unstyled">
+                                <li class="nav-header">Help us</li>
+                                <li><a href="#">Contribute to the source code</a></li>
+                                <li><a href="#">Report an issue</a></li>
+                            </ul>
+                        </div>
+                        <div class="span4">
+                            <ul class="unstyled">
+                                <li class="nav-header">Follow us</li>
+                                <li><a href="#">dependency.me on Twitter</a></li>
+                            </ul>
+                        </div>
+                        <div class="span4">
+                            <p>
+                                Copyright © {{ "now"|date("Y") }} <a href="http://blog.lepine.pro">Jean-François Lépine</a>
+                                <br />
+                                All rights reserved
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
 </html>
