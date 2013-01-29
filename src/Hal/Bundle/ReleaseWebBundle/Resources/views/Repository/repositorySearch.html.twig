@@ -1,5 +1,9 @@
 {% extends "HalReleaseWebBundle::base.html.twig" %}
 
+{% block title %}{% trans with {'nbResults': repositories | length } %}site.search.title{% endtrans %}{% endblock %}
+
+{% block description %}{% trans with {'nbResults': repositories | length } %}site.search.title{% endtrans %}{% endblock %}
+
 {% block body %}
 
 

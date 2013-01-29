@@ -1,0 +1,20 @@
+site:
+  title: dependency.me - PHP dependencies analyzer
+  description: allows to check your composer.json dependencies, and tell you if your dependencies are up-to-date or if updates are available.
+
+  owner:
+    myrepositories:
+      title: My repositories (%owner.login%)
+      description: My repositories (%owner.login%)
+
+  repository:
+    branche:
+      title: Requirements of the repository %owner.login%/%repository.name% [%branche.name%]
+      description: Requirements of the repository %owner.login%/%repository.name% [%branche.name%]
+    title: Repositories of %owner.login%
+    description: Branches and requirements repositories of %owner.login%
+
+
+  search:
+    title: Search: nbResults results found
+    description: nbResults results found

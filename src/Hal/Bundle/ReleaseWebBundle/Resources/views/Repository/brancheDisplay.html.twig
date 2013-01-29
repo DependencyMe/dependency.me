@@ -1,5 +1,10 @@
 {% extends "HalReleaseWebBundle::base.html.twig" %}
 
+{% block title %}{% trans with {'%owner.login%': owner.login, '%repository.name%':branche.repository.name, '%branche.name%': branche.name}  %}site.repository.branche.title{% endtrans %}{% endblock %}
+
+{% block description %}{% trans with {'%owner.login%': owner.login, '%repository.name%':branche.repository.name, '%branche.name%': branche.name}  %}site.repository.branche.description{% endtrans %}{% endblock %}
+
+
 {% block body %}
 
     <div class="row">
@@ -8,7 +13,7 @@
 
             <div class="media">
                 <div class="pull-left">
-                    <img class="img-polaroid img-owner" src="{{ owner.gravatarUrl }}"/>
+                    <img class="img-polaroid img-owner" src="{{ owner.gravatarUrl|default('http://www.gravatar.com/avatar/?d=identicon&f=y&s=90') }}"/>
                 </div>
                 <div class="media-body">
                     <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}"

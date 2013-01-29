@@ -1,5 +1,9 @@
 {% extends "HalReleaseWebBundle::base.html.twig" %}
 
+{% block title %}{% trans with {'%owner.login%': owner.login} %}site.owner.myrepositories.title{% endtrans %}{% endblock %}
+
+{% block description %}{% trans with {'%owner.login%': owner.login} %}site.owner.myrepositories.description{% endtrans %}{% endblock %}
+
 {% block body %}
 
 
