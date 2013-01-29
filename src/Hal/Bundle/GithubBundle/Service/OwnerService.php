@@ -1,8 +1,8 @@
 <?php
+
 namespace Hal\Bundle\GithubBundle\Service;
+
 use Symfony\Component\HttpFoundation\Request;
-
-
 use Hal\Bundle\GithubBundle\Entity\Owner;
 use Hal\Bundle\GithubBundle\Entity\Repository;
 use Hal\Bundle\GithubBundle\Entity\Branche;
@@ -14,8 +14,6 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Hal\Bundle\GithubBundle\Entity\OwnerInterface;
 use Hal\Bundle\GithubBundle\Repository\RepositoryRepositoryInterface;
-
-
 use Symfony\Component\Security\Acl\Model\AclProviderInterface;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
@@ -25,17 +23,12 @@ use Symfony\Component\Security\Acl\Exception\AclNotFoundException;
 class OwnerService implements OwnerServiceInterface
 {
 
-
     private $ownerRepository;
     private $githubRepository;
     private $repositoryRepository;
     private $aclProvider;
 
-
-    function __construct(OwnerRepositoryInterface $ownerRepository,
-                         RepositoryRepositoryInterface $repositoryRepository,
-                         GithubRepositoryInterface $githubRepository,
-                         AclProviderInterface $aclProvider
+    function __construct(OwnerRepositoryInterface $ownerRepository, RepositoryRepositoryInterface $repositoryRepository, GithubRepositoryInterface $githubRepository, AclProviderInterface $aclProvider
     )
     {
         $this->ownerRepository = $ownerRepository;
@@ -63,14 +56,12 @@ class OwnerService implements OwnerServiceInterface
             try {
 
                 $this->aclProvider->findAcl($objectIdentity);
-
             } catch (AclNotFoundException $e) {
 
                 $acl = $this->aclProvider->createAcl($objectIdentity);
                 $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
                 $this->aclProvider->updateAcl($acl);
             }
-
         }
     }
 
@@ -86,7 +77,6 @@ class OwnerService implements OwnerServiceInterface
         return $this->ownerRepository->getUserByOAuthUserResponse($response);
     }
 
-
     /**
      * Get owner by its login
      *
@@ -97,7 +87,6 @@ class OwnerService implements OwnerServiceInterface
     {
         return $this->ownerRepository->getOwnerByLogin($name);
     }
-
 
     /**
      * Synchronize informations about Owner
@@ -115,35 +104,40 @@ class OwnerService implements OwnerServiceInterface
 
 
         //
-        // Stock old repositories
-        $repoToRemove = array();
+        // Stock old repositories infos
+        $oldRepos = array();
         $repos = $this->repositoryRepository->getByOwner($user);
-        foreach($repos as $repo){
-            $repoToRemove[$repo->getName()] = $repo;
+        foreach ($repos as $repo) {
+            $oldRepos[$repo->getName()] = (object) array(
+                    'enabled' => $repo->getEnabled()
+            );
         }
 
-        // $this->repositoryRepository->removeByOwner($user);
+        
+        $this->repositoryRepository->removeByOwner($user);
 
         //
         // Repositories
         $gitRepositories = $this->githubRepository->getPublicRepositories($user);
         foreach ($gitRepositories as $gitRepo) {
 
-            //
-            // Reuse existant (of found)
-            if(isset($repoToRemove[$gitRepo->name])) {
-                $repository = $repoToRemove[$gitRepo->name];
-                unset($repoToRemove[$gitRepo->name]);
-            } else {
-                $repository = new Repository;
-            }
-            
+
+            $repository = new Repository;
+
             $repository
                 ->setName($gitRepo->name)
                 ->setUrl($gitRepo->html_url)
                 ->setGitUrl($gitRepo->git_url)
                 ->setPrivate(false)
                 ->setOwner($user);
+
+            if (isset($oldRepos[$gitRepo->name])) {
+                $repository->setEnabled($oldRepos[$gitRepo->name]->enabled);
+            }
+
+            foreach ($repository->getBranches() as $branche) {
+                $repository->removeBranche($branche);
+            }
 
             $gitBranches = $this->githubRepository->getBranchesOfRepository($user, $gitRepo->name);
 
@@ -159,11 +153,6 @@ class OwnerService implements OwnerServiceInterface
             $user->addRepository($repository);
         }
 
-        //
-        // Unused repositories
-        foreach($repoToRemove as $repo) {
-            $this->repositoryRepository->removeRepository($repo);
-        }
     }
 
 }
