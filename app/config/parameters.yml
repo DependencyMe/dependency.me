@@ -15,9 +15,9 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
 
-    github_app_id:       652f9a022ddb64dacd91
-    github_app_secret:   21b7f4199b927079aedf8a4a15e9f772487b1f01
-    github_redirect_url: http://composout/app_dev.php/github/auth
+    github_app_id:       xxxxx
+    github_app_secret:   xxxxx
+    github_redirect_url: http://xxxxxxx/github/auth
 
     github_options:
       display:
