@@ -11,6 +11,8 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    google_analytics: UA-5363554-10
+
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
