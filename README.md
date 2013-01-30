@@ -1,6 +1,6 @@
-# www.dependency.me
+# dependency.me
 
-Service to check statuses of composer's dependencies.
+Service to check statuses of composer's dependencies, hosted on http://dependency.me .
 
 ## Installation
 
@@ -34,7 +34,6 @@ Service to check statuses of composer's dependencies.
     ./app/console doctrine:schema:update --force
     ./app/console doctrine:fixtures:load
     ```
-
 ## Usage
 
 add the following commands to your crontab :
