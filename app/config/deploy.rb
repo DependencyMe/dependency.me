@@ -1,3 +1,4 @@
+#coding: utf-8
 set :application, "dependency"
 set :domain,      "dependency.me"
 set :deploy_to,   "/home/data/www/dependency/me/sites/www"
