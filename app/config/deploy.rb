@@ -15,7 +15,7 @@ before "deploy:restart", "deploy:set_permissions"
 
 
 # CSM
-set :repository,  "git@dependency.me:/var/git/composout.git"
+set :repository,  "git@github.com:DependencyMe/dependency.me.git"
 set :scm,         :git
 set :branch,      "master"
 
