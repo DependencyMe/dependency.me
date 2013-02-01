@@ -74,11 +74,11 @@ class Constraint implements ConstraintInterface, ConstraintSpecificationInterfac
             $version = '*';
         }
 
+        $version = str_replace('x', '*', $version);
         if($version === '*') {
             return (object)array('min' => '0.0.0.1', 'max' => '99999');
         }
         
-
         if (false !== strpos($version, '*')) {
             switch ($operator) {
                 case '>':

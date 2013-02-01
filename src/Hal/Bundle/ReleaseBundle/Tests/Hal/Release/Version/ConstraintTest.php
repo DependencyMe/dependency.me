@@ -42,6 +42,7 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
             array('>', '1.1', '1.2.0.0', '99999')
         , array('>', '2', '3.0.0.0', '99999')
         , array('>', '2.*', '3.0.0.0', '99999')
+        , array('>', '2.x', '3.0.0.0', '99999')
         , array('=', '2', '2.0.0.0', '2.9.9.9')
         , array('=', '2.5', '2.5.0.0', '2.5.9.9')
         , array('=', '2.*', '2.0.0.0', '2.9.9.9')
@@ -74,6 +75,7 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
         , array('>', '2.0.0.2', '2.0.0.1', false)
         , array('>', '2.*', '2.0.0.1', true)
         , array('>', '2.*', '3', true)
+        , array('>', '2.x', '3', true)
             //
         , array('>=', '1.1', '2.0', true)
         , array('>=', '1.1', '1.1', true)
@@ -113,6 +115,7 @@ class ConstraintTest extends PHPUnit_Framework_TestCase
         , array('=', '1.*', '2.2', false)
         , array('=', '1.2.*', '1.2.4', true)
         , array('=', '1.2.*', '1.3', false)
+        , array('=', '1.2.x', '1.3', false)
         );
     }
 
