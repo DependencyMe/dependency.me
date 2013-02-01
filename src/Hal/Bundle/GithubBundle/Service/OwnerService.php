@@ -96,7 +96,6 @@ class OwnerService implements OwnerServiceInterface
     public function synchronize(OwnerInterface $user)
     {
         $user
-            ->setEmail($this->githubRepository->getEmail($user))
             ->setGravatarUrl($this->githubRepository->getGravatarUrl($user))
             ->setLogin($this->githubRepository->getLogin($user))
             ->setName($this->githubRepository->getName($user))
