@@ -15,15 +15,6 @@ use Hal\Bundle\GithubBundle\Service\AuthServiceInterface;
  */
 class AuthController extends Controller
 {
-    /**
-     * @Route("/authOLD ", name="github.auth")
-     */
-    public function registerAction()
-    {
-        $service = $this->get('hr.owner.service');
-        $service->authentificate();
-        return $this->redirect($this->generateUrl('owner.list.repositories'));
-    }
 
     /**
      * @Route("/out", name="github.logout")

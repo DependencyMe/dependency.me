@@ -78,7 +78,8 @@ class OwnerRepository implements OwnerRepositoryInterface
             ->from('HalGithubBundle:Owner', 'o')
             ->leftJoin('o.repositories', 'r')
             ->leftJoin('r.branches', 'b')
-            ->where('o.login = :login');
+            ->where('o.login = :login')
+            ->limit(1);
 
         // call listeners
         $event = new QueryEvent($queryBuilder);
