@@ -29,6 +29,7 @@ class UpdateDeclarationsCommand extends ContainerAwareCommand
 
         foreach ($branches as $branche) {
 
+
             $output->writeln(sprintf('updating declaration linked to the branche %s (#%d)', $branche->getName(), $branche->getId()));
 
             try {
@@ -38,7 +39,7 @@ class UpdateDeclarationsCommand extends ContainerAwareCommand
                 $service->saveDeclaration($branche->getDeclaration());
             } catch (\Exception $e) {
                 $logger->err('Exception: '. $e->getMessage(). ' in '.$e->getFile());
-                $output->writeln('<error>Exception: '. $e->getMessage(). ' in '.$e->getFile().'</error>');
+                $output->writeln('<error>Exception: '. $e->getMessage(). ' in '.$e->getFile().' at '. $e->getLine().'</error>');
                 continue;
             }
 

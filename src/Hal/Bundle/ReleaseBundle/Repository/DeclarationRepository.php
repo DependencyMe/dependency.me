@@ -43,7 +43,7 @@ class DeclarationRepository implements DeclarationRepositoryInterface
     public function getOldestDeclarations($limit, \DateTime $minDate){
         $query = $this->em->createQuery("
             SELECT
-                b
+                b, d
             FROM
                 HalGithubBundle:Branche b
             JOIN
@@ -60,6 +60,7 @@ class DeclarationRepository implements DeclarationRepositoryInterface
             ");
         $query->setParameter('minDate', $minDate);
         $query->setMaxResults($limit);
+        
         return $query->getResult();
     }
 

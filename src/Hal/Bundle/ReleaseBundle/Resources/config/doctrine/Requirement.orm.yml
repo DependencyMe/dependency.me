@@ -16,3 +16,4 @@ Hal\Bundle\ReleaseBundle\Entity\Requirement:
     declaration:
       targetEntity: Declaration
       cascade: ["persist", "merge"]
+      orphanRemoval: true

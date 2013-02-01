@@ -27,7 +27,7 @@ class StatisticRepository implements StatisticRepositoryInterface
 
         $sql = 'SELECT '
             . sprintf('(SELECT COUNT(*) FROM %s WHERE %s = 1) as nbRepositories', $this->em->getClassMetadata('HalGithubBundle:Repository')->getTableName(), $this->em->getClassMetadata('HalGithubBundle:Repository')->getColumnName('enabled'))
-            . sprintf(',(SELECT COUNT(*) FROM %s )  as nbBranches', $this->em->getClassMetadata('HalGithubBundle:Branche')->getTableName())
+            . sprintf(',(SELECT COUNT(*) FROM %s Where declaration_id > 0 )  as nbBranches', $this->em->getClassMetadata('HalGithubBundle:Branche')->getTableName())
             . sprintf(',(SELECT COUNT(*) FROM %s) as nbOwners ', $this->em->getClassMetadata('HalGithubBundle:Owner')->getTableName())
             . '';
 

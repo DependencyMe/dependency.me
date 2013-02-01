@@ -1,15 +1,15 @@
 <?php
 
 namespace Hal\Bundle\ReleaseBundle\Service;
+
 use Hal\Bundle\ReleaseBundle\Entity\Declaration;
 use Hal\Bundle\GithubBundle\Entity\Branche;
-
 use Hal\Bundle\ReleaseBundle\Factory\ConstraintFactory;
 use Hal\Bundle\ReleaseBundle\Service\PackageServiceInterface;
 use Hal\Bundle\ReleaseBundle\Repository\DeclarationRepositoryInterface;
 use Hal\Bundle\ReleaseBundle\Service\ReleaseServiceInterface;
-
 use Hal\Bundle\ReleaseBundle\Repository\RepositoryException;
+
 class DeclarationService implements DeclarationServiceInterface
 {
 
@@ -18,11 +18,7 @@ class DeclarationService implements DeclarationServiceInterface
     private $declarationRepository;
     private $releaseService;
 
-
-    function __construct(DeclarationRepositoryInterface $declarationRepository,
-                         ConstraintFactory $constraintFactory,
-                         PackageServiceInterface $packageService,
-                         ReleaseServiceInterface $releaseService
+    function __construct(DeclarationRepositoryInterface $declarationRepository, ConstraintFactory $constraintFactory, PackageServiceInterface $packageService, ReleaseServiceInterface $releaseService
     )
     {
         $this->constraintFactory = $constraintFactory;
@@ -45,6 +41,7 @@ class DeclarationService implements DeclarationServiceInterface
             $requires = array();
         }
 
+       
         // remove old informations
         foreach ($declaration->getRequirements() as $req) {
             $declaration->removeRequirement($req);
@@ -53,7 +50,7 @@ class DeclarationService implements DeclarationServiceInterface
         foreach ($requires as $req => $version) {
 
             // excludes system's dependencies
-            if(preg_match('!^(lib|ext)\-!', $req) || $req == 'php') {
+            if (preg_match('!^(lib|ext)\-!', $req) || $req == 'php') {
                 continue;
             }
 
@@ -83,17 +80,19 @@ class DeclarationService implements DeclarationServiceInterface
         }
 
         $declaration->setBranche($branche);
-        $branche->setDeclaration($declaration);
+        if (!$declaration->getId()) {
+            $branche->setDeclaration($declaration);
+        }
     }
 
-
-    public function getOldestDeclarations($limit, \DateTime $minDate){
+    public function getOldestDeclarations($limit, \DateTime $minDate)
+    {
         return $this->declarationRepository->getOldestDeclarations($limit, $minDate);
     }
-
 
     public function saveDeclaration(Declaration $declaration)
     {
         $this->declarationRepository->saveDeclaration($declaration);
     }
+
 }
