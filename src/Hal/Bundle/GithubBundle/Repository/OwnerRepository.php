@@ -79,7 +79,7 @@ class OwnerRepository implements OwnerRepositoryInterface
             ->leftJoin('o.repositories', 'r')
             ->leftJoin('r.branches', 'b')
             ->where('o.login = :login')
-            ->limit(1);
+            ->setMaxResults(1);
 
         // call listeners
         $event = new QueryEvent($queryBuilder);
