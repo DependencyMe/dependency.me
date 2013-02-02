@@ -7,3 +7,4 @@ build/
 vendor
 composer.phar
 env.sh
+app/config/parameters_dev.yml

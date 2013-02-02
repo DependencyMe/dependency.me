@@ -1,0 +1,34 @@
+{% extends "HalReleaseWebBundle::base.html.twig" %}
+
+{% block title %}{% trans %}package.popular.title{% endtrans %}{% endblock %}
+
+{% block description %}{% trans %}package.popular.description{% endtrans %}{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="span12">
+
+        <h1>Popular packages</h1>
+
+        <table class="table table-hover table-bordered table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Package</th>
+                    <th>Number of uses</th>
+                    <th>Current version</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for package in packages %}
+            <tr>
+                <td><a href="http://www.packagist.org/packages/{{ package.name }}">{{ package.name }}</a></td>
+                <td>{{ package.nbUses }}</td>
+                <td>{{ package.currentVersion.getPrettyString() }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

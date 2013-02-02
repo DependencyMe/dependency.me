@@ -1,6 +1,7 @@
 <?php
 
 namespace Hal\Bundle\ReleaseBundle\Repository;
+
 use Hal\Bundle\ReleaseBundle\Entity\Package;
 
 interface PackageRepositoryInterface
@@ -12,4 +13,5 @@ interface PackageRepositoryInterface
 
     public function getInfosOfPackage(Package $name);
 
+    public function getPopulars($limit);
 }

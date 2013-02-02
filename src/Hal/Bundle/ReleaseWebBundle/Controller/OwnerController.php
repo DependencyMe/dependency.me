@@ -10,14 +10,13 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Hal\Bundle\GithubBundle\Entity\Repository;
-
 use Hal\Bundle\GithubBundle\Request\ParamConverter\RepositoryParamConverter;
+
 /**
  * @Route("/owner")
  */
 class OwnerController extends Controller
 {
-
 
     /**
      * @Route("/synchronize", name="owner.synchronize")
@@ -58,7 +57,7 @@ class OwnerController extends Controller
     public function repositoryEnableAction(Repository $repository)
     {
         $service = $this->get('hal.github.repository.service');
-        $repository->setEnabled((boolean)$this->get('request')->get('enable'));
+        $repository->setEnabled((boolean) $this->get('request')->get('enable'));
         $service->saveRepository($repository);
         return new RedirectResponse($this->generateUrl('owner.repository.list'));
     }

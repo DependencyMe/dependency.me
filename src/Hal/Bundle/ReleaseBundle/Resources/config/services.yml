@@ -20,6 +20,7 @@ services:
     class: %hal.release.package.service.class%
     arguments:
       - @hal.release.package.repository
+      - %release_options%
 
   # Package -> repository
   hal.release.package.repository:

@@ -7,6 +7,7 @@ use Hal\Bundle\ReleaseBundle\Entity\Package;
 use Hal\Bundle\ReleaseBundle\Repository\Package\NotFoundException;
 use Hal\Bundle\ReleaseBundle\Repository\Package\InfoMissingException;
 use Hal\Bundle\ReleaseBundle\Factory\ConstraintFactory;
+use Hal\Bundle\ReleaseBundle\Entity\RequirementInterface;
 
 class PackageRepository implements PackageRepositoryInterface
 {
@@ -85,6 +86,27 @@ class PackageRepository implements PackageRepositoryInterface
                 'version' => $parser->getLastVersion(),
                 'author' => $parser->getAuthor()
         );
+    }
+
+    public function getPopulars($limit)
+    {
+        $query = $this->em->createQuery("
+            SELECT
+                p as package, (Select Count(r.id) From HalReleaseBundle:Requirement r Where r.package = p) as nbUses
+            FROM
+                HalReleaseBundle:Package p
+            ORDER BY
+                nbUses DESC
+            ");
+        $query->setMaxResults($limit);
+        $results = $query->getResult();
+
+        array_walk($results, function (&$item, $key) {
+                $item['package']->nbUses = $item['nbUses'];
+                $item = $item['package'];
+            }
+        );
+        return $results;
     }
 
 }

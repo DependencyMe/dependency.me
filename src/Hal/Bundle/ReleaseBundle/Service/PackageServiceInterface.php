@@ -6,6 +6,8 @@ use Hal\Bundle\ReleaseBundle\Entity\Package;
 
 interface PackageServiceInterface
 {
+
     public function getOrCreateByName($name);
 
+    public function getPopulars();
 }

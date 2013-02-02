@@ -11,10 +11,12 @@ class PackageService implements PackageServiceInterface
 {
 
     private $repository;
+    private $options;
 
-    function __construct(PackageRepositoryInterface $repository)
+    function __construct(PackageRepositoryInterface $repository, array $options = array())
     {
         $this->repository = $repository;
+        $this->options = $options;
     }
 
 
@@ -56,5 +58,10 @@ class PackageService implements PackageServiceInterface
     public function savePackage(Package $package)
     {
         return $this->repository->savePackage($package);
+    }
+
+    public function getPopulars() {
+        $limit = (int) $this->options['display']['packages']['popular'];
+        return $this->repository->getPopulars($limit);
     }
 }
