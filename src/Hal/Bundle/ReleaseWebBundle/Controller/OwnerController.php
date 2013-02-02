@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Hal\Bundle\GithubBundle\Entity\Repository;
 
+use Hal\Bundle\GithubBundle\Request\ParamConverter\RepositoryParamConverter;
 /**
  * @Route("/owner")
  */
@@ -43,15 +44,15 @@ class OwnerController extends Controller
     public function repositoryListAction()
     {
         return array(
-            'repositories' => $this->getUser()->getRepositories(),
+            'repositories' => $this->get('hal.github.repository.service')->getByOwner($this->getUser()),
             'owner' => $this->getUser()
         );
     }
 
     /**
-     * @Route("/enable/{name}", defaults={"enable": "1"}, name="owner.repository.enable" )
-     * @Route("/disable/{name}", defaults={"enable": "0"}, name="owner.repository.disable" )
-     * @ParamConverter("repository", options={"mapping": {"name": "name"}})
+     * @Route("/enable/{owner}/{repository}", defaults={"enable": "1"}, name="owner.repository.enable" )
+     * @Route("/disable/{owner}/{repository}", defaults={"enable": "0"}, name="owner.repository.disable" )
+     * @RepositoryParamConverter("repository", class="HalGithubBundle:Repository")
      * @SecureParam(name="repository", permissions="OWNER")
      */
     public function repositoryEnableAction(Repository $repository)
@@ -59,7 +60,6 @@ class OwnerController extends Controller
         $service = $this->get('hal.github.repository.service');
         $repository->setEnabled((boolean)$this->get('request')->get('enable'));
         $service->saveRepository($repository);
-
         return new RedirectResponse($this->generateUrl('owner.repository.list'));
     }
 

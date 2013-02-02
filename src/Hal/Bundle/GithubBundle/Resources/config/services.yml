@@ -10,6 +10,7 @@ parameters:
 
   # converters
   hal.github.extra.converter.branche.class: Hal\Bundle\GithubBundle\Request\ParamConverter\BrancheParamConverter
+  hal.github.extra.converter.repository.class: Hal\Bundle\GithubBundle\Request\ParamConverter\RepositoryParamConverter
   hal.github.extra.converter.owner.class: Hal\Bundle\GithubBundle\Request\ParamConverter\OwnerParamConverter
 
 services:
@@ -19,6 +20,13 @@ services:
       class: %hal.github.extra.converter.branche.class%
       arguments:
         - @hal.github.branche.repository
+      tags:
+        - { name: request.param_converter, priority: 1 }
+
+    hal.github.repository.converter:
+      class: %hal.github.extra.converter.repository.class%
+      arguments:
+        - @hal.github.repository.repository
       tags:
         - { name: request.param_converter, priority: 1 }
 

@@ -20,4 +20,6 @@ interface RepositoryRepositoryInterface
     public function removeByOwner(OwnerInterface $owner);
 
     public function search($expression);
+
+    public function getRepository($fullname);
 }
