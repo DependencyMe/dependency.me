@@ -106,13 +106,17 @@ class RepositoryRepository implements RepositoryRepositoryInterface
 
     public function listRecentlyUpdated($limit)
     {
-        $queryBuilder = $this->getQueryBuilder();
+        // we don't want to get branches
+        $queryBuilder = $this->em->createQueryBuilder();
         $queryBuilder
+            ->select('o, r')
+            ->from('HalGithubBundle:Repository', 'r')
+            ->join('r.owner', 'o')
             ->where('r.enabled = 1')
             ->orderBy('r.lastUpdate', 'DESC')
             ->setMaxResults($limit);
-
-        return $queryBuilder->getQuery()->getResult();
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
     }
 
     private function getQueryBuilder()

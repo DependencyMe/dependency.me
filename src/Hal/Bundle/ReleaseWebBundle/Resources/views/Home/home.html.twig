@@ -56,7 +56,7 @@
                     {% for repository in repositories %}
                         <li>
                             <a href="{{ path('repository.list.by.owner', {login: repository.owner.login}) }}"
-                                    >{{ repository.name }}</a>
+                                    >{{repository.owner.login }}/{{ repository.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
