@@ -15,8 +15,8 @@
                     <img class="img-polaroid img-owner" src="{{ owner.gravatarUrl }}"/>
                 </div>
                 <div class="media-body">
-                    <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}"
-                       target="_blank">{{ owner.login }}</a>
+                    <a href="https://www.github.com/{{ owner.login }}"
+                                       target="_blank">{{ owner.login }}</a>
                     <br/> {{ repositories | length }} repositories
                 </div>
 
