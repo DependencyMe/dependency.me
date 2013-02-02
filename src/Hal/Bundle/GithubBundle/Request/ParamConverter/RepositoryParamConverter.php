@@ -29,7 +29,7 @@ class RepositoryParamConverter implements ParamConverterInterface
         $class = $configuration->getClass();
         $fullname = implode('/', array($request->get('owner'), $request->get('repository')));
 
-        $object = $this->repository->getRepository($fullname);
+        $object = $this->repository->getByName($fullname);
         if (!$object) {
             throw new NotFoundHttpException(sprintf('%s object not found.', $class));
         }

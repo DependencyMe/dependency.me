@@ -1,10 +1,14 @@
 <?php
+
 namespace Hal\Bundle\GithubBundle\Service;
+
 use Hal\Bundle\GithubBundle\Repository\RepositoryRepositoryInterface;
 use Hal\Bundle\GithubBundle\Entity\Repository;
 use Hal\Bundle\GithubBundle\Entity\OwnerInterface;
+
 class RepositoryService
 {
+
     private $repository;
     private $options;
 
@@ -33,4 +37,10 @@ class RepositoryService
     {
         return $this->repository->getByOwner($owner);
     }
+
+    public function getByName($fullname)
+    {
+        return $this->repository->getByName($fullname);
+    }
+
 }

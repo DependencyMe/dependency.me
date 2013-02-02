@@ -21,5 +21,4 @@ interface RepositoryRepositoryInterface
 
     public function search($expression);
 
-    public function getRepository($fullname);
 }

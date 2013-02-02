@@ -39,19 +39,6 @@ class RepositoryRepository implements RepositoryRepositoryInterface
         $this->em->flush();
     }
 
-    public function getRepository($fullname)
-    {
-        list($login, $name) = explode('/', $fullname);
-        $queryBuilder = $this->getQueryBuilder();
-        $queryBuilder
-            ->where('o.login = :login')
-            ->andWhere('r.name = :name');
-        $query = $queryBuilder->getQuery();
-        $query->setParameter('login', $login);
-        $query->setParameter('name', $name);
-        return $query->getOneOrNullResult();
-    }
-
     public function removeRepository(Repository $repository)
     {
         $this->em->remove($repository);
@@ -113,7 +100,7 @@ class RepositoryRepository implements RepositoryRepositoryInterface
             ->from('HalGithubBundle:Repository', 'r')
             ->join('r.owner', 'o')
             ->where('r.enabled = 1')
-            ->orderBy('r.lastUpdate', 'DESC')
+            ->orderBy('o.lastUpdate', 'DESC')
             ->setMaxResults($limit);
         $query = $queryBuilder->getQuery();
         return $query->getResult();
