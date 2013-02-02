@@ -2,7 +2,7 @@
 namespace Hal\Bundle\GithubBundle\Service;
 use Hal\Bundle\GithubBundle\Repository\RepositoryRepositoryInterface;
 use Hal\Bundle\GithubBundle\Entity\Repository;
-
+use Hal\Bundle\GithubBundle\Entity\OwnerInterface;
 class RepositoryService
 {
     private $repository;
@@ -27,5 +27,10 @@ class RepositoryService
     public function listRecentlyUpdated()
     {
         return $this->repository->listRecentlyUpdated($this->options['display']['recents']['repository']);
+    }
+
+    public function getByOwner(OwnerInterface $owner)
+    {
+        return $this->repository->getByOwner($owner);
     }
 }

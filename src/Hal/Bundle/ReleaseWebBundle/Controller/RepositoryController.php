@@ -50,7 +50,7 @@ class RepositoryController extends Controller
     public function repositoryListAction(Owner $owner)
     {
         return array(
-            'repositories' => $owner->getRepositories(),
+            'repositories' => $this->get('hal.github.repository.service')->getByOwner($owner),
             'owner' => $owner,
         );
     }

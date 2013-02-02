@@ -25,7 +25,6 @@ class RepositoryRepository implements RepositoryRepositoryInterface
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->where('r.owner = :owner');
-
         $query = $queryBuilder->getQuery();
         $query->setParameter('owner', $auth);
         return $query->getResult();
