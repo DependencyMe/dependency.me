@@ -6,64 +6,68 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="span8">
+<div class="row">
+    <div class="span8">
 
-            <h1>Your composer dependencies</h1>
+        <h1>Your composer dependencies</h1>
 
-            <p>
-                Simply add an image to your readme file (like <a href="https://travis-ci.org/">Travis</a>). 
-                Dependency.me tell you if your dependencies are up-to-date or deprecated.
-            </p>
+        <p>
+            Simply add an image to your readme file (like <a href="https://travis-ci.org/">Travis</a>).
+            Dependency.me tell you if your dependencies are up-to-date or deprecated.
+        </p>
 
-            {% if app.user is  null %}
-            <p>
-                You just need to login with your Github account :</p>
-            <p>
-                <a href="{{ hwi_oauth_login_url('github') }}" class="btn btn-large btn-primary">Login with Github</a>
-            </p>
-            {% endif %}
-            
-            <img
-                class="img-polaroid"
-                src="{{ asset('bundles/halreleaseweb/img/illustration/illus-compo.jpg') }}"
-                 alt="You can get information about statuses of your composer dependencies, simply adding an image to you github readme file"
+        {% if app.user is  null %}
+        <p>
+            You just need to login with your Github account :</p>
+        <p>
+            <a href="{{ hwi_oauth_login_url('github') }}" class="btn btn-large btn-primary">Login with Github</a>
+        </p>
+        {% endif %}
+
+        <img
+            class="img-polaroid"
+            src="{{ asset('bundles/halreleaseweb/img/illustration/illus-compo.jpg') }}"
+            alt="You can get information about statuses of your composer dependencies, simply adding an image to you github readme file"
             />
 
-        </div>
-
-        <div class="span4">
-
-            <div class="well">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Informations</li>
-                    <li><i class="icon icon-user"></i>Developers: {{ statistic.sum.nbOwners }}</li>
-                    <li><i class="icon icon-book"></i>Repositories: {{ statistic.sum.nbRepositories }}</li>
-                    <li><i class="icon icon-leaf"></i>Branches: {{ statistic.sum.nbBranches }}</li>
-
-                    <li class="nav-header">Statistics</li>
-                    <li><i class="icon icon-ok-sign"></i>Using of latest packages : {{ statistic.sum.nbRequirementsStatusLatest }}</li>
-                    <li><i class="icon icon-warning-sign"></i>Using of recent packages : {{ statistic.sum.nbRequirementsStatusRecent }}</li>
-                    <li><i class="icon icon-exclamation-sign"></i>Using of outdated packages : {{ statistic.sum.nbRequirementsStatusOutOfDate }}</li>
-                </ul>
-            </div>
-
-
-
-            <div class="well">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Last developers</li>
-                    {% for owner in owners %}
-                        <li>
-                            <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}"
-                                    >{{ owner.login }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-        </div>
     </div>
+
+    <div class="span4">
+
+        <div class="well">
+            <ul class="nav nav-list">
+                <li class="nav-header">Informations</li>
+                <li><i class="icon icon-user"></i>Developers: {{ statistic.sum.nbOwners }}</li>
+                <li><i class="icon icon-book"></i>Repositories: {{ statistic.sum.nbRepositories }}</li>
+                <li><i class="icon icon-leaf"></i>Branches: {{ statistic.sum.nbBranches }}</li>
+
+                <li class="nav-header">Statistics</li>
+                <li><i class="icon icon-ok-sign"></i>Using of latest packages : {{ statistic.sum.nbRequirementsStatusLatest }}</li>
+                <li><i class="icon icon-warning-sign"></i>Using of recent packages : {{ statistic.sum.nbRequirementsStatusRecent }}</li>
+                <li><i class="icon icon-exclamation-sign"></i>Using of outdated packages : {{ statistic.sum.nbRequirementsStatusOutOfDate }}</li>
+            </ul>
+        </div>
+
+
+
+        <div class="well">
+
+
+            <ul class="nav nav-list list-last-owners">
+                <li class="nav-header">Last developers</li>
+                {% for owner in owners %}
+                <li class="">
+                    <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">
+                        <img class="pull-left img-polaroid" src="{{ owner.gravatarUrl|default('http://www.gravatar.com/avatar/?d=identicon&f=y')}}&s=16">
+                        {{ owner.login }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+</div>
 
 
 

@@ -5193,3 +5193,19 @@ a.badge:hover {
   color: #FFF;
   padding-left: 0px;
 }
+/* ---- lateral ---- */
+.list-last-owners li {
+  *zoom: 1;
+}
+.list-last-owners li:before,
+.list-last-owners li:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.list-last-owners li:after {
+  clear: both;
+}
+.list-last-owners li img {
+  margin-right: 10px;
+}
