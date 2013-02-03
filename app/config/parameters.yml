@@ -18,7 +18,7 @@ parameters:
 
 
     github_app_id:       8edd75a8d7557f9d03d9
-    github_app_secret:   xxxxxxxxxxxxxxxxxxxx
+    github_app_secret:   "%github.app.secret%"
     github_redirect_url: http://composout/app_dev.php/github/auth
 
     github_options:

@@ -17,7 +17,7 @@ class BadController extends Controller
      */
     public function badAction()
     {
-        $this->redirect($this->generateUrl('home'));
+        return $this->redirect($this->generateUrl('home'));
     }
 
 }

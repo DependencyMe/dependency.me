@@ -5,4 +5,5 @@ hwi_oauth:
           type:                github
           client_id:           %github_app_id%
           client_secret:       %github_app_secret%
-          scope:               "public_repo"
+          #scope:               "public_repo"
+          scope:               ""
