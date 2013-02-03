@@ -5115,6 +5115,7 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+/* ----- general ----- */
 .label-state-latest {
   background-color: #468847;
 }
@@ -5128,6 +5129,10 @@ a.badge:hover {
   width: 90px;
   height: 90px;
 }
+/* ================== */
+/* ===== Layout ===== */
+/* ================== */
+/* ----- Menu ----- */
 .menu {
   display: block;
   float: left;
@@ -5171,6 +5176,7 @@ a.badge:hover {
 .navbar-static-top {
   margin-bottom: 20px;
 }
+/* ----- Footer ----- */
 .footer {
   margin-top: 30px;
   padding-top: 30px;
@@ -5193,7 +5199,10 @@ a.badge:hover {
   color: #FFF;
   padding-left: 0px;
 }
-/* ---- lateral ---- */
+/* ================ */
+/* ===== HOME ===== */
+/* ================ */
+/* ---- Home sidebar ---- */
 .list-last-owners li {
   *zoom: 1;
 }
