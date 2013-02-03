@@ -58,7 +58,7 @@
 
             <ul class="nav nav-list list-last-owners">
                 <li class="nav-header">Last developers</li>
-                {% for owner in owners %}
+                {% for owner in owners if owner.name %}
                 <li class="">
                     <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}">
                         <img class="pull-left img-polaroid" src="{{ owner.gravatarUrl|default('http://www.gravatar.com/avatar/?d=identicon&f=y')}}&s=16">
