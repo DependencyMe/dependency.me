@@ -19,6 +19,11 @@ site:
     title: Search: nbResults results found
     description: nbResults results found
 
+  package:
+    popular:
+      title: Popular packages
+      description: Get the list of popular packages in PHP
+
 latest: Up-to-date
 recent: Updates available
 outofdate: Updates required
