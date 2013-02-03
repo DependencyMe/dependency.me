@@ -42,9 +42,12 @@
                 <li><i class="icon icon-leaf"></i>Branches: {{ statistic.sum.nbBranches }}</li>
 
                 <li class="nav-header">Statistics</li>
-                <li><i class="icon icon-ok-sign"></i>Using of latest packages : {{ statistic.sum.nbRequirementsStatusLatest }}</li>
-                <li><i class="icon icon-warning-sign"></i>Using of recent packages : {{ statistic.sum.nbRequirementsStatusRecent }}</li>
-                <li><i class="icon icon-exclamation-sign"></i>Using of outdated packages : {{ statistic.sum.nbRequirementsStatusOutOfDate }}</li>
+                <li><i class="icon icon-ok-sign"></i>Up-to-date : {{ statistic.sum.nbRequirementsStatusLatest }}</li>
+                <li><i class="icon icon-warning-sign"></i>Updates available : {{ statistic.sum.nbRequirementsStatusRecent }}</li>
+                <li><i class="icon icon-exclamation-sign"></i>Updates required : {{ statistic.sum.nbRequirementsStatusOutOfDate }}</li>
+
+                <li class="nav-header">Popular</li>
+                <li><a href="{{ path('package.list.popular') }}"><i class="icon icon-star"></i>popular packages</a></li>
             </ul>
         </div>
 
