@@ -91,6 +91,18 @@ class OwnerRepository implements OwnerRepositoryInterface
         return $query->getOneOrNullResult();
     }
 
+    public function listRecentlyUpdated($limit)
+    {
+        $queryBuilder = $this->em->createQueryBuilder();
+        $queryBuilder
+            ->select('o')
+            ->from('HalGithubBundle:Owner', 'o')
+            ->orderBy('o.lastUpdate', 'DESC')
+            ->setMaxResults($limit);
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
     public function saveOwner(Owner $owner)
     {
         $this->em->persist($owner);

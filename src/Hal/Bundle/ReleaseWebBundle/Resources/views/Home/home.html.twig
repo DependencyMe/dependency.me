@@ -52,11 +52,11 @@
 
             <div class="well">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Recent repositories</li>
-                    {% for repository in repositories %}
+                    <li class="nav-header">Last developers</li>
+                    {% for owner in owners %}
                         <li>
-                            <a href="{{ path('repository.list.by.owner', {login: repository.owner.login}) }}"
-                                    >{{repository.owner.login }}/{{ repository.name }}</a>
+                            <a href="{{ path('repository.list.by.owner', {login: owner.login}) }}"
+                                    >{{ owner.login }}</a>
                         </li>
                     {% endfor %}
                 </ul>

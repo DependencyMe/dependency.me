@@ -58,6 +58,7 @@ services:
         - @hal.github.repository.repository
         - @hal.github.github.repository
         - @security.acl.provider
+        - %github_options%
 
     # Owner -> Repository
     hal.github.owner.repository:
@@ -68,21 +69,21 @@ services:
 
     # Repository -> Repository
     hal.github.repository.repository:
-        class: %hal.github.repository.repository.class%
-        arguments:
-          - @doctrine.orm.entity_manager
-          - @event_dispatcher
+      class: %hal.github.repository.repository.class%
+      arguments:
+        - @doctrine.orm.entity_manager
+        - @event_dispatcher
 
     # Repository -> Service
     hal.github.repository.service:
-              class: %hal.github.repository.service.class%
-              arguments:
-                - @hal.github.repository.repository
-                - %github_options%
+      class: %hal.github.repository.service.class%
+      arguments:
+        - @hal.github.repository.repository
+        - %github_options%
 
     # Github -> Repository
     hal.github.github.repository:
-          class: %hal.github.github.repository.class%
+      class: %hal.github.github.repository.class%
 
 
 

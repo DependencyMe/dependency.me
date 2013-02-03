@@ -1,5 +1,7 @@
 <?php
+
 namespace Hal\Bundle\GithubBundle\Repository;
+
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use Hal\Bundle\GithubBundle\Entity\Owner;
 
@@ -11,6 +13,8 @@ interface OwnerRepositoryInterface
     public function getOwnerByLogin($name);
 
     public function getUserByAccessToken($name);
+
+    public function listRecentlyUpdated($limit);
 
     public function saveOwner(Owner $owner);
 }

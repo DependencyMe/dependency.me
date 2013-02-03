@@ -22,7 +22,7 @@ class HomeController extends Controller
             'statistic' => array(
                 'sum' => $this->get('hal.release.statistic.service')->getRegisteredSum()
             ),
-            'repositories' => $this->get('hal.github.repository.service')->listRecentlyUpdated()
+            'owners' => $this->get('hal.github.owner.service')->listRecentlyUpdated()
         );
     }
 }

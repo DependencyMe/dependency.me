@@ -27,14 +27,21 @@ class OwnerService implements OwnerServiceInterface
     private $githubRepository;
     private $repositoryRepository;
     private $aclProvider;
+    private $options;
 
-    function __construct(OwnerRepositoryInterface $ownerRepository, RepositoryRepositoryInterface $repositoryRepository, GithubRepositoryInterface $githubRepository, AclProviderInterface $aclProvider
+    public function __construct(
+        OwnerRepositoryInterface $ownerRepository
+        , RepositoryRepositoryInterface $repositoryRepository
+        , GithubRepositoryInterface $githubRepository
+        , AclProviderInterface $aclProvider
+        , array $options
     )
     {
         $this->ownerRepository = $ownerRepository;
         $this->githubRepository = $githubRepository;
         $this->repositoryRepository = $repositoryRepository;
         $this->aclProvider = $aclProvider;
+        $this->options = $options;
     }
 
     /**
@@ -112,7 +119,7 @@ class OwnerService implements OwnerServiceInterface
             );
         }
 
-        
+
         $this->repositoryRepository->removeByOwner($user);
 
         //
@@ -151,7 +158,11 @@ class OwnerService implements OwnerServiceInterface
 
             $user->addRepository($repository);
         }
+    }
 
+    public function listRecentlyUpdated()
+    {
+        return $this->ownerRepository->listRecentlyUpdated($this->options['display']['recents']['owner']);
     }
 
 }

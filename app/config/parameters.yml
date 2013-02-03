@@ -25,6 +25,7 @@ parameters:
       display:
         recents:
           repository: 10
+          owner: 10
 
     release_options:
       display:
