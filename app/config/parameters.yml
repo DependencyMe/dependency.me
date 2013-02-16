@@ -2,7 +2,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     composout
+    database_name:     "%database.name%"
     database_user:     "%database.user%"
     database_password: "%database.password%"
 

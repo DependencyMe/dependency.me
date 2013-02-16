@@ -9,5 +9,7 @@ interface PackageServiceInterface
 
     public function getOrCreateByName($name);
 
+    public function getByName($name);
+
     public function getPopulars();
 }

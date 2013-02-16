@@ -1,12 +1,12 @@
 <?php
+
 namespace Hal\Bundle\GithubBundle\Repository;
-use Hal\Bundle\GithubBundle\Entity\Owner;
-use Hal\Bundle\GithubBundle\Entity\OwnerInterface;
-use Hal\Bundle\GithubBundle\Entity\Repository;
+
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Hal\Bundle\GithubBundle\Entity\Branche;
 use Hal\Bundle\GithubBundle\Event\GithubEvent;
 use Hal\Bundle\GithubBundle\Event\QueryEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class BrancheRepository implements BrancheRepositoryInterface
 {
@@ -29,13 +29,13 @@ class BrancheRepository implements BrancheRepositoryInterface
 
         $queryBuilder = $this->em->createQueryBuilder();
         $queryBuilder
-            ->select('o, r, b')
-            ->from('HalGithubBundle:Branche', 'b')
-            ->leftJoin('b.repository', 'r')
-            ->leftJoin('r.owner', 'o')
-            ->where('o.login = :username')
-            ->andWhere('r.name = :repository')
-            ->andWhere('b.name = :branche')
+                ->select('o, r, b')
+                ->from('HalGithubBundle:Branche', 'b')
+                ->leftJoin('b.repository', 'r')
+                ->leftJoin('r.owner', 'o')
+                ->where('o.login = :username')
+                ->andWhere('r.name = :repository')
+                ->andWhere('b.name = :branche')
         ;
         // call listeners
         $event = new QueryEvent($queryBuilder);
@@ -49,5 +49,10 @@ class BrancheRepository implements BrancheRepositoryInterface
         return $query->getOneOrNullResult();
     }
 
+    public function saveBranche(Branche $branche)
+    {
+        $this->em->persist($branche);
+        $this->em->flush();
+    }
 
 }

@@ -4,6 +4,7 @@ parameters:
   hal.github.owner.repository.class: Hal\Bundle\GithubBundle\Repository\OwnerRepository
   hal.github.repository.repository.class: Hal\Bundle\GithubBundle\Repository\RepositoryRepository
   hal.github.branche.repository.class: Hal\Bundle\GithubBundle\Repository\BrancheRepository
+  hal.github.branche.service.class: Hal\Bundle\GithubBundle\Service\BrancheService
   hal.github.github.repository.class: Hal\Bundle\GithubBundle\Repository\GithubRepository
   hal.github.repository.service.class: Hal\Bundle\GithubBundle\Service\RepositoryService
   hal.github.security.user.provider.class: Hal\Bundle\GithubBundle\Security\User\UserProvider
@@ -101,3 +102,9 @@ services:
       arguments:
         - @doctrine.orm.entity_manager
         - @event_dispatcher
+        
+    # Branche -> Service
+    hal.github.branche.service:
+      class: %hal.github.branche.service.class%
+      arguments:
+        - @hal.github.branche.repository

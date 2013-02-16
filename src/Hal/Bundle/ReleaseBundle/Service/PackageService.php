@@ -19,10 +19,9 @@ class PackageService implements PackageServiceInterface
         $this->options = $options;
     }
 
-
     public function getOrCreateByName($name)
     {
-        $package = $this->repository->getByName($name);
+        $package = $this->getByName($name);
         if (!$package) {
 
             $package = new Package();
@@ -31,27 +30,33 @@ class PackageService implements PackageServiceInterface
             try {
                 $this->refreshPackage($package);
             } catch (NotFoundException $e) {
+                
             } catch (InfoMissingException $e) {
+                
             }
-
         }
 
         return $package;
     }
 
+    public function getByName($name)
+    {
+        return $this->repository->getByName($name);
+    }
 
     public function refreshPackage(Package $package)
     {
         $infos = $this->repository->getInfosOfPackage($package);
 
         $package
-            ->setCurrentVersion($infos->version)
-            ->setReleaseDate($infos->releaseDate)
-            ->setUrl($infos->url)
-            ->setAuthor($infos->author);
+                ->setCurrentVersion($infos->version)
+                ->setReleaseDate($infos->releaseDate)
+                ->setUrl($infos->url)
+                ->setAuthor($infos->author);
     }
 
-    public function getOldestPackages($limit, $maxDay){
+    public function getOldestPackages($limit, $maxDay)
+    {
         return $this->repository->getOldestPackages($limit, $maxDay);
     }
 
@@ -60,8 +65,10 @@ class PackageService implements PackageServiceInterface
         return $this->repository->savePackage($package);
     }
 
-    public function getPopulars() {
+    public function getPopulars()
+    {
         $limit = (int) $this->options['display']['packages']['popular'];
         return $this->repository->getPopulars($limit);
     }
+
 }

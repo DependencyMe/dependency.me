@@ -1,0 +1,15 @@
+default:
+  paths:
+      features: src/Hal/Bundle/ReleaseWebBundle/Features
+      bootstrap: %behat.paths.features%/Context
+  extensions:
+      Behat\MinkExtension\Extension:
+        base_url: http://dev.dependency.me
+        goutte: ~
+      Behat\Symfony2Extension\Extension:
+          mink_driver: true
+      Behat\MinkExtension\Extension:
+          default_session: 'symfony2'
+  context:
+    parameters: 
+      view: web # mobile | web ...

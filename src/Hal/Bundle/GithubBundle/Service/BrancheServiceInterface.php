@@ -1,10 +1,10 @@
 <?php
 
-namespace Hal\Bundle\GithubBundle\Repository;
+namespace Hal\Bundle\GithubBundle\Service;
 
 use Hal\Bundle\GithubBundle\Entity\Branche;
 
-interface BrancheRepositoryInterface
+interface BrancheServiceInterface
 {
 
     public function getByFullName($name);

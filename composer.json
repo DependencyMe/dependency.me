@@ -23,7 +23,14 @@
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
-        "doctrine/doctrine-fixtures-bundle": "dev-master"
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "behat/mink": "*",
+        "behat/behat": "2.4",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-sahi-driver": "*",
+        "behat/common-contexts": "dev-master",
+        "behat/symfony2-extension": "*"
     },
     "minimum-stability": "dev",
     "scripts": {
