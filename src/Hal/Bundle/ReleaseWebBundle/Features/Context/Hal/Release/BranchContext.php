@@ -16,9 +16,9 @@ class BranchContext extends HalContext
      */
     public function theBrancheOfRequiresThePackageWithTheVersion($branch, $repository, $package, $reqVersion)
     {
-        
-        
-        
+
+
+
         $persister = $this->getPersister();
         list($owner, $repository) = explode('/', $repository);
 
@@ -71,17 +71,10 @@ class BranchContext extends HalContext
     public function iShouldBeInformedThatTheDependencyIs($package, $status)
     {
         $page = $this->getMink()->getSession()->getPage();
-        $page = $this->getMink()->getSession()->getPage();
-//die($page->getContent());
-//exit;
         $path = sprintf('//td[contains(.,\'%s\')]/following-sibling::td/span[contains(@class, \'state\')]', $package);
-        //$path = sprintf('td', $package);
         $el = $page->find('xpath', $path);
-        //$el = $this->getMink()->getSession()->getDriver()->find($path);
         if (!$el) {
             throw new \Exception("Status not found for {$package} with {$path}");
         }
-        //throw new PendingException();
     }
-
 }

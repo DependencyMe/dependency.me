@@ -30,18 +30,12 @@ class Persister extends PersisterAbstract
                 case $object instanceof Owner:
                     $this->container->get('hal.github.owner.service')->saveOwner($object);
                     return;
-                    break;
                 case $object instanceof Repository:
                     $this->container->get('hal.github.repository.service')->saveRepository($object);
                     return;
-                    break;
                 case $object instanceof Branche:
                     $this->container->get('hal.github.branche.service')->saveBranche($object);
-                    break;
-                case $object instanceof Package:
-                    break;
-                default:
-                    break;
+                    return;
             }
 
             $this->em->persist($object);
@@ -51,9 +45,6 @@ class Persister extends PersisterAbstract
 
     public function load($type, $value)
     {
-
-        //
-        // try to find it
         switch ($type) {
             case 'owner':
                 $service = $this->container->get('hal.github.owner.service');
@@ -233,7 +224,6 @@ class Persister extends PersisterAbstract
         $repository->addBranche($branche);
 
         return $branche;
-        //$this->save($branche);
     }
 
     // =======================================
@@ -264,7 +254,6 @@ class Persister extends PersisterAbstract
         $this->setEntityFromArray($requirement, $array);
 
         $declaration->addRequirement($requirement);
-        //$this->save($requirement);
         return $requirement;
     }
 

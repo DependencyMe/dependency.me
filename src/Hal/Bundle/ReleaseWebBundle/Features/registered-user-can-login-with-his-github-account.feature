@@ -11,6 +11,6 @@ Feature: Registered user can log in with his Github account
 
 
   Scenario: login with my Github account
-    When I want to login with my GithubAccount
+    When I want to login with my Github account
     Then I should be access to my profile
     And I should be able to log out
