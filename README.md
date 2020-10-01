@@ -34,7 +34,7 @@ Service to check statuses of composer's dependencies, hosted on http://dependenc
     ./app/console doctrine:schema:update --force
     ./app/console doctrine:fixtures:load
     ```
-## Usage
+## Amazing Usage
 
 add the following commands to your crontab :
 
