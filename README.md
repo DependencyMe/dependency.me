@@ -1,4 +1,4 @@
-# dependency.me
+# dependency.me - Amazing Project
 
 Service to check statuses of composer's dependencies, hosted on http://dependency.me .
 
