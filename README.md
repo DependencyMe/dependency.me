@@ -1,12 +1,14 @@
 # dependency.me
 
-Service to check statuses of composer's dependencies, hosted on http://dependency.me .
+Service to check status of composer's dependencies, hosted on http://dependency.me .
 
 ## Installation
 
 1.  Clone this project
 
 2. Configure the database information
+
+3. A database configuration file is created for each database. ... The file contains values for various configuration parameters that affect the use of the database.
 
     ```
     # Apache :
